@@ -1,7 +1,7 @@
 {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "license": "MIT",
-  "archive": "mosslight-source-v1.3.0.zip",
+  "archive": "mosslight-source-v1.4.0.zip",
   "files": [
     {
       "path": ".gitignore",
@@ -20,13 +20,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 4134,
-      "sha256": "82d679bfc6def93751d82690fa74ced5bb4cd134c005b3fc1b0a1d46b13892e3"
+      "bytes": 4476,
+      "sha256": "8f990e1b06be171fbf165b05f543d467a23d11364bc14aa1892c05fecb14fc2c"
     },
     {
       "path": "README.txt",
-      "bytes": 4134,
-      "sha256": "82d679bfc6def93751d82690fa74ced5bb4cd134c005b3fc1b0a1d46b13892e3"
+      "bytes": 4476,
+      "sha256": "8f990e1b06be171fbf165b05f543d467a23d11364bc14aa1892c05fecb14fc2c"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -60,18 +60,18 @@
     },
     {
       "path": "dist/collection.js",
-      "bytes": 1240,
-      "sha256": "f8b1c5ae182336664bfaa933a692d4c1e74897bb0975e1ed730fe4d47f053ddd"
+      "bytes": 1292,
+      "sha256": "56929eaed142907497af8b942f350de184a0a4e3931057e1bc1e5ca510d9554e"
     },
     {
       "path": "dist/game.js",
-      "bytes": 44318,
-      "sha256": "eff3ed88b7fe03ce243fd77f7194c658b29fb5c7fb145feb00791b29c9d45a84"
+      "bytes": 45748,
+      "sha256": "824c34597a1cd8ef1ad5eecd149c538fff86dddf42ef634fdbfdd1c0fbed6fcb"
     },
     {
       "path": "dist/index.html",
-      "bytes": 5686,
-      "sha256": "4293afd5667c5cb5032e7f9837dea828ed040484059fc7fa523f039ab1dbba3f"
+      "bytes": 5692,
+      "sha256": "c5559151d0db68f93a4bb541da842b010d14eadd4ee9be41bfb567798237295d"
     },
     {
       "path": "dist/orbit.js",
@@ -80,8 +80,8 @@
     },
     {
       "path": "dist/physics.js",
-      "bytes": 7183,
-      "sha256": "ed458e8b5f07f85ab0b8dadb750312eeced8da3e1f8eea12e55b5f26d459067a"
+      "bytes": 8650,
+      "sha256": "e0b1fd47fe6ad51c9703ff8a081d181c703efce5843f9afd66e48f88a6b12606"
     },
     {
       "path": "dist/style.css",
@@ -116,27 +116,27 @@
     {
       "path": "package.json",
       "bytes": 201,
-      "sha256": "2d0fc7f7ae02819fb8d1e71e3d14c5f131b2719778398b33499d021a7dc10ac6"
+      "sha256": "b971b66a10f6b2e7f45037eae3203e4cfa433cbf8d7dd18619ff93bc8d297ae9"
     },
     {
       "path": "qa/collection-camera.test.mjs",
-      "bytes": 2830,
-      "sha256": "2cefeaae1aae86c77a71a1dc82da7dc063007a6b32f987741ba58446a556b49a"
+      "bytes": 3285,
+      "sha256": "9959742ceb8f7b0cbdb7a5e666527e2a20e545a2459b731ee22871f9a9c1b58b"
     },
     {
       "path": "qa/driver.mjs",
-      "bytes": 1789,
-      "sha256": "226bbb4e55c9df9e278a4fa843d2a3a46e05267c64363c286d35af82636047f0"
+      "bytes": 1873,
+      "sha256": "5075650c83ba4a63f5c809a98dba0bfb2b48d4272ff98ad623abee3a68066300"
     },
     {
       "path": "qa/physics.test.mjs",
-      "bytes": 4909,
-      "sha256": "ccf2b5e9a7c963333c41a2de2e50ffa6343d8c6069343f96c835a11074c8d0a9"
+      "bytes": 7099,
+      "sha256": "9868f0f98484a5521fc2ff37ffbbac1b03884eb5d9572b411e7fd4c3348f1d37"
     },
     {
       "path": "qa/route.mjs",
-      "bytes": 726,
-      "sha256": "12e732e1f3e3a87f958577237b4db0def11185123ce68d9245a483998a544771"
+      "bytes": 737,
+      "sha256": "11ebbe4fc00c988f52d053aa0e8b19f7b8f058292bbd8e90291fe7e5c1e679ca"
     },
     {
       "path": "qa/v3-browser.cjs",
@@ -145,8 +145,13 @@
     },
     {
       "path": "qa/v4-browser.cjs",
-      "bytes": 3977,
-      "sha256": "280f94961969696ad954d64c7a736ffaf9abbae4de0fc13eb96a9a7333ab83cb"
+      "bytes": 4013,
+      "sha256": "8055094e5951857847bbfc89ca69f6d1a4b72fefbfbbe472b290da6592b2a3db"
+    },
+    {
+      "path": "qa/v5-forest.cjs",
+      "bytes": 4168,
+      "sha256": "46c270556244a69e39d0f47a9d447b57d4ce3853997fbc625627b372495859f1"
     },
     {
       "path": "server.mjs",
@@ -160,8 +165,8 @@
     },
     {
       "path": "tools/release_source.py",
-      "bytes": 9999,
-      "sha256": "9aa330626fb43c27645bcddc4762c23bf115bad9e0623dac3bb8a9fa3b121c21"
+      "bytes": 10145,
+      "sha256": "547bfb7d8e54161e3104a922ed3026cbe1ac8668f63370c6079fc584ea60811c"
     }
   ],
   "readable": [

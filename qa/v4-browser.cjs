@@ -8,7 +8,7 @@ const driverSource=fs.readFileSync('qa/driver.mjs','utf8').replace(/^import[^\n]
  page.on('pageerror',e=>errors.push(String(e)));
  page.on('console',e=>{if(e.text().startsWith('ROUTE '))console.log(e.text())});
  await page.goto('http://127.0.0.1:4186/?qa');await page.waitForFunction(()=>window.__qa&&document.querySelector('#loading').classList.contains('hidden'));
- await page.evaluate(async source=>{const m=await import('./physics.js');window.routePilot=new Function('mechanismPhase','crusherHeight',source+';return routeDriver;')(m.mechanismPhase,m.crusherHeight)},driverSource);
+ await page.evaluate(async source=>{const m=await import('./physics.js');window.routePilot=new Function('mechanismPhase','crusherHeight','platformToLocal',source+';return routeDriver;')(m.mechanismPhase,m.crusherHeight,m.platformToLocal)},driverSource);
  await page.click('#start');
  const run=()=>page.evaluate(()=>new Promise(resolve=>{
   const drive=routePilot(),held=new Set;let checkpoint=-1;

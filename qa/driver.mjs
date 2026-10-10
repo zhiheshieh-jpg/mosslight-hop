@@ -1,4 +1,4 @@
-import {mechanismPhase,crusherHeight} from '../dist/physics.js';
+import {mechanismPhase,crusherHeight,platformToLocal} from '../dist/physics.js';
 // QA pilot uses only movement and jump inputs. It never moves the player or changes mechanics.
 export function routeDriver(){
  let landed=0,deathCount=0,jumpUntil=-1,crossing=null;
@@ -18,8 +18,9 @@ export function routeDriver(){
   let dx=tx-p.x,dz=tz-p.z,len=Math.hypot(dx,dz),ix=dx/(len||1),iz=dz/(len||1),jump=false,wait=false;
   if(!p.grounded){ix=dx*1.8-p.vx*.1;iz=dz*1.8-p.vz*.1}
   if(p.grounded){
-   const ex=ix>0?(a.x+a.w/2-.38-p.x)/ix:ix<0?(a.x-a.w/2+.38-p.x)/ix:Infinity;
-   const ez=iz>0?(a.z+a.d/2-.38-p.z)/iz:iz<0?(a.z-a.d/2+.38-p.z)/iz:Infinity;
+   const q=platformToLocal(a,p.x,p.z),v=platformToLocal(a,a.x+ix,a.z+iz);
+   const ex=v.x>0?(a.w/2-.38-q.x)/v.x:v.x<0?(-a.w/2+.38-q.x)/v.x:Infinity;
+   const ez=v.z>0?(a.d/2-.38-q.z)/v.z:v.z<0?(-a.d/2+.38-q.z)/v.z:Infinity;
    const edge=Math.min(ex,ez);
    if(target.id!==a.id&&!last)jump=edge<.72;
    if(crossing===a.id)jump=true;

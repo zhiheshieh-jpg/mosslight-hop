@@ -15,7 +15,7 @@ names = ['README.md', 'README.txt', 'LICENSE', 'THIRD_PARTY_NOTICES.txt',
          'ASSETS.txt', 'package.json', 'server.mjs', '.gitignore',
          'models/MosslightAssets.blend', 'tools/build_assets.py',
          'tools/release_source.py', 'qa/physics.test.mjs',
-         'qa/collection-camera.test.mjs', 'qa/route.mjs', 'qa/driver.mjs', 'qa/v3-browser.cjs', 'qa/v4-browser.cjs']
+         'qa/collection-camera.test.mjs', 'qa/route.mjs', 'qa/driver.mjs', 'qa/v3-browser.cjs', 'qa/v4-browser.cjs', 'qa/v5-forest.cjs']
 files = {name: ROOT / name for name in names}
 for path in sorted((ROOT / 'dist').rglob('*')):
     if path.is_file() and OUT not in path.parents and '.openai' not in path.parts:
@@ -54,7 +54,7 @@ PAGE = r'''<!doctype html>
 </style></head><body>
 <header><a href="../"><b class="logo">MOSSLIGHT</b> <span>苔光跃迁</span></a><a href="../">返回游戏 ↗</a></header>
 <main><div class="eyebrow">OPEN SOURCE · VERSION __VERSION__</div><h1>把这片世界，带走。</h1><p>两关 3D 平台冒险的完整源码。可以阅读、修改，也可以做成自己的新世界。代码、原创模型、贴图与生成脚本一并开放。</p>
-<div class="actions"><a class="download" href="__SITE__/source/__ARCHIVE__" download>下载完整源码 ZIP ↓</a><small>MIT 许可 · 包含可编辑 Blender 模型</small></div>
+<div class="actions"><a class="download" href="__SITE__/source/__ARCHIVE__" download>下载完整源码 ZIP ↓</a><a class="download" href="https://github.com/zhiheshieh-jpg/mosslight-hop" target="_blank" rel="noopener">GitHub 仓库 ↗</a><small>MIT 许可 · 包含可编辑 Blender 模型</small></div>
 <div class="facts"><div class="fact"><strong>完整可运行</strong><p>两关、收集物、鼠标环视、全屏与合成音乐</p></div><div class="fact"><strong>原创素材源文件</strong><p>.blend 模型、GLB、建模脚本、贴图与提示词</p></div><div class="fact"><strong>MIT</strong><p>允许修改、分享与商业使用，保留许可证即可</p></div></div>
 <div class="section-label">在本机运行</div><div class="run"><code>node server.mjs</code><span>解压后在项目目录运行，打开 http://127.0.0.1:4186/</span></div>
 <div class="section-label">浏览源代码 <span id="file-count"></span></div><div class="browser"><nav id="files" aria-label="源码文件"></nav><section><div class="code-head"><span id="filename">README.md</span><a id="raw" href="code/README.md.txt" target="_blank" rel="noopener">原始文本 ↗</a></div><pre id="code" tabindex="0" aria-label="源代码">正在读取源码…</pre></section></div>

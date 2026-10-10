@@ -2,8 +2,29 @@ import {makeCollectibles,collectionStats} from './collection.js';
 export const SPEED=7.6, JUMP=10.5, GRAVITY=25, RADIUS=.32, HEIGHT=1.55;
 const platform=(x,z,y,w,d,kind='solid',extra={})=>({x,z,y,w,d,kind,...extra});
 export const LEVELS=[
- {name:'林间来信',subtitle:'跟着微光，抵达林间光门',checkpoints:[4,8],crystals:[1,3,5,7,10],platforms:[
- platform(0,0,0,10.8,9.9),platform(0,-8,.2,7.2,5.5),platform(-3,-14.5,.8,7.2,5.5),platform(-4,-21,1.2,7.2,5.5),platform(0,-27.5,1,9.6,6.6),platform(3,-35,1.5,6.72,5.5),platform(0,-41.5,1.9,7.2,5.5),platform(-3,-48,1.5,6.72,5.5),platform(0,-55,1.8,9.6,6.6),platform(3,-62.5,2.3,6.6,5.5),platform(0,-69,2.8,6.6,5.5),platform(0,-77,2.8,12,9.9)]},
+ {name:'林间来信',subtitle:'跨过林间长隙，踏着旋转浮岛向前',checkpoints:[4,9,14,18],platforms:[
+ platform(0,0,0,9,8.5),
+ platform(0,-10.8,.2,6.6,5),
+ platform(-2,-19.6,.6,6.4,5),
+ platform(-2,-28.4,.9,6.8,4.2,'rotating',{period:12,direction:1}),
+ platform(0,-37.6,.9,8,6.4),
+ platform(3,-47.3,1.3,6.2,5),
+ platform(1,-56.5,1.7,6.2,5),
+ platform(-1,-65.3,2,6.8,4.2,'rotating',{period:11,direction:-1,offset:2}),
+ platform(-3,-74.1,1.8,6.2,5),
+ platform(0,-83.4,1.8,8,6.4),
+ platform(3,-93,2.2,6,5),
+ platform(2,-101.8,2.5,6.8,4.2,'rotating',{period:10,direction:1,offset:1}),
+ platform(-1,-110.6,2.8,6,5),
+ platform(-3,-119.6,2.5,6,5),
+ platform(0,-129,2.5,8,6.4),
+ platform(3,-138.8,2.9,6,5),
+ platform(2,-147.6,3.2,6.8,4.2,'rotating',{period:9.5,direction:-1,offset:3}),
+ platform(-1,-156.4,3.5,6,5),
+ platform(-3,-165.8,3.5,8,6.4),
+ platform(0,-175.4,3.9,6,5),
+ platform(2,-184.2,4.2,6.8,4.2,'rotating',{period:9,direction:1,offset:2}),
+ platform(0,-194.8,4.2,10,8)]},
  {name:'霓虹天际',subtitle:'观察机关节奏，穿越整座夜城',checkpoints:[4,9,14,19,24],crystals:[2,5,7,10,12],platforms:[
  platform(0,0,0,8,8),
  platform(0,-7.5,.5,4.5,4),
@@ -36,12 +57,17 @@ export const LEVELS=[
  platform(0,-199.5,8.4,5,5,'laser',{period:4.4}),
  platform(0,-207,8.4,10,9)]}
 ];
+// A rotating deck uses the same local frame for physics, pickups and rendering.
+export function platformToLocal(a,x,z){const angle=a.kind==='rotating'?(a.angle||0):0,c=Math.cos(angle),s=Math.sin(angle),dx=x-a.x,dz=z-a.z;return {x:dx*c-dz*s,z:dx*s+dz*c}}
+export function platformToWorld(a,x,z){const angle=a.kind==='rotating'?(a.angle||0):0,c=Math.cos(angle),s=Math.sin(angle);return {x:a.x+x*c+z*s,z:a.z-x*s+z*c}}
+export function platformContains(a,x,z,margin=0){const q=platformToLocal(a,x,z);return Math.abs(q.x)<a.w/2+margin&&Math.abs(q.z)<a.d/2+margin}
 export function mechanismPhase(a,time){return ((time+(a.offset||0))%a.period+a.period)%a.period/a.period}
 export function crusherHeight(a,time){const phase=mechanismPhase(a,time);return phase<.66?3.4:phase<.74?3.4-(phase-.66)/.08*3.3:phase<.85?.1:.1+(phase-.85)/.15*3.3}
 export function updateMechanism(a,time){
  a.warning=false;
  if(a.kind==='laser'){const seconds=mechanismPhase(a,time)*a.period;a.laserOn=seconds>1.9;a.warning=seconds>1.25&&!a.laserOn}
  if(a.kind==='sweeper')a.angle=(time+(a.offset||0))*Math.PI*2/a.period;
+ if(a.kind==='rotating')a.angle=(time+(a.offset||0))*Math.PI*2/a.period*(a.direction||1);
  if(a.kind==='crusher'){const phase=mechanismPhase(a,time);a.pressY=crusherHeight(a,time);a.warning=phase>=.46&&phase<.66}
  if(a.kind==='pulse'){const phase=mechanismPhase(a,time);a.gone=phase>=.76;a.warning=phase>=.59&&phase<.76}
 }
@@ -50,16 +76,16 @@ export class GameWorld {
  reset(level){this.level=level;this.def=LEVELS[level];this.time=0;this.deaths=0;this.collected=new Set;this.collectibles=makeCollectibles(level);this.checkpoint=0;this.farthest=0;this.complete=false;this.events=[];this.platforms=this.def.platforms.map((p,i)=>{const a={...p,id:i,baseX:p.x,dx:0,triggerAt:null,gone:false,laserOn:false};updateMechanism(a,0);return a});this.player={x:0,y:0,z:1.3,vx:0,vz:0,vy:0,grounded:true,on:0,coyote:.14,buffer:0,facing:0};this.respawnGrace=.6;this.jumpHeld=false;}
  emit(type,data={}){this.events.push({type,...data})}
  respawn(){this.deaths++;const c=this.platforms[this.checkpoint],p=this.player;Object.assign(p,{x:c.x,y:c.y,z:c.z+.5,vx:0,vz:0,vy:0,grounded:true,on:c.id,coyote:.14,buffer:0});this.respawnGrace=.8;this.emit('respawn');}
- step(dt,input={}){if(this.complete)return;dt=Math.min(dt,1/30);this.time+=dt;this.respawnGrace=Math.max(0,this.respawnGrace-dt);const p=this.player;for(const a of this.platforms){const old=a.x;if(a.kind==='moving')a.x=a.baseX+Math.sin(this.time*Math.PI*2/a.period)*a.amp;a.dx=a.x-old;if(a.kind==='crumble'&&a.triggerAt!==null){const age=this.time-a.triggerAt;a.gone=age>1.15&&age<4.2;if(age>=4.2){a.triggerAt=null;a.gone=false}}updateMechanism(a,this.time);}
- if(p.grounded&&p.on!==null){const a=this.platforms[p.on];p.x+=a.dx;if(a.gone){p.grounded=false;p.on=null;p.coyote=0}}
+ step(dt,input={}){if(this.complete)return;dt=Math.min(dt,1/30);this.time+=dt;this.respawnGrace=Math.max(0,this.respawnGrace-dt);const p=this.player;for(const a of this.platforms){const old=a.x,oldAngle=a.angle||0;if(a.kind==='moving')a.x=a.baseX+Math.sin(this.time*Math.PI*2/a.period)*a.amp;a.dx=a.x-old;if(a.kind==='crumble'&&a.triggerAt!==null){const age=this.time-a.triggerAt;a.gone=age>1.15&&age<4.2;if(age>=4.2){a.triggerAt=null;a.gone=false}}updateMechanism(a,this.time);a.dAngle=(a.angle||0)-oldAngle;}
+ if(p.grounded&&p.on!==null){const a=this.platforms[p.on];p.x+=a.dx;if(a.kind==='rotating'){const dx=p.x-a.x,dz=p.z-a.z,c=Math.cos(a.dAngle),s=Math.sin(a.dAngle);p.x=a.x+dx*c+dz*s;p.z=a.z-dx*s+dz*c;p.facing+=a.dAngle}if(a.gone){p.grounded=false;p.on=null;p.coyote=0}}
  const jump=!!input.jump;if(jump&&!this.jumpHeld)p.buffer=.15;this.jumpHeld=jump;p.buffer=Math.max(0,p.buffer-dt);p.coyote=p.grounded?.14:Math.max(0,p.coyote-dt);
  let ix=input.x||0,iz=input.z||0;const len=Math.hypot(ix,iz);if(len>1){ix/=len;iz/=len}const blend=1-Math.exp(-(p.grounded?20:10)*dt);p.vx+=(ix*SPEED-p.vx)*blend;p.vz+=(iz*SPEED-p.vz)*blend;
  if(p.buffer>0&&p.coyote>0){p.vy=JUMP;p.grounded=false;p.on=null;p.coyote=0;p.buffer=0;this.emit('jump')}
  const oldY=p.y,oldX=p.x,oldZ=p.z;p.x+=p.vx*dt;p.z+=p.vz*dt;if(Math.hypot(p.vx,p.vz)>.3)p.facing=Math.atan2(p.vx,p.vz);p.vy-=GRAVITY*dt;p.y+=p.vy*dt;p.grounded=false;p.on=null;
- for(const a of this.platforms){if(a.gone)continue;const overlap=Math.abs(p.x-a.x)<a.w/2+RADIUS*.72&&Math.abs(p.z-a.z)<a.d/2+RADIUS*.72;if(!overlap)continue;if(p.vy<=0&&oldY>=a.y-.06&&p.y<=a.y){p.y=a.y;p.vy=0;p.grounded=true;p.on=a.id;this.farthest=Math.max(this.farthest,a.id);if(a.kind==='crumble'&&a.triggerAt===null){a.triggerAt=this.time;this.emit('crumble')}if(this.def.checkpoints.includes(a.id)&&a.id>this.checkpoint){this.checkpoint=a.id;this.emit('checkpoint')}break;}
+ for(const a of this.platforms){if(a.gone)continue;if(!platformContains(a,p.x,p.z,RADIUS*.72))continue;if(p.vy<=0&&oldY>=a.y-.06&&p.y<=a.y){p.y=a.y;p.vy=0;p.grounded=true;p.on=a.id;this.farthest=Math.max(this.farthest,a.id);if(a.kind==='crumble'&&a.triggerAt===null){a.triggerAt=this.time;this.emit('crumble')}if(this.def.checkpoints.includes(a.id)&&a.id>this.checkpoint){this.checkpoint=a.id;this.emit('checkpoint')}break;}
  // Solid side walls prevent entering the slab from below or from its sides.
- if(p.y<a.y-.07&&p.y+HEIGHT>a.y-.65){if(p.vy>0&&oldY+HEIGHT<=a.y-.65){p.y=a.y-.65-HEIGHT;p.vy=0}else if(Math.abs(oldX-a.x)>=a.w/2+RADIUS*.7){p.x=oldX;p.vx=0}else if(Math.abs(oldZ-a.z)>=a.d/2+RADIUS*.7){p.z=oldZ;p.vz=0}}}
- for(const item of this.collectibles){if(this.collected.has(item.id))continue;const a=this.platforms[item.platform];if(a.gone)continue;const x=a.x+item.x,z=a.z+item.z,y=a.y+item.y;if(Math.hypot(p.x-x,p.z-z)<.82&&Math.abs(p.y+HEIGHT*.6-y)<1.05){this.collected.add(item.id);this.emit('pickup',{item,x,y,z});if(this.collected.size===this.collectibles.length)this.emit('allCollected')}}
+ if(p.y<a.y-.07&&p.y+HEIGHT>a.y-.65){if(p.vy>0&&oldY+HEIGHT<=a.y-.65){p.y=a.y-.65-HEIGHT;p.vy=0}else{const before=platformToLocal(a,oldX,oldZ),now=platformToLocal(a,p.x,p.z);if(Math.abs(before.x)>=a.w/2+RADIUS*.7)now.x=before.x;else if(Math.abs(before.z)>=a.d/2+RADIUS*.7)now.z=before.z;else continue;Object.assign(p,platformToWorld(a,now.x,now.z));p.vx=p.vz=0}}}
+ for(const item of this.collectibles){if(this.collected.has(item.id))continue;const a=this.platforms[item.platform];if(a.gone)continue;const {x,z}=platformToWorld(a,item.x,item.z),y=a.y+item.y;if(Math.hypot(p.x-x,p.z-z)<.82&&Math.abs(p.y+HEIGHT*.6-y)<1.05){this.collected.add(item.id);this.emit('pickup',{item,x,y,z});if(this.collected.size===this.collectibles.length)this.emit('allCollected')}}
  if(this.respawnGrace<=0){for(const a of this.platforms){
   const dx=p.x-a.x,dz=p.z-a.z,low=p.y<a.y+1.05&&p.y+HEIGHT>a.y+.35;
   const laser=a.kind==='laser'&&a.laserOn&&Math.abs(dx)<a.w/2+.2&&Math.abs(dz)<.23+RADIUS&&low;
