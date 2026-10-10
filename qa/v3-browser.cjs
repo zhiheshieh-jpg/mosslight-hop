@@ -52,7 +52,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
  await page.click('#home');await page.waitForFunction(()=>!gameInfo().camera.fullscreen);
  await page.setViewportSize({width:296,height:550});await page.screenshot({path:'qa/v3-small-menu.png'});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
- await page.click('.source-link');await page.waitForFunction(()=>document.querySelector('#code').textContent.includes('苔光跃迁'));
+ await page.goto(new URL('source/',page.url()).href);await page.waitForFunction(()=>document.querySelector('#code').textContent.includes('苔光跃迁'));
  await page.getByRole('button',{name:'dist/orbit.js',exact:true}).click();
  await page.waitForFunction(()=>document.querySelector('#code').textContent.includes('export function mouseLook'));
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);

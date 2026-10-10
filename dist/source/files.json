@@ -1,7 +1,7 @@
 {
-  "version": "1.4.0",
+  "version": "1.4.1",
   "license": "MIT",
-  "archive": "mosslight-source-v1.4.0.zip",
+  "archive": "mosslight-source-v1.4.1.zip",
   "files": [
     {
       "path": ".gitignore",
@@ -70,8 +70,8 @@
     },
     {
       "path": "dist/index.html",
-      "bytes": 5692,
-      "sha256": "c5559151d0db68f93a4bb541da842b010d14eadd4ee9be41bfb567798237295d"
+      "bytes": 5538,
+      "sha256": "7dd082a4f76354d26826d399bb60a36d5e38c41b579cdcc41af0b7c0d9aad15a"
     },
     {
       "path": "dist/orbit.js",
@@ -85,8 +85,8 @@
     },
     {
       "path": "dist/style.css",
-      "bytes": 17002,
-      "sha256": "2a51122695efea7cae818dd6fb24bd89e8196cf35d34454b860609bdd38501d4"
+      "bytes": 16770,
+      "sha256": "ed16df3c7a7ab3c70e8b01fb17a97375ef3eea85e8f490d0e9515d82f3700e5f"
     },
     {
       "path": "dist/vendor/LICENSE.txt",
@@ -116,7 +116,7 @@
     {
       "path": "package.json",
       "bytes": 201,
-      "sha256": "b971b66a10f6b2e7f45037eae3203e4cfa433cbf8d7dd18619ff93bc8d297ae9"
+      "sha256": "e872c1c86f3966bb1e777545778aea119430892c3742df107744e0981426fb6f"
     },
     {
       "path": "qa/collection-camera.test.mjs",
@@ -140,8 +140,8 @@
     },
     {
       "path": "qa/v3-browser.cjs",
-      "bytes": 5924,
-      "sha256": "55388e52f3a0a7e4372393a8df64804df2428311e1d8f74b96baee11b3deba05"
+      "bytes": 5943,
+      "sha256": "f07d4b7827b5d5499e9f8434da97111a596b4a3ee4fd485613899a33f0b00f82"
     },
     {
       "path": "qa/v4-browser.cjs",
