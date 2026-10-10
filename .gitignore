@@ -1,5 +1,6 @@
 node_modules/
 qa/*.png
+qa/pixel-playthrough-results.json
 *.tar.gz
 *.zip
 !dist/source/*.zip

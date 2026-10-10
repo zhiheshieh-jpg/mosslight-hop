@@ -1,17 +1,17 @@
 {
-  "version": "1.4.1",
+  "version": "2.0.0",
   "license": "MIT",
-  "archive": "mosslight-source-v1.4.1.zip",
+  "archive": "mosslight-source-v2.0.0.zip",
   "files": [
     {
       "path": ".gitignore",
-      "bytes": 72,
-      "sha256": "e13438b9f47ddb8cc4ad42272e88746b906a629fdf35325c7ceeba93ec4adb99"
+      "bytes": 106,
+      "sha256": "142855bf43c734c8bbb529f81b08cbcc402bb17c4fc1ced5b83adb393e4c8447"
     },
     {
       "path": "ASSETS.txt",
-      "bytes": 1622,
-      "sha256": "755ff94bfd99e1328a8626ddaad12de073394cfaa981d43e2fb14f3b74fbdef5"
+      "bytes": 2082,
+      "sha256": "34bce11544fb6a0b3fff02a0f061cde241af6073d43cd4cd479576230c00d162"
     },
     {
       "path": "LICENSE",
@@ -20,18 +20,58 @@
     },
     {
       "path": "README.md",
-      "bytes": 4476,
-      "sha256": "8f990e1b06be171fbf165b05f543d467a23d11364bc14aa1892c05fecb14fc2c"
+      "bytes": 7207,
+      "sha256": "219cd186cfdb90e4f50e9397b02f40c711652ca3a8eba8fbab7a25238989d071"
     },
     {
       "path": "README.txt",
-      "bytes": 4476,
-      "sha256": "8f990e1b06be171fbf165b05f543d467a23d11364bc14aa1892c05fecb14fc2c"
+      "bytes": 7207,
+      "sha256": "219cd186cfdb90e4f50e9397b02f40c711652ca3a8eba8fbab7a25238989d071"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
       "bytes": 659,
       "sha256": "949488685c2e7f543b23f77253b5ca4f8ef5721866925383f8560410a190c09b"
+    },
+    {
+      "path": "dist/2d/assets/PROMPTS.json",
+      "bytes": 4456,
+      "sha256": "6886dca4ba0a4769bc0fbf311be965ed61666c29d6d27d2134271db0f5e0bdc6"
+    },
+    {
+      "path": "dist/2d/assets/city.png",
+      "bytes": 2493996,
+      "sha256": "70def3e4b073d4872f366a083cb287d566291fb2eab4f306e8a7da45ee01501e"
+    },
+    {
+      "path": "dist/2d/assets/forest.png",
+      "bytes": 2818445,
+      "sha256": "6cfc3b3552a92a1edcfa1c7e08398c7a06857862fb50e43a1ddb046aa25a2092"
+    },
+    {
+      "path": "dist/2d/assets/xingling.png",
+      "bytes": 2028760,
+      "sha256": "5eab88133650dacd941d84040822614f03dc2eb2ce9967da7341eab2aff427f9"
+    },
+    {
+      "path": "dist/2d/game.js",
+      "bytes": 24216,
+      "sha256": "04d137ea7731870cef6c382e086aa97e676fe9021e4a36091520f82a0057e8f3"
+    },
+    {
+      "path": "dist/2d/index.html",
+      "bytes": 4525,
+      "sha256": "21f5cc7c53e73dbe6d1c8c9b446d5637b117edc87bc771836c485c8d343b334c"
+    },
+    {
+      "path": "dist/2d/style.css",
+      "bytes": 12403,
+      "sha256": "3de3253864eb411b8a17bb96303d8285814694c81ff0aec497d3e004c1dc5e45"
+    },
+    {
+      "path": "dist/2d/world.js",
+      "bytes": 12221,
+      "sha256": "d0594abe505ff46e06ca2acba3c6021f88783aad1079abaed2ff3a59026327c6"
     },
     {
       "path": "dist/assets/models/city_kiosk.glb",
@@ -115,8 +155,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 201,
-      "sha256": "e872c1c86f3966bb1e777545778aea119430892c3742df107744e0981426fb6f"
+      "bytes": 224,
+      "sha256": "bac09e105f86366f195aaccb47e7cfc21b098ce0cacda5c12a14018b4b979347"
     },
     {
       "path": "qa/collection-camera.test.mjs",
@@ -132,6 +172,31 @@
       "path": "qa/physics.test.mjs",
       "bytes": 7099,
       "sha256": "9868f0f98484a5521fc2ff37ffbbac1b03884eb5d9572b411e7fd4c3348f1d37"
+    },
+    {
+      "path": "qa/pixel-driver.mjs",
+      "bytes": 1479,
+      "sha256": "2b1fa32d6dcdb87f4c5f9309a37415013495a7c2e6f3a30c2e6b357b16a69886"
+    },
+    {
+      "path": "qa/pixel-playthrough.cjs",
+      "bytes": 2330,
+      "sha256": "6181415bbf258c356201fb40f88283c91b75236dd278fcf5386826d6e11fca1a"
+    },
+    {
+      "path": "qa/pixel-route.mjs",
+      "bytes": 732,
+      "sha256": "c3cb9dd447e7efa9923b0b2eb252c425ddcac98c03ee82fae9e096606328caac"
+    },
+    {
+      "path": "qa/pixel-smoke.cjs",
+      "bytes": 2026,
+      "sha256": "8a8eab3a26caf6dc8d88ce6f756d77938e0695a3f374eeb321791deab3efa4cc"
+    },
+    {
+      "path": "qa/pixel-world.test.mjs",
+      "bytes": 3575,
+      "sha256": "267ec0614405eebdff362aab90c7f688aab2c5356ce1e8cc116f96121a638925"
     },
     {
       "path": "qa/route.mjs",
@@ -165,8 +230,8 @@
     },
     {
       "path": "tools/release_source.py",
-      "bytes": 10145,
-      "sha256": "547bfb7d8e54161e3104a922ed3026cbe1ac8668f63370c6079fc584ea60811c"
+      "bytes": 10550,
+      "sha256": "7f7a86f19b4786ac10ea73c4c063f250d21da44ecc09190cc7bf8ca808dafbe8"
     }
   ],
   "readable": [
@@ -177,6 +242,38 @@
     {
       "name": "LICENSE",
       "url": "code/LICENSE.txt"
+    },
+    {
+      "name": "dist/2d/world.js",
+      "url": "code/dist/2d/world.js.txt"
+    },
+    {
+      "name": "dist/2d/game.js",
+      "url": "code/dist/2d/game.js.txt"
+    },
+    {
+      "name": "dist/2d/index.html",
+      "url": "code/dist/2d/index.html.txt"
+    },
+    {
+      "name": "dist/2d/style.css",
+      "url": "code/dist/2d/style.css.txt"
+    },
+    {
+      "name": "dist/2d/assets/PROMPTS.json",
+      "url": "code/dist/2d/assets/PROMPTS.json.txt"
+    },
+    {
+      "name": "qa/pixel-world.test.mjs",
+      "url": "code/qa/pixel-world.test.mjs.txt"
+    },
+    {
+      "name": "qa/pixel-route.mjs",
+      "url": "code/qa/pixel-route.mjs.txt"
+    },
+    {
+      "name": "qa/pixel-playthrough.cjs",
+      "url": "code/qa/pixel-playthrough.cjs.txt"
     },
     {
       "name": "dist/game.js",

@@ -1,4 +1,12 @@
 贴图使用 ImageGen 生成。
+2D 像素版素材使用内置 ImageGen 生成与编辑：
+dist/2d/assets/xingling.png：原创角色星铃，透明背景 4×2 八帧动作图集。
+dist/2d/assets/forest.png：晨光森林像素背景。
+dist/2d/assets/city.png：雨夜赛博都市像素背景。
+完整生成提示词和编辑说明：dist/2d/assets/PROMPTS.json。
+2D 地形、敌人、刀光、粒子与灯光由 Canvas2D 实时绘制，音效与音乐由 WebAudio 合成。
+
+3D 原版：
 最终贴图：dist/assets/world-atlas.png
 游戏通过四个独立 UV 区域使用同一张图：左上草地、右上岩壁、左下金属、右下楼窗。
 

@@ -1,0 +1,34 @@
+{
+  "generator": "Built-in ImageGen",
+  "mode": "generate and edit",
+  "game": "Mosslight 2D: Xingling",
+  "assets": [
+    {
+      "key": "pixelHero",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: production pixel-art sprite sheet for an original 2D side-scrolling action platformer called Mosslight. Create one transparent PNG sprite atlas, exactly 4 columns by 2 rows of equal cells, no margins between cells, preferably 1536x1024 canvas. Eight full-body sprites of the SAME original adult anime heroine Xingling, age 20, a brave sky courier: short silver bob hair with a tiny teal hairclip, amber eyes, teal cropped adventurer jacket, coral-red long scarf trailing left, dark shorts over opaque black leggings, sturdy cream-and-teal boots, a small glowing amber energy short sword in her right hand. Cute expressive anime face, capable athletic silhouette, tasteful covered outfit. Premium 32-bit pixel art, deliberate crisp square pixel clusters, limited color ramps, one-pixel deep-navy outlines; not smooth vector or 3D. Side view facing RIGHT in every cell, consistent character proportions, consistent scale, feet aligned at the same baseline near the bottom of each cell with generous safe margin. Row 1 left to right: idle ready stance, run stride A, run stride B, rising jump with bent knees. Row 2 left to right: horizontal sword slash reaching right, powerful rising sword slash reaching right, forward dash low stance with scarf streaming left, recoiling hurt stance. Sword visible on attack frames, no giant VFX arcs, no shadows or ground. Every sprite isolated completely inside its own cell. Absolutely no words, numbers, labels, borders, grid lines, background, or checkerboard. Real transparent alpha background.",
+      "file": "xingling.png"
+    },
+    {
+      "key": "pixelForest",
+      "transparent_background": false,
+      "prompt": "Use case: stylized-concept. Asset type: seamless-feeling scenic background for a 2D pixel-art action platformer. Widescreen 1536x1024 composition. Warm enchanted forest in morning daylight: towering mossy trees, layered mint green distant mountains, soft golden sunbeams through leaves, tiny cozy wooden cottages in far distance, a winding turquoise stream, flowering vines, old stone ruins. Sophisticated 32-bit pixel art with clearly crisp square pixels and small hand-selected color ramps, detailed but calm. Palette jade, sage, warm cream, muted peach and deep pine. Horizontal side-scrolling landscape view, no perspective road, no game UI, no characters, no foreground playable ledges, no text. Bright middle distance and darker upper tree canopy naturally frame gameplay. Bottom quarter softly shaded forest depth. Rich scenic detail with atmospheric depth, not photorealism, no smooth painted strokes.",
+      "file": "forest.png"
+    },
+    {
+      "key": "pixelCity",
+      "transparent_background": false,
+      "prompt": "Use case: stylized-concept. Asset type: scenic background for a 2D pixel-art action platformer. Widescreen 1536x1024 composition. Gorgeous cyberpunk city at midnight in light rain, viewed across rooftops: layered deep indigo skyscrapers, teal glass towers, coral neon light strips and magenta signs with abstract illegible marks, elevated railway, tiny flying transit lights, distant enormous cyan moon, antenna clusters, glowing windows reflected in mist. Sophisticated 32-bit pixel art, crisp square clusters, small hand-selected color ramps, rich intricate architectural detail, dramatic but readable. Horizontal side-scrolling panorama with middle-distance open space. No foreground playable platform, no people, no game UI, no logos, no readable words, no captions. Deep navy, cyan, electric violet and warm coral palette. All edges deliberately pixelated, no smooth 3D rendering.",
+      "file": "city.png"
+    }
+  ],
+  "edits": [
+    {
+      "file": "xingling.png",
+      "mode": "edit",
+      "transparent_background": true,
+      "prompt": "Preserve the same original heroine and eight poses. Remove background haze and shadows to true alpha 0 outside silhouettes. Keep the character opaque. Four by two equal cells in a 1536 by 1024 atlas, every pose inside its cell with padding. No labels or grid."
+    }
+  ],
+  "runtime": "Character frames use alpha-aware cropping. Terrain, enemies, particles, slashes and lighting are Canvas2D pixel rendering; all sound and music are synthesized with WebAudio."
+}
