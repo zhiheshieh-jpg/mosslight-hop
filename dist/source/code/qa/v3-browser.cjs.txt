@@ -1,0 +1,75 @@
+const {chromium}=require('playwright');
+const fs=require('node:fs'),assert=require('node:assert/strict');
+(async()=>{
+ const browser=await chromium.launch({channel:'msedge',headless:true});
+ try{
+ const page=await browser.newPage({viewport:{width:1440,height:900}}),errors=[];
+ page.on('pageerror',e=>errors.push(String(e)));
+ await page.goto(process.env.GAME_URL||'http://127.0.0.1:4186/?qa');
+ await page.waitForFunction(()=>window.gameInfo&&document.querySelector('#loading').classList.contains('hidden'));
+ await page.click('#start');
+ await page.waitForFunction(()=>gameInfo().camera.locked&&gameInfo().camera.fullscreen);
+ await page.waitForTimeout(600);
+ const initial=await page.evaluate(()=>gameInfo());
+ assert.equal(initial.mode,'playing');
+ // Real mouse input, without pressing a button, must turn both camera axes.
+ await page.mouse.move(720,450);await page.mouse.move(920,150,{steps:20});
+ await page.waitForTimeout(550);
+ const up=await page.evaluate(()=>gameInfo());
+ assert.ok(Math.abs(up.camera.yaw-initial.camera.yaw)>.3);
+ assert.ok(up.camera.pitch<0,'can raise camera above horizon');
+ assert.ok(up.camera.forward[1]>0,'rendered camera actually points upward');
+ await page.screenshot({path:'qa/v3-look-up.png'});
+ await page.mouse.move(920,760,{steps:20});await page.waitForTimeout(550);
+ const down=await page.evaluate(()=>gameInfo());
+ assert.ok(down.camera.pitch>.4);
+ assert.ok(down.camera.forward[1]<-.5,'rendered camera points downward');
+ await page.screenshot({path:'qa/v3-look-down.png'});
+ await page.keyboard.press('KeyC');await page.waitForTimeout(450);
+ assert.ok(Math.abs(await page.evaluate(()=>gameInfo().camera.pitch)-.5)<.01);
+ await page.keyboard.press('Escape');
+ await page.waitForFunction(()=>gameInfo().mode==='paused'&&!gameInfo().camera.locked);
+ const pausedTime=await page.evaluate(()=>gameInfo().time);await page.waitForTimeout(250);
+ assert.equal(await page.evaluate(()=>gameInfo().time),pausedTime);
+ await page.screenshot({path:'qa/v3-paused.png'});
+ await page.click('#modal-primary');
+ await page.waitForFunction(()=>gameInfo().mode==='playing'&&gameInfo().camera.locked&&gameInfo().camera.fullscreen);
+ await page.keyboard.down('KeyW');await page.waitForTimeout(160);await page.keyboard.up('KeyW');
+ const moved=await page.evaluate(()=>gameInfo());assert.ok(moved.player.z<initial.player.z-.3);
+ // Simulate the browser losing mouse lock, as happens when Esc is handled by the browser.
+ await page.evaluate(()=>document.exitPointerLock());
+ await page.waitForFunction(()=>gameInfo().mode==='paused');
+ await page.click('#home');
+ await page.waitForFunction(()=>gameInfo().mode==='menu'&&!gameInfo().camera.fullscreen&&!gameInfo().camera.locked);
+ await page.click('[data-level="1"]');await page.click('#start');
+ await page.waitForFunction(()=>gameInfo().level===1&&gameInfo().camera.locked);
+ await page.waitForTimeout(500);await page.screenshot({path:'qa/v3-city.png'});
+ for(let i=0,total=await page.evaluate(()=>__qa.world().collectibles.length);i<total;i++){await page.evaluate(i=>{const w=__qa.world(),c=w.collectibles[i],a=w.platforms[c.platform];Object.assign(w.player,{x:a.x+c.x,z:a.z+c.z,y:a.y+Math.max(0,c.y-1.2),vy:0,vx:0,vz:0,grounded:c.y<2,on:a.id});w.respawnGrace=1},i);await page.waitForTimeout(70)}
+ assert.equal(await page.evaluate(()=>gameInfo().collection.score),390);
+ assert.equal(await page.evaluate(()=>gameInfo().collectionBook.gold),true);
+ assert.equal(await page.evaluate(()=>gameInfo().complete),false);
+ await page.keyboard.press('Escape');await page.waitForFunction(()=>gameInfo().mode==='paused');
+ await page.click('#home');await page.waitForFunction(()=>!gameInfo().camera.fullscreen);
+ await page.setViewportSize({width:296,height:550});await page.screenshot({path:'qa/v3-small-menu.png'});
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+ await page.click('.source-link');await page.waitForFunction(()=>document.querySelector('#code').textContent.includes('苔光跃迁'));
+ await page.getByRole('button',{name:'dist/orbit.js',exact:true}).click();
+ await page.waitForFunction(()=>document.querySelector('#code').textContent.includes('export function mouseLook'));
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+ await page.screenshot({path:'qa/v3-small-source.png'});
+ await page.setViewportSize({width:1440,height:900});await page.screenshot({path:'qa/v3-source.png'});
+ const mobile=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+ const touch=await mobile.newPage();touch.on('pageerror',e=>errors.push(String(e)));
+ await touch.goto('http://127.0.0.1:4186/?qa');await touch.waitForFunction(()=>window.gameInfo&&document.querySelector('#loading').classList.contains('hidden'));
+ await touch.click('#start');assert.equal(await touch.evaluate(()=>gameInfo().camera.locked),false);
+ const cdp=await mobile.newCDPSession(touch);
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:520,y:200,id:1}]});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:650,y:220,id:1}]});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await touch.waitForTimeout(300);
+ assert.ok(Math.abs(await touch.evaluate(()=>gameInfo().camera.yaw))>.4);
+ await touch.screenshot({path:'qa/v3-touch.png'});await mobile.close();
+ assert.deepEqual(errors,[]);
+ const report={initial:initial.camera,up:up.camera,down:down.camera,escapePauses:true,resumeLocks:true,externalUnlockPauses:true,menuExitsFullscreen:true,collection:390,mobileDrag:true,sourceBrowser:true,errors};
+ fs.writeFileSync('qa/v3-results.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+ }finally{await browser.close()}
+})().catch(e=>{console.error(e);process.exit(1)});

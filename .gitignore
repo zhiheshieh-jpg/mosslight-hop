@@ -1,0 +1,7 @@
+node_modules/
+qa/*.png
+*.tar.gz
+*.zip
+!dist/source/*.zip
+*.blend1
+*.log

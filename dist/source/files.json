@@ -1,0 +1,237 @@
+{
+  "version": "1.3.0",
+  "license": "MIT",
+  "archive": "mosslight-source-v1.3.0.zip",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 72,
+      "sha256": "e13438b9f47ddb8cc4ad42272e88746b906a629fdf35325c7ceeba93ec4adb99"
+    },
+    {
+      "path": "ASSETS.txt",
+      "bytes": 1622,
+      "sha256": "755ff94bfd99e1328a8626ddaad12de073394cfaa981d43e2fb14f3b74fbdef5"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1079,
+      "sha256": "09448d6f0f4199867ac3448a12fc34d15e7001833ffdb946d37d5cee0cc23eee"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4134,
+      "sha256": "82d679bfc6def93751d82690fa74ced5bb4cd134c005b3fc1b0a1d46b13892e3"
+    },
+    {
+      "path": "README.txt",
+      "bytes": 4134,
+      "sha256": "82d679bfc6def93751d82690fa74ced5bb4cd134c005b3fc1b0a1d46b13892e3"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.txt",
+      "bytes": 659,
+      "sha256": "949488685c2e7f543b23f77253b5ca4f8ef5721866925383f8560410a190c09b"
+    },
+    {
+      "path": "dist/assets/models/city_kiosk.glb",
+      "bytes": 618332,
+      "sha256": "efa1de3610f469cda299073ef46555057f9161847169cdfcec55a5cb37319312"
+    },
+    {
+      "path": "dist/assets/models/forest_cottage.glb",
+      "bytes": 480636,
+      "sha256": "7be4e863ad7792f4335d56a6ef1788c35d02731188e218e3c2b96dc240e9ce5d"
+    },
+    {
+      "path": "dist/assets/models/forest_tree.glb",
+      "bytes": 251552,
+      "sha256": "3d0873931d68f206e024bef506514e19684d0688a423c6c85b68fa6177b454c9"
+    },
+    {
+      "path": "dist/assets/models/player.glb",
+      "bytes": 26600,
+      "sha256": "dd74e63a2745d0b1cbe66f6f655a77400815ce3896a49deeb9c408743b19b2af"
+    },
+    {
+      "path": "dist/assets/world-atlas.png",
+      "bytes": 2607145,
+      "sha256": "96eeade75b07433da864dc2644001fa2b91dca71ca76bbb20048d2e4c38703af"
+    },
+    {
+      "path": "dist/collection.js",
+      "bytes": 1240,
+      "sha256": "f8b1c5ae182336664bfaa933a692d4c1e74897bb0975e1ed730fe4d47f053ddd"
+    },
+    {
+      "path": "dist/game.js",
+      "bytes": 44318,
+      "sha256": "eff3ed88b7fe03ce243fd77f7194c658b29fb5c7fb145feb00791b29c9d45a84"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 5686,
+      "sha256": "4293afd5667c5cb5032e7f9837dea828ed040484059fc7fa523f039ab1dbba3f"
+    },
+    {
+      "path": "dist/orbit.js",
+      "bytes": 614,
+      "sha256": "7fccfcf282544dd065540270dab4f8ab9014a63f0b5ea9b75041b795184e124f"
+    },
+    {
+      "path": "dist/physics.js",
+      "bytes": 7183,
+      "sha256": "ed458e8b5f07f85ab0b8dadb750312eeced8da3e1f8eea12e55b5f26d459067a"
+    },
+    {
+      "path": "dist/style.css",
+      "bytes": 17002,
+      "sha256": "2a51122695efea7cae818dd6fb24bd89e8196cf35d34454b860609bdd38501d4"
+    },
+    {
+      "path": "dist/vendor/LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454"
+    },
+    {
+      "path": "dist/vendor/loaders/GLTFLoader.js",
+      "bytes": 110029,
+      "sha256": "6f1719dcc6a179d30273dfb0de07a8c898a7981f7b08e600b446387f5967371f"
+    },
+    {
+      "path": "dist/vendor/three.module.js",
+      "bytes": 1304820,
+      "sha256": "0a3368c165eea773490aec7b77c22de70e3eac288503409256fdbf4d12578416"
+    },
+    {
+      "path": "dist/vendor/utils/BufferGeometryUtils.js",
+      "bytes": 31768,
+      "sha256": "c25b7930e570e9ec56173cd3b866ec8d2e10016630db3937efb439daf1cedbf6"
+    },
+    {
+      "path": "models/MosslightAssets.blend",
+      "bytes": 233487,
+      "sha256": "43b2252dcb5e86fd85d6ac3239fff3893bd0a1bdfb628b3d2530d695138ee7a7"
+    },
+    {
+      "path": "package.json",
+      "bytes": 201,
+      "sha256": "2d0fc7f7ae02819fb8d1e71e3d14c5f131b2719778398b33499d021a7dc10ac6"
+    },
+    {
+      "path": "qa/collection-camera.test.mjs",
+      "bytes": 2830,
+      "sha256": "2cefeaae1aae86c77a71a1dc82da7dc063007a6b32f987741ba58446a556b49a"
+    },
+    {
+      "path": "qa/driver.mjs",
+      "bytes": 1789,
+      "sha256": "226bbb4e55c9df9e278a4fa843d2a3a46e05267c64363c286d35af82636047f0"
+    },
+    {
+      "path": "qa/physics.test.mjs",
+      "bytes": 4909,
+      "sha256": "ccf2b5e9a7c963333c41a2de2e50ffa6343d8c6069343f96c835a11074c8d0a9"
+    },
+    {
+      "path": "qa/route.mjs",
+      "bytes": 726,
+      "sha256": "12e732e1f3e3a87f958577237b4db0def11185123ce68d9245a483998a544771"
+    },
+    {
+      "path": "qa/v3-browser.cjs",
+      "bytes": 5924,
+      "sha256": "55388e52f3a0a7e4372393a8df64804df2428311e1d8f74b96baee11b3deba05"
+    },
+    {
+      "path": "qa/v4-browser.cjs",
+      "bytes": 3977,
+      "sha256": "280f94961969696ad954d64c7a736ffaf9abbae4de0fc13eb96a9a7333ab83cb"
+    },
+    {
+      "path": "server.mjs",
+      "bytes": 1052,
+      "sha256": "feb7b5c28130dc17812a8e26e5eded4aa03876485d201fad2a89a42de570a7b4"
+    },
+    {
+      "path": "tools/build_assets.py",
+      "bytes": 12112,
+      "sha256": "75d6106838613c05091dd596a54dccf877890ab63328f0e7c3e7fab5d795ee25"
+    },
+    {
+      "path": "tools/release_source.py",
+      "bytes": 9999,
+      "sha256": "9aa330626fb43c27645bcddc4762c23bf115bad9e0623dac3bb8a9fa3b121c21"
+    }
+  ],
+  "readable": [
+    {
+      "name": "README.md",
+      "url": "code/README.md.txt"
+    },
+    {
+      "name": "LICENSE",
+      "url": "code/LICENSE.txt"
+    },
+    {
+      "name": "dist/game.js",
+      "url": "code/dist/game.js.txt"
+    },
+    {
+      "name": "dist/physics.js",
+      "url": "code/dist/physics.js.txt"
+    },
+    {
+      "name": "dist/orbit.js",
+      "url": "code/dist/orbit.js.txt"
+    },
+    {
+      "name": "dist/collection.js",
+      "url": "code/dist/collection.js.txt"
+    },
+    {
+      "name": "dist/index.html",
+      "url": "code/dist/index.html.txt"
+    },
+    {
+      "name": "dist/style.css",
+      "url": "code/dist/style.css.txt"
+    },
+    {
+      "name": "tools/build_assets.py",
+      "url": "code/tools/build_assets.py.txt"
+    },
+    {
+      "name": "server.mjs",
+      "url": "code/server.mjs.txt"
+    },
+    {
+      "name": "qa/physics.test.mjs",
+      "url": "code/qa/physics.test.mjs.txt"
+    },
+    {
+      "name": "qa/collection-camera.test.mjs",
+      "url": "code/qa/collection-camera.test.mjs.txt"
+    },
+    {
+      "name": "qa/v3-browser.cjs",
+      "url": "code/qa/v3-browser.cjs.txt"
+    },
+    {
+      "name": "tools/release_source.py",
+      "url": "code/tools/release_source.py.txt"
+    },
+    {
+      "name": "package.json",
+      "url": "code/package.json.txt"
+    },
+    {
+      "name": "ASSETS.txt",
+      "url": "code/ASSETS.txt.txt"
+    },
+    {
+      "name": "THIRD_PARTY_NOTICES.txt",
+      "url": "code/THIRD_PARTY_NOTICES.txt.txt"
+    }
+  ]
+}

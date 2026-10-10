@@ -1,0 +1,15 @@
+Mosslight / 苔光跃迁
+
+Original game code, Blender models, model generator, game textures and original
+synthesized audio are distributed under the MIT License in LICENSE.
+The original texture atlas was generated with ImageGen. Its prompt is in ASSETS.txt.
+
+Three.js r169, GLTFLoader and BufferGeometryUtils
+Copyright 2010-2024 Three.js Authors
+License: MIT
+Full license: dist/vendor/LICENSE.txt
+Project: https://threejs.org/
+
+Blender is used only to author and export assets and is not bundled.
+No external audio recordings, commercial character assets or proprietary fonts
+are included. UI fonts are selected from fonts installed on the visitor's system.

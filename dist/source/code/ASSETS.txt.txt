@@ -1,0 +1,10 @@
+贴图使用 ImageGen 生成。
+最终贴图：dist/assets/world-atlas.png
+游戏通过四个独立 UV 区域使用同一张图：左上草地、右上岩壁、左下金属、右下楼窗。
+
+最终生成提示词：
+Use case: stylized-concept. Asset type: production texture atlas for a cozy forest and cyberpunk city 3D platform game. Create one square 2048x2048 image split EXACTLY into four equal square quadrants with NO borders, NO gaps, NO text. Orthographic flat surface albedo textures, painted tactile game art, no perspective, even diffuse illumination, subtle detail, readable at small scale. Top-left quadrant: lush soft moss and tiny grass flecks in sage and fern green, tiny warm yellow botanical flecks, seamless ground texture. Top-right quadrant: warm brown rough bark/earth and gentle irregular stone layers, forest floating island cliff sides, no large objects. Bottom-left quadrant: dark indigo graphite sci-fi rooftop panel tiles with thin understated teal seams and tiny technical bolts, usable walking surface, no letters. Bottom-right quadrant: charcoal blue cyberpunk building facade, repeating rectangular cyan lit and warm amber lit windows, straight orthographic architectural texture. Fill every quadrant edge to edge. Keep each surface consistent without vignette or directional cast shadows. No labels, people, watermarks, UI, scenery, or typography.
+
+Blender 模型输出目录：dist/assets/models
+可编辑模型：models/MosslightAssets.blend
+游戏中的窗口招牌文字、光晕、花草实例、树木、漂浮岛和城市楼群还结合程序化几何与材质生成。
