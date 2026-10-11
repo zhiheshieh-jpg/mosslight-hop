@@ -1,6 +1,8 @@
 贴图使用 ImageGen 生成。
 2D 像素版素材使用内置 ImageGen 生成与编辑：
-dist/2d/assets/xingling.png：原创角色星铃，透明背景 4×2 八帧动作图集。
+dist/2d/assets/dragon.png：根据用户提供的白紫小龙娘参考形象制作，透明背景 4×2 八帧动作图集。
+dist/2d/assets/claude.png：根据用户提供的橙色 Claude 方块参考形象制作，透明背景 4×2 八帧动作图集。
+两个角色为参考形象的游戏化改编；不声称拥有原始角色或品牌权利。
 dist/2d/assets/forest.png：晨光森林像素背景。
 dist/2d/assets/city.png：雨夜赛博都市像素背景。
 完整生成提示词和编辑说明：dist/2d/assets/PROMPTS.json。

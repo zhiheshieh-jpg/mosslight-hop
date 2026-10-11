@@ -11,5 +11,12 @@ Full license: dist/vendor/LICENSE.txt
 Project: https://threejs.org/
 
 Blender is used only to author and export assets and is not bundled.
-No external audio recordings, commercial character assets or proprietary fonts
-are included. UI fonts are selected from fonts installed on the visitor's system.
+No external audio recordings or proprietary fonts are included. UI fonts are selected from fonts installed on the visitor's system.
+
+2D character references (version 2.1)
+The white/lilac dragon girl and orange Claude pixel creature follow two
+reference images supplied by the user. Their animation atlases were adapted
+with built-in ImageGen; prompts are in dist/2d/assets/PROMPTS.json.
+This is an independent fan game, not an official OpenAI or Anthropic product.
+The MIT license covers our code and original work; it does not grant rights
+to third-party character designs, brands or trademarks.

@@ -1,7 +1,7 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
-  "archive": "mosslight-source-v2.0.0.zip",
+  "archive": "mosslight-source-v2.1.0.zip",
   "files": [
     {
       "path": ".gitignore",
@@ -10,8 +10,8 @@
     },
     {
       "path": "ASSETS.txt",
-      "bytes": 2082,
-      "sha256": "34bce11544fb6a0b3fff02a0f061cde241af6073d43cd4cd479576230c00d162"
+      "bytes": 2351,
+      "sha256": "b0c995e117b2feea1714bfade3655df29e53bbb565240ed237d0f6377630377e"
     },
     {
       "path": "LICENSE",
@@ -20,23 +20,23 @@
     },
     {
       "path": "README.md",
-      "bytes": 7207,
-      "sha256": "219cd186cfdb90e4f50e9397b02f40c711652ca3a8eba8fbab7a25238989d071"
+      "bytes": 7989,
+      "sha256": "0a352f7ff74e3dfacd5fc03984b0eea5127c8541439aac0d478483ea8e61e174"
     },
     {
       "path": "README.txt",
-      "bytes": 7207,
-      "sha256": "219cd186cfdb90e4f50e9397b02f40c711652ca3a8eba8fbab7a25238989d071"
+      "bytes": 7989,
+      "sha256": "0a352f7ff74e3dfacd5fc03984b0eea5127c8541439aac0d478483ea8e61e174"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
-      "bytes": 659,
-      "sha256": "949488685c2e7f543b23f77253b5ca4f8ef5721866925383f8560410a190c09b"
+      "bytes": 1117,
+      "sha256": "816a454fd9b9469f16fd2bf11f8a8c181c640f3b66c59ead194615a571193781"
     },
     {
       "path": "dist/2d/assets/PROMPTS.json",
-      "bytes": 4456,
-      "sha256": "6886dca4ba0a4769bc0fbf311be965ed61666c29d6d27d2134271db0f5e0bdc6"
+      "bytes": 8913,
+      "sha256": "39af092af6ffc5475edb0a052c93000ec60764bd3f1e2ef339d39279f44a2ef4"
     },
     {
       "path": "dist/2d/assets/city.png",
@@ -44,29 +44,44 @@
       "sha256": "70def3e4b073d4872f366a083cb287d566291fb2eab4f306e8a7da45ee01501e"
     },
     {
+      "path": "dist/2d/assets/claude.png",
+      "bytes": 1271231,
+      "sha256": "918fc1f2bc14de5c097b5affccc149b2bad5bb5ae3b76eaae0dc5ceeef0a34d6"
+    },
+    {
+      "path": "dist/2d/assets/dragon.png",
+      "bytes": 2090840,
+      "sha256": "4d7e619558f5448b13a5e0c2fff718b1a9fe7c78fbc8da24f0bb4ec9e3074ed9"
+    },
+    {
       "path": "dist/2d/assets/forest.png",
       "bytes": 2818445,
       "sha256": "6cfc3b3552a92a1edcfa1c7e08398c7a06857862fb50e43a1ddb046aa25a2092"
     },
     {
-      "path": "dist/2d/assets/xingling.png",
-      "bytes": 2028760,
-      "sha256": "5eab88133650dacd941d84040822614f03dc2eb2ce9967da7341eab2aff427f9"
+      "path": "dist/2d/characters.js",
+      "bytes": 1529,
+      "sha256": "71824f52d42a999dbb66a8a5ae00b4f1c499adede3cb0915b07bbb7b7ee811c3"
     },
     {
       "path": "dist/2d/game.js",
-      "bytes": 24216,
-      "sha256": "04d137ea7731870cef6c382e086aa97e676fe9021e4a36091520f82a0057e8f3"
+      "bytes": 26477,
+      "sha256": "84004f9b148928c2fe01c76f5dde725a4d2e9e4b762cf7f293c5b367e1960fb8"
     },
     {
       "path": "dist/2d/index.html",
-      "bytes": 4525,
-      "sha256": "21f5cc7c53e73dbe6d1c8c9b446d5637b117edc87bc771836c485c8d343b334c"
+      "bytes": 6620,
+      "sha256": "f656284fbfdbd81f539c02e5dc5bbc640e05c9619a5907b5ef62f69748c03266"
+    },
+    {
+      "path": "dist/2d/sprite-atlas.js",
+      "bytes": 1279,
+      "sha256": "7c9e9dfeb8e062fc332a8a352d076c90301ef54c0ed81099e3bf8edb73a1a1f9"
     },
     {
       "path": "dist/2d/style.css",
-      "bytes": 12403,
-      "sha256": "3de3253864eb411b8a17bb96303d8285814694c81ff0aec497d3e004c1dc5e45"
+      "bytes": 18225,
+      "sha256": "8bd01fe2f9cfe5b5daa45c8e336df1a1ccf8460d7dffb15ecbdc5e7ba78222f9"
     },
     {
       "path": "dist/2d/world.js",
@@ -155,8 +170,18 @@
     },
     {
       "path": "package.json",
-      "bytes": 224,
-      "sha256": "bac09e105f86366f195aaccb47e7cfc21b098ce0cacda5c12a14018b4b979347"
+      "bytes": 248,
+      "sha256": "48b7fa5ed68367284232b72a9a0623ebb348762ed4dfc993767cee18d62a393e"
+    },
+    {
+      "path": "qa/characters-browser.cjs",
+      "bytes": 5723,
+      "sha256": "a3af85fb8c72490223b29942053378ae4fe7831ce3fc7cc77ff7dc8a82d96f7d"
+    },
+    {
+      "path": "qa/characters.test.mjs",
+      "bytes": 2973,
+      "sha256": "7ac66cbe60523c421ef864820867579031600304e1f0a1d90fd559daf7fdb80d"
     },
     {
       "path": "qa/collection-camera.test.mjs",
@@ -230,8 +255,8 @@
     },
     {
       "path": "tools/release_source.py",
-      "bytes": 10550,
-      "sha256": "7f7a86f19b4786ac10ea73c4c063f250d21da44ecc09190cc7bf8ca808dafbe8"
+      "bytes": 10700,
+      "sha256": "dc61c3dbd15b52835a55803e71d2944d12d4435dc4f5e8f98c7df2ea580823c8"
     }
   ],
   "readable": [
@@ -258,6 +283,14 @@
     {
       "name": "dist/2d/style.css",
       "url": "code/dist/2d/style.css.txt"
+    },
+    {
+      "name": "dist/2d/characters.js",
+      "url": "code/dist/2d/characters.js.txt"
+    },
+    {
+      "name": "dist/2d/sprite-atlas.js",
+      "url": "code/dist/2d/sprite-atlas.js.txt"
     },
     {
       "name": "dist/2d/assets/PROMPTS.json",

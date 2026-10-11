@@ -2,15 +2,15 @@
 
 包含 3D 平台跳跃和独立的 2D 像素动作冒险，两种版本都从白天的温馨森林走进夜晚的赛博都市。
 
-- [2D 像素版 · 星铃远行](https://mosslight-hop.mnzxnbcv.chatgpt.site/2d/)
+- [2D 像素版 · 双星远行](https://mosslight-hop.mnzxnbcv.chatgpt.site/2d/)
 - [3D 原版](https://mosslight-hop.mnzxnbcv.chatgpt.site/)
 - [GitHub 仓库](https://github.com/zhiheshieh-jpg/mosslight-hop)
 - [公开源码与完整下载](https://mosslight-hop.mnzxnbcv.chatgpt.site/source/)
-- MIT 许可：允许使用、修改、再发布和商业使用，请保留许可证。原创模型、生成脚本、贴图和合成音频也包含在发布中；第三方说明见 `THIRD_PARTY_NOTICES.txt`。
+- 游戏代码使用 MIT 许可；原创模型、生成脚本、场景贴图和合成音频也包含在发布中。两个参考角色及相关品牌的权利归各自权利人；素材来源与第三方说明见 `THIRD_PARTY_NOTICES.txt`。
 
-## 2D 像素版 · 星铃远行
+## 2D 像素版 · 双星远行
 
-原创角色星铃：银色短发、青绿外套、红围巾与金色光刃。横向卷轴关卡采用像素背景、多层视差、晨光与夜雨。角色动画和两张场景图使用内置 ImageGen 生成，原始提示词在 `dist/2d/assets/PROMPTS.json`；敌人、地形与战斗特效由 Canvas2D 绘制，音乐和音效使用 WebAudio 合成。
+提供两个角色：白紫色的「小龙娘」与橙色方块「Claude」，均根据用户提供的参考形象制作。选关页和暂停菜单均可切换，浏览器会记住上次选择；切换不重置位置、血量、分数、收集物、存档点或敌人状态。两角色使用相同的碰撞范围与战斗数值，动画、名称、预览与攻击配色随角色变化。横向卷轴关卡采用像素背景、多层视差、晨光与夜雨。角色动画和两张场景图使用内置 ImageGen 生成，原始提示词在 `dist/2d/assets/PROMPTS.json`；敌人、地形与战斗特效由 Canvas2D 绘制，音乐和音效使用 WebAudio 合成。
 
 | 操作 | 按键 |
 | --- | --- |
@@ -32,6 +32,8 @@
 每关包含四个场景区段、隐藏高台路线和关底首领。夜城增加移动平台、塌落平台、定时激光、远程炮台和重型敌人。击败首领后到右侧光门通关。收集物和普通敌人均可选择绕过；全部消灭不是通关条件。存档灯回复全部生命，每击败 6 个敌人回复 1 点生命。掉落或生命归零会重生，保留本局收集、分数与已击败的普通敌人，首领恢复到初始状态；重开关卡重置本局进度。浏览器本地仅保存最好成绩。
 
 运行 `node server.mjs` 后打开 `http://127.0.0.1:4186/2d/`。2D 版不依赖 Three.js。`node qa/pixel-route.mjs` 用普通移动、跳跃、冲刺和攻击输入验证完整路线；`node qa/pixel-playthrough.cjs` 在 Edge 中用键盘事件通过两关，不传送、不关闭敌人。`node qa/pixel-smoke.cjs` 检查载入、近战、暂停与手机布局。浏览器测试需要 Playwright 和本机 Edge。
+
+角色切换回归检查：启动服务器后运行 `node qa/characters-browser.cjs`，验证菜单与暂停切换、整份游戏状态保持、保存选择、旧值回退、禁用存储、两角色战斗以及手机横竖屏布局。纯逻辑检查已包含在 `npm test` 中。
 
 ## 3D 原版操作
 
@@ -79,10 +81,11 @@ node qa/route.mjs
 
 | 文件 | 内容 |
 | --- | --- |
+| `dist/2d/characters.js` / `dist/2d/sprite-atlas.js` | 两角色配置、选择持久化、透明图集裁切和等比定标 |
 | `dist/2d/world.js` | 2D 固定步长物理、长关卡、敌人、首领、战斗与存档 |
 | `dist/2d/game.js` | 2D 像素绘制、角色动画、输入、打击特效与合成音频 |
 | `dist/2d/index.html` / `dist/2d/style.css` | 2D 选关、战斗 HUD 与触屏界面 |
-| `dist/2d/assets/` | 原创角色动画图集、森林与夜城背景、生成提示词 |
+| `dist/2d/assets/` | 角色动作图集、森林与夜城背景、生成提示词 |
 | `dist/game.js` | Three.js 场景、控制、镜头、界面与合成音频 |
 | `dist/physics.js` | 固定步长物理、两关地图、存档、障碍 |
 | `dist/orbit.js` | 镜头旋转、俯仰、缩放与视角相对移动 |
