@@ -1,4 +1,5 @@
 export function makeCollectibles(level){
+ if(level===2){const lights=Array.from({length:44},(_,platform)=>({id:`light-${platform}`,type:'light',platform,x:0,z:platform===0?-1.8:0,y:[1,5].includes((platform-1)%8)?2.3:1.1,points:10,name:'天宫微光'}));const rare=[[8,1.65,.45,'绯晶花冠'],[24,-1.65,.45,'穹顶星钥'],[43,3,.7,'曙光王印']];return [...lights,...rare.map(([platform,x,z,name],i)=>({id:`relic-${i}`,type:'relic',platform,x,z,y:1.25,points:50,name}))]}
  const platforms=level===0?Array.from({length:22},(_,i)=>i):[0,1,2,3,4,5,6,7,9,10,11,12,13,14,15,17,18,19,20,21,23,24,25,29];
  const lights=platforms.map((platform,i)=>({id:`light-${i}`,type:'light',platform,x:level===0&&[3,7,11,16,20].includes(platform)?1.1:0,z:i===0?-1.8:0,y:level===1&&[3,10,15,20,21].includes(platform)?2.3:1.1,points:10,name:'微光'}));
  const rare=level===0?[[4,2.55,.7,'林间琥珀'],[14,-2.55,.6,'风铃种子'],[21,3.4,.9,'晨露之星']]:[[4,2.25,.5,'霓虹芯片'],[19,-2.25,.5,'量子棱镜'],[29,-3.4,.9,'天际星核']];

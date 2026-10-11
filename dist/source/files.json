@@ -1,17 +1,17 @@
 {
-  "version": "2.2.0",
+  "version": "2.3.0",
   "license": "MIT",
-  "archive": "mosslight-source-v2.2.0.zip",
+  "archive": "mosslight-source-v2.3.0.zip",
   "files": [
     {
       "path": ".gitignore",
-      "bytes": 144,
-      "sha256": "3863dc9f7c1b5ee16287d992072990e61634cb84de1a8067568bcd45868d9221"
+      "bytes": 192,
+      "sha256": "2758993a0b2d6ea6dedea72a8242c74463231e79443a1f2165c426921a581fa8"
     },
     {
       "path": "ASSETS.txt",
-      "bytes": 2469,
-      "sha256": "b6b13ade3ff42df138efbd180445a1f093ddf94c8552a07b269ab7cc5d76a195"
+      "bytes": 2704,
+      "sha256": "4ec36f30a45d9c2cb6ba7959ee06dd72066f5c0e6420e320af350fdc1e0161a7"
     },
     {
       "path": "LICENSE",
@@ -20,13 +20,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 10007,
-      "sha256": "422ffc86a182069d669340de93e74405c789bba9060340eeab6c824993e63291"
+      "bytes": 11892,
+      "sha256": "35acf76777c50f02485eabe12601a4b777993a25fd4ff6652414bd2624ae4568"
     },
     {
       "path": "README.txt",
-      "bytes": 10007,
-      "sha256": "422ffc86a182069d669340de93e74405c789bba9060340eeab6c824993e63291"
+      "bytes": 11892,
+      "sha256": "35acf76777c50f02485eabe12601a4b777993a25fd4ff6652414bd2624ae4568"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -75,8 +75,8 @@
     },
     {
       "path": "dist/2d/index.html",
-      "bytes": 8136,
-      "sha256": "5be7ac6b13ca18b1e0c5bb30010bfff5303fea380dcf11f0450908837f3447ba"
+      "bytes": 8124,
+      "sha256": "b1971ddb1fea98278b65eb4eadca81390a52f0df8e6303e31e8e13b40c065bc0"
     },
     {
       "path": "dist/2d/progression.js",
@@ -130,18 +130,18 @@
     },
     {
       "path": "dist/collection.js",
-      "bytes": 1292,
-      "sha256": "56929eaed142907497af8b942f350de184a0a4e3931057e1bc1e5ca510d9554e"
+      "bytes": 1727,
+      "sha256": "aaaeccbbc90f6f8ce9190a1936cb319120c3216747d169243116f938294d3d33"
     },
     {
       "path": "dist/game.js",
-      "bytes": 45748,
-      "sha256": "824c34597a1cd8ef1ad5eecd149c538fff86dddf42ef634fdbfdd1c0fbed6fcb"
+      "bytes": 50932,
+      "sha256": "2070f842986114fb7567358cf47b9d6b489da4946979340b2cead9aa44043296"
     },
     {
       "path": "dist/index.html",
-      "bytes": 5538,
-      "sha256": "7dd082a4f76354d26826d399bb60a36d5e38c41b579cdcc41af0b7c0d9aad15a"
+      "bytes": 7112,
+      "sha256": "a7d625108b95834244c4e29387c4b47f8794f42d16cb928c593be71611900018"
     },
     {
       "path": "dist/orbit.js",
@@ -149,14 +149,29 @@
       "sha256": "7fccfcf282544dd065540270dab4f8ab9014a63f0b5ea9b75041b795184e124f"
     },
     {
+      "path": "dist/palace-level.js",
+      "bytes": 1864,
+      "sha256": "05201559328cf2878679f724d7eb7d613aec3aec4fd34b0c0b7eb2888b11d2cf"
+    },
+    {
+      "path": "dist/palace-scene.js",
+      "bytes": 7959,
+      "sha256": "3d599f524ad2fcf9e94c87dec3506f63e1b747a5788fcdb41064d493e3cc46dc"
+    },
+    {
       "path": "dist/physics.js",
-      "bytes": 8650,
-      "sha256": "e0b1fd47fe6ad51c9703ff8a081d181c703efce5843f9afd66e48f88a6b12606"
+      "bytes": 10872,
+      "sha256": "457e92fd98fcedccb749124e9f47670dbef6046a7dcc64eac731abf427e2259b"
+    },
+    {
+      "path": "dist/progression.js",
+      "bytes": 1374,
+      "sha256": "b1194f1486400d1440de4e2b337dcc4e722d35aa6e3d920bb44630c441284424"
     },
     {
       "path": "dist/style.css",
-      "bytes": 16770,
-      "sha256": "ed16df3c7a7ab3c70e8b01fb17a97375ef3eea85e8f490d0e9515d82f3700e5f"
+      "bytes": 26768,
+      "sha256": "60397c5d9b22ef6dc99007dc28c51cb9313253706cb496a6213bc765a712a262"
     },
     {
       "path": "dist/vendor/LICENSE.txt",
@@ -185,8 +200,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 294,
-      "sha256": "f1e1091f19b25350f56ff814baa234b10f5d5f08330943088410b89f47df2750"
+      "bytes": 350,
+      "sha256": "689161a7227d7a024a33c8ed966da89f070ec8ba9e486b7a1484d208dad75132"
     },
     {
       "path": "qa/characters-browser.cjs",
@@ -207,6 +222,36 @@
       "path": "qa/driver.mjs",
       "bytes": 1873,
       "sha256": "5075650c83ba4a63f5c809a98dba0bfb2b48d4272ff98ad623abee3a68066300"
+    },
+    {
+      "path": "qa/palace-browser-playthrough.cjs",
+      "bytes": 5613,
+      "sha256": "a5a3b3ab9a5d848bf7a859a7e3c2e87e9b9bc1930735587a470ad03e9f85083d"
+    },
+    {
+      "path": "qa/palace-browser.cjs",
+      "bytes": 17317,
+      "sha256": "9c78789f7c583d9b69e2162feb88eac7c06e68352a420c5ed94bbfffc6a024ff"
+    },
+    {
+      "path": "qa/palace-driver.mjs",
+      "bytes": 2174,
+      "sha256": "284ed3ef932cea40138f8936d42477862a15ef9bac6880521acfdf22cb8d1eaa"
+    },
+    {
+      "path": "qa/palace-progression.test.mjs",
+      "bytes": 2164,
+      "sha256": "7872d711f36de17b99173a8475f3f588c33fa27a2d3f35e5c1477f83e70a43f6"
+    },
+    {
+      "path": "qa/palace-route.mjs",
+      "bytes": 2558,
+      "sha256": "807391f39dce52558329789f5a1a20829d47103b20375062aad2a2352ab243ad"
+    },
+    {
+      "path": "qa/palace-world.test.mjs",
+      "bytes": 7175,
+      "sha256": "01e5356f1811734e45e661ee86bf2d4ade35b23fad94d4642f41d15ead44fc31"
     },
     {
       "path": "qa/physics.test.mjs",
@@ -300,8 +345,8 @@
     },
     {
       "path": "tools/release_source.py",
-      "bytes": 11094,
-      "sha256": "82f35f8e35246a7bdb446790f08239fcaa73144bdba7df943a936f40b6816e17"
+      "bytes": 11553,
+      "sha256": "9c6dd33f46d4afbe899e52808c62a141224eb80821b47327cd3f5e425ef0fe3c"
     }
   ],
   "readable": [
@@ -392,6 +437,42 @@
     {
       "name": "dist/physics.js",
       "url": "code/dist/physics.js.txt"
+    },
+    {
+      "name": "dist/palace-level.js",
+      "url": "code/dist/palace-level.js.txt"
+    },
+    {
+      "name": "dist/palace-scene.js",
+      "url": "code/dist/palace-scene.js.txt"
+    },
+    {
+      "name": "dist/progression.js",
+      "url": "code/dist/progression.js.txt"
+    },
+    {
+      "name": "qa/palace-world.test.mjs",
+      "url": "code/qa/palace-world.test.mjs.txt"
+    },
+    {
+      "name": "qa/palace-progression.test.mjs",
+      "url": "code/qa/palace-progression.test.mjs.txt"
+    },
+    {
+      "name": "qa/palace-route.mjs",
+      "url": "code/qa/palace-route.mjs.txt"
+    },
+    {
+      "name": "qa/palace-driver.mjs",
+      "url": "code/qa/palace-driver.mjs.txt"
+    },
+    {
+      "name": "qa/palace-browser.cjs",
+      "url": "code/qa/palace-browser.cjs.txt"
+    },
+    {
+      "name": "qa/palace-browser-playthrough.cjs",
+      "url": "code/qa/palace-browser-playthrough.cjs.txt"
     },
     {
       "name": "dist/orbit.js",

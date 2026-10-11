@@ -3,6 +3,8 @@ qa/*.png
 qa/pixel-playthrough-results.json
 qa/sky-*-results.json
 qa/sky-browser/
+qa/palace-browser/
+qa/palace-route-results.json
 *.tar.gz
 *.zip
 !dist/source/*.zip

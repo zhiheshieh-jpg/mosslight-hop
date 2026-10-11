@@ -10,6 +10,7 @@ dist/2d/assets/palace.png：第三关绯晶天宫，内置 ImageGen 生成的完
 2D 地形、敌人、刀光、粒子与灯光由 Canvas2D 实时绘制，音效与音乐由 WebAudio 合成。
 
 3D 原版：
+第三关绯晶天宫通过 dist/palace-scene.js 的 Three.js 几何生成：完整宫殿、金色拱门、晶体、悬空花园、云海和平台饰件。远景按材质合并，保留真实三维视差；无需额外图片下载。
 最终贴图：dist/assets/world-atlas.png
 游戏通过四个独立 UV 区域使用同一张图：左上草地、右上岩壁、左下金属、右下楼窗。
 
