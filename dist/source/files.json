@@ -1,7 +1,7 @@
 {
-  "version": "2.1.0",
+  "version": "2.1.1",
   "license": "MIT",
-  "archive": "mosslight-source-v2.1.0.zip",
+  "archive": "mosslight-source-v2.1.1.zip",
   "files": [
     {
       "path": ".gitignore",
@@ -20,13 +20,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 7989,
-      "sha256": "0a352f7ff74e3dfacd5fc03984b0eea5127c8541439aac0d478483ea8e61e174"
+      "bytes": 8029,
+      "sha256": "fe0b11a0d8f53a568fade055bb8586f7c99b62b84417452915239ef99dfffcb8"
     },
     {
       "path": "README.txt",
-      "bytes": 7989,
-      "sha256": "0a352f7ff74e3dfacd5fc03984b0eea5127c8541439aac0d478483ea8e61e174"
+      "bytes": 8029,
+      "sha256": "fe0b11a0d8f53a568fade055bb8586f7c99b62b84417452915239ef99dfffcb8"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -65,13 +65,13 @@
     },
     {
       "path": "dist/2d/game.js",
-      "bytes": 26477,
-      "sha256": "84004f9b148928c2fe01c76f5dde725a4d2e9e4b762cf7f293c5b367e1960fb8"
+      "bytes": 26642,
+      "sha256": "8814497c5c58cdf981f95c8248a0f5fe08206b36ea1ed81a328927ce690cbb4e"
     },
     {
       "path": "dist/2d/index.html",
-      "bytes": 6620,
-      "sha256": "f656284fbfdbd81f539c02e5dc5bbc640e05c9619a5907b5ef62f69748c03266"
+      "bytes": 6670,
+      "sha256": "988c6cd2febc0fe8fcb48b39fceb4a1238360b37083d337a7f5a2efef258f834"
     },
     {
       "path": "dist/2d/sprite-atlas.js",
@@ -171,7 +171,7 @@
     {
       "path": "package.json",
       "bytes": 248,
-      "sha256": "48b7fa5ed68367284232b72a9a0623ebb348762ed4dfc993767cee18d62a393e"
+      "sha256": "9432f51b518beb8edc83b68896ef1a40eec28a24725f851fd5be9d41021b6db2"
     },
     {
       "path": "qa/characters-browser.cjs",

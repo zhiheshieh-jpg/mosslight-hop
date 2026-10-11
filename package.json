@@ -1,1 +1,1 @@
-{"name":"mosslight-hop","version":"2.1.0","private":false,"license":"MIT","type":"module","scripts":{"start":"node server.mjs","test":"node --test qa/physics.test.mjs qa/collection-camera.test.mjs qa/pixel-world.test.mjs qa/characters.test.mjs"}}
+{"name":"mosslight-hop","version":"2.1.1","private":false,"license":"MIT","type":"module","scripts":{"start":"node server.mjs","test":"node --test qa/physics.test.mjs qa/collection-camera.test.mjs qa/pixel-world.test.mjs qa/characters.test.mjs"}}

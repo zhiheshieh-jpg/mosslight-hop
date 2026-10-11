@@ -21,7 +21,7 @@
    <div class="feature-row"><span>二段跳</span><b>✦</b><span>三段连斩</span><b>✦</b><span>冲刺闪避</span></div>
    <div class="chapters"><button class="chapter selected" data-level="0"><span>01</span><div><strong>晨露之森</strong><small>FOREST / DAYLIGHT</small></div><i>↗</i></button><button class="chapter" data-level="1"><span>02</span><div><strong>霓虹断层</strong><small>CITY / MIDNIGHT</small></div><i>↗</i></button></div>
    <button id="start" class="primary" disabled><span>正在准备旅程…</span><b>→</b></button>
-   <div class="keys desktop"><span><kbd>A D</kbd> 移动</span><span><kbd>空格</kbd> 二段跳</span><span><kbd>J</kbd> 连斩</span><span><kbd>K</kbd> 冲刺</span></div>
+   <div class="keys desktop"><span><kbd>A D</kbd> 移动</span><span><kbd>空格</kbd> 二段跳</span><span><kbd>左键</kbd> 连斩</span><span><kbd>右键</kbd> 冲刺</span></div>
    <p class="mobile-note">横屏体验更佳 · 使用屏幕按钮移动与战斗</p>
    <div class="menu-footer"><a href="../">进入 3D 世界 ↗</a><span>TWO LIGHTS · ONE JOURNEY</span></div>
   </div>
@@ -29,7 +29,7 @@
  </main>
  <section id="hud" class="hidden" aria-label="战斗状态"><div class="hero-info"><div class="avatar"><canvas class="character-portrait" data-character-portrait="selected" width="88" height="96" aria-hidden="true"></canvas></div><div><div class="hero-label"><strong id="hero-name">小龙娘</strong><span id="zone">晨露坡道</span></div><div id="hearts" aria-label="生命"></div><div class="dash-bar"><i id="dash-ready"></i></div><small id="dash-label">冲刺就绪</small></div></div><div class="run-info"><span id="chapter-name">01 / 晨露之森</span><div><b id="score">000000</b><span id="coins">✧ 0</span></div><div class="progress"><i id="progress"></i></div><small id="checkpoint">启程</small></div></section>
  <div id="boss-hud" class="hidden"><span id="boss-name"></span><div><i id="boss-hp"></i></div><small>观察预警 · 抓住破绽</small></div><div id="combo" class="hidden"><b>0</b><span>HIT COMBO</span></div><div id="toast" role="status"></div>
- <div id="play-hint" class="hidden desktop">A / D 移动 <i>·</i> 空格 二段跳 <i>·</i> J / 鼠标左键 连斩 <i>·</i> K / Shift 冲刺 <i>·</i> Esc 暂停</div>
+ <div id="play-hint" class="hidden desktop">A / D 移动 <i>·</i> 空格 二段跳 <i>·</i> 鼠标左键 连斩 <i>·</i> 鼠标右键 冲刺 <i>·</i> Esc 暂停</div>
  <div id="touch" class="hidden"><div class="directions"><button data-key="left" aria-label="向左">◀</button><button data-key="right" aria-label="向右">▶</button></div><div class="actions"><button data-key="dash" class="dash" aria-label="冲刺">闪<small>冲刺</small></button><button data-key="jump" class="jump" aria-label="跳跃">↑<small>跳跃</small></button><button data-key="attack" class="attack" aria-label="攻击">斩<small>连击</small></button></div></div>
  <div id="modal" class="hidden"><section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="eyebrow" id="modal-kicker">TAKE A BREATH</div><h2 id="modal-title">让光停一会儿。</h2><p id="modal-copy">准备好了，就继续向前。</p>
   <fieldset class="character-select" id="pause-characters"><legend>切换旅伴 <span>旅程与生命保持不变</span></legend><div class="character-options">
