@@ -1,6 +1,8 @@
 node_modules/
 qa/*.png
 qa/pixel-playthrough-results.json
+qa/sky-*-results.json
+qa/sky-browser/
 *.tar.gz
 *.zip
 !dist/source/*.zip

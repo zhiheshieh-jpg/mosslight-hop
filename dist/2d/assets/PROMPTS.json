@@ -28,6 +28,13 @@
       "transparent_background": true,
       "file": "claude.png",
       "reference": "User-provided character reference image; original underlying character rights are not asserted."
+    },
+    {
+      "key": "palace",
+      "file": "palace.png",
+      "prompt": "Asset type: premium pixel-art background panorama for the hardest final chapter of a 2D side-scrolling action platformer, titled Crimson Crystal Celestial Palace. Create a richly detailed 1536x1024 landscape. A PRISTINE, flourishing floating palace high above a sea of luminous clouds at rose-gold sunset: ivory porcelain towers, tall translucent garnet and rose-quartz spires, graceful golden arches, immaculate suspended terraces, delicate gilded orbital rings, hanging gardens of ruby flowers, glass domes and crystal waterfalls cascading into clouds. Majestic huge central palace set far in the background, smaller elegant floating palace islands layered left and right, an enormous pale peach sun and soft lilac sky. The architecture must be complete, polished, inhabited and luxurious: absolutely NO ruins, rubble, broken columns, abandoned buildings, decay, cyberpunk skyline or dystopia. Sophisticated crisp 32-bit pixel-art clusters, limited carefully selected color ramps, clear squared pixels, no smooth photo painting, no photorealism. Side-on horizontal panorama, deep atmospheric parallax feeling. Palette: garnet red, blush pink, ivory, pale gold, cloud lavender and subtle indigo shadows. Keep the central lower-middle area comparatively quiet and bright for readable foreground action. Background scenery only, NO playable foreground platforms, characters, enemies, UI, text, labels, borders or logos. Fill the entire canvas with cohesive scenery.",
+      "transparent_background": false,
+      "generator": "Built-in ImageGen"
     }
   ],
   "edits": [

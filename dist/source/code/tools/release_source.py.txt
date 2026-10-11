@@ -17,7 +17,9 @@ names = ['README.md', 'README.txt', 'LICENSE', 'THIRD_PARTY_NOTICES.txt',
          'tools/release_source.py', 'qa/physics.test.mjs',
          'qa/collection-camera.test.mjs', 'qa/route.mjs', 'qa/driver.mjs', 'qa/v3-browser.cjs', 'qa/v4-browser.cjs', 'qa/v5-forest.cjs',
          'qa/pixel-world.test.mjs', 'qa/pixel-driver.mjs', 'qa/pixel-route.mjs',
-         'qa/pixel-smoke.cjs', 'qa/pixel-playthrough.cjs', 'qa/characters.test.mjs', 'qa/characters-browser.cjs']
+         'qa/pixel-smoke.cjs', 'qa/pixel-playthrough.cjs', 'qa/characters.test.mjs', 'qa/characters-browser.cjs',
+         'qa/sky-world.test.mjs', 'qa/progression.test.mjs', 'qa/sky-driver.mjs', 'qa/sky-route.mjs',
+         'qa/sky-browser.cjs', 'qa/sky-browser-playthrough.cjs']
 files = {name: ROOT / name for name in names}
 for path in sorted((ROOT / 'dist').rglob('*')):
     if path.is_file() and OUT not in path.parents and '.openai' not in path.parts:
@@ -30,6 +32,8 @@ OUT.mkdir(parents=True, exist_ok=True)
 entries = []
 readable = ['README.md', 'LICENSE', 'dist/2d/world.js', 'dist/2d/game.js',
             'dist/2d/index.html', 'dist/2d/style.css', 'dist/2d/characters.js', 'dist/2d/sprite-atlas.js', 'dist/2d/assets/PROMPTS.json',
+            'dist/2d/sky-level.js', 'dist/2d/progression.js', 'qa/sky-world.test.mjs', 'qa/progression.test.mjs',
+            'qa/sky-driver.mjs', 'qa/sky-route.mjs', 'qa/sky-browser.cjs', 'qa/sky-browser-playthrough.cjs',
             'qa/pixel-world.test.mjs', 'qa/pixel-route.mjs', 'qa/pixel-playthrough.cjs',
             'dist/game.js', 'dist/physics.js',
             'dist/orbit.js', 'dist/collection.js', 'dist/index.html',

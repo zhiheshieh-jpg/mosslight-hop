@@ -1,17 +1,17 @@
 {
-  "version": "2.1.1",
+  "version": "2.2.0",
   "license": "MIT",
-  "archive": "mosslight-source-v2.1.1.zip",
+  "archive": "mosslight-source-v2.2.0.zip",
   "files": [
     {
       "path": ".gitignore",
-      "bytes": 106,
-      "sha256": "142855bf43c734c8bbb529f81b08cbcc402bb17c4fc1ced5b83adb393e4c8447"
+      "bytes": 144,
+      "sha256": "3863dc9f7c1b5ee16287d992072990e61634cb84de1a8067568bcd45868d9221"
     },
     {
       "path": "ASSETS.txt",
-      "bytes": 2351,
-      "sha256": "b0c995e117b2feea1714bfade3655df29e53bbb565240ed237d0f6377630377e"
+      "bytes": 2469,
+      "sha256": "b6b13ade3ff42df138efbd180445a1f093ddf94c8552a07b269ab7cc5d76a195"
     },
     {
       "path": "LICENSE",
@@ -20,13 +20,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 8029,
-      "sha256": "fe0b11a0d8f53a568fade055bb8586f7c99b62b84417452915239ef99dfffcb8"
+      "bytes": 10007,
+      "sha256": "422ffc86a182069d669340de93e74405c789bba9060340eeab6c824993e63291"
     },
     {
       "path": "README.txt",
-      "bytes": 8029,
-      "sha256": "fe0b11a0d8f53a568fade055bb8586f7c99b62b84417452915239ef99dfffcb8"
+      "bytes": 10007,
+      "sha256": "422ffc86a182069d669340de93e74405c789bba9060340eeab6c824993e63291"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -35,8 +35,8 @@
     },
     {
       "path": "dist/2d/assets/PROMPTS.json",
-      "bytes": 8913,
-      "sha256": "39af092af6ffc5475edb0a052c93000ec60764bd3f1e2ef339d39279f44a2ef4"
+      "bytes": 10546,
+      "sha256": "fe86e2f006aa569496afc01c3071201946ce1168add5df675095cd0df4fc0e73"
     },
     {
       "path": "dist/2d/assets/city.png",
@@ -59,19 +59,34 @@
       "sha256": "6cfc3b3552a92a1edcfa1c7e08398c7a06857862fb50e43a1ddb046aa25a2092"
     },
     {
+      "path": "dist/2d/assets/palace.png",
+      "bytes": 3078471,
+      "sha256": "39c800063636eb0a355ca40a5794fd6e5469d002b87969ad80dd23fc080a79e7"
+    },
+    {
       "path": "dist/2d/characters.js",
       "bytes": 1529,
       "sha256": "71824f52d42a999dbb66a8a5ae00b4f1c499adede3cb0915b07bbb7b7ee811c3"
     },
     {
       "path": "dist/2d/game.js",
-      "bytes": 26642,
-      "sha256": "8814497c5c58cdf981f95c8248a0f5fe08206b36ea1ed81a328927ce690cbb4e"
+      "bytes": 41360,
+      "sha256": "6e2debbf0c44439666f4d133d79a51107e6e9510c967b43d9250556bdf50faa9"
     },
     {
       "path": "dist/2d/index.html",
-      "bytes": 6670,
-      "sha256": "988c6cd2febc0fe8fcb48b39fceb4a1238360b37083d337a7f5a2efef258f834"
+      "bytes": 8136,
+      "sha256": "5be7ac6b13ca18b1e0c5bb30010bfff5303fea380dcf11f0450908837f3447ba"
+    },
+    {
+      "path": "dist/2d/progression.js",
+      "bytes": 1602,
+      "sha256": "12e0addf6312620fa17d1356e7dd226381b45bfd2af1de4bc768f232046dae8e"
+    },
+    {
+      "path": "dist/2d/sky-level.js",
+      "bytes": 3009,
+      "sha256": "eb3daa7fb7f614ddeabdd26c3614260695adcb422db7b935781b2fe987987880"
     },
     {
       "path": "dist/2d/sprite-atlas.js",
@@ -80,13 +95,13 @@
     },
     {
       "path": "dist/2d/style.css",
-      "bytes": 18225,
-      "sha256": "8bd01fe2f9cfe5b5daa45c8e336df1a1ccf8460d7dffb15ecbdc5e7ba78222f9"
+      "bytes": 26231,
+      "sha256": "33b0d903f103e7222813285872d1e95192af35b6ea51e602a10cd947e29e85be"
     },
     {
       "path": "dist/2d/world.js",
-      "bytes": 12221,
-      "sha256": "d0594abe505ff46e06ca2acba3c6021f88783aad1079abaed2ff3a59026327c6"
+      "bytes": 15556,
+      "sha256": "39f67d1a5c02bcb1173f8775dbc33c23a1d4cadf9a610944acd454655625e0e8"
     },
     {
       "path": "dist/assets/models/city_kiosk.glb",
@@ -170,8 +185,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 248,
-      "sha256": "9432f51b518beb8edc83b68896ef1a40eec28a24725f851fd5be9d41021b6db2"
+      "bytes": 294,
+      "sha256": "f1e1091f19b25350f56ff814baa234b10f5d5f08330943088410b89f47df2750"
     },
     {
       "path": "qa/characters-browser.cjs",
@@ -224,9 +239,39 @@
       "sha256": "267ec0614405eebdff362aab90c7f688aab2c5356ce1e8cc116f96121a638925"
     },
     {
+      "path": "qa/progression.test.mjs",
+      "bytes": 2130,
+      "sha256": "3e07e029e76d333d500f5bf938ab60bcd0160936e4e585aa7ef1bbdb58a96e97"
+    },
+    {
       "path": "qa/route.mjs",
       "bytes": 737,
       "sha256": "11ebbe4fc00c988f52d053aa0e8b19f7b8f058292bbd8e90291fe7e5c1e679ca"
+    },
+    {
+      "path": "qa/sky-browser-playthrough.cjs",
+      "bytes": 5631,
+      "sha256": "d73bca72ee6ac14046b123625cd3547fbdc27d8b5b21f082fc52dd2ecbe0b079"
+    },
+    {
+      "path": "qa/sky-browser.cjs",
+      "bytes": 12725,
+      "sha256": "5b80c65a4446a965fc794874694543cd097701ca2f3129ee1f70e016bc1c2a14"
+    },
+    {
+      "path": "qa/sky-driver.mjs",
+      "bytes": 2894,
+      "sha256": "6600fadde2d469adb2738d900e279a7b3a199a2c44f4093e93237287ca60caa7"
+    },
+    {
+      "path": "qa/sky-route.mjs",
+      "bytes": 2517,
+      "sha256": "0945acea058a0173fc275b49b0fb82d1fe17375d941d823d57f980c35a9a81b0"
+    },
+    {
+      "path": "qa/sky-world.test.mjs",
+      "bytes": 8712,
+      "sha256": "426681a998d9997153bd9403407d54edd2a8b4135187e9873bbab051449bc211"
     },
     {
       "path": "qa/v3-browser.cjs",
@@ -255,8 +300,8 @@
     },
     {
       "path": "tools/release_source.py",
-      "bytes": 10700,
-      "sha256": "dc61c3dbd15b52835a55803e71d2944d12d4435dc4f5e8f98c7df2ea580823c8"
+      "bytes": 11094,
+      "sha256": "82f35f8e35246a7bdb446790f08239fcaa73144bdba7df943a936f40b6816e17"
     }
   ],
   "readable": [
@@ -295,6 +340,38 @@
     {
       "name": "dist/2d/assets/PROMPTS.json",
       "url": "code/dist/2d/assets/PROMPTS.json.txt"
+    },
+    {
+      "name": "dist/2d/sky-level.js",
+      "url": "code/dist/2d/sky-level.js.txt"
+    },
+    {
+      "name": "dist/2d/progression.js",
+      "url": "code/dist/2d/progression.js.txt"
+    },
+    {
+      "name": "qa/sky-world.test.mjs",
+      "url": "code/qa/sky-world.test.mjs.txt"
+    },
+    {
+      "name": "qa/progression.test.mjs",
+      "url": "code/qa/progression.test.mjs.txt"
+    },
+    {
+      "name": "qa/sky-driver.mjs",
+      "url": "code/qa/sky-driver.mjs.txt"
+    },
+    {
+      "name": "qa/sky-route.mjs",
+      "url": "code/qa/sky-route.mjs.txt"
+    },
+    {
+      "name": "qa/sky-browser.cjs",
+      "url": "code/qa/sky-browser.cjs.txt"
+    },
+    {
+      "name": "qa/sky-browser-playthrough.cjs",
+      "url": "code/qa/sky-browser-playthrough.cjs.txt"
     },
     {
       "name": "qa/pixel-world.test.mjs",
