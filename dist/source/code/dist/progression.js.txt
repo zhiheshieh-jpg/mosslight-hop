@@ -18,13 +18,14 @@ export function createProgression(storage){
   const time=typeof old==='string'&&old.trim()?Number(old):NaN;
   legacyCompleted[i] ||= Number.isFinite(time)&&time>0;
  }
- const bothCharactersReady=()=>CHARACTERS.every(id=>byCharacter[id].slice(0,3).every(Boolean));
- // A fourth-chapter credit cannot exist before its two-character prerequisite.
- if(!bothCharactersReady())for(const id of CHARACTERS)byCharacter[id][3]=false;
+ // Keep the v2 cloud schema, but treat historical profiles as one player's wins.
+ const completedChapters=()=>CHAPTERS.map(i=>legacyCompleted[i]||CHARACTERS.some(id=>byCharacter[id][i]));
+ const firstThreeReady=()=>completedChapters().slice(0,3).every(Boolean);
+ // A fourth-chapter credit still requires ordinary wins in its first three chapters.
+ if(!firstThreeReady())for(const id of CHARACTERS)byCharacter[id][3]=false;
  const snapshot=()=>{
-  const completed=CHAPTERS.map(i=>legacyCompleted[i]||CHARACTERS.some(id=>byCharacter[id][i]));
-  const ready=bothCharactersReady();
-  return {version:2,completed,byCharacter:Object.fromEntries(CHARACTERS.map(id=>[id,[...byCharacter[id]]])),legacyCompleted:[...legacyCompleted],unlocked:[true,true,completed[0]&&completed[1],ready],godUnlocked:ready&&CHAPTERS.every(i=>CHARACTERS.some(id=>byCharacter[id][i]))};
+  const completed=completedChapters(),ready=firstThreeReady();
+  return {version:2,completed,byCharacter:Object.fromEntries(CHARACTERS.map(id=>[id,[...byCharacter[id]]])),legacyCompleted:[...legacyCompleted],unlocked:[true,true,completed[0]&&completed[1],ready],godUnlocked:completed.every(Boolean)};
  };
  const persist=()=>{const {version,completed,byCharacter,legacyCompleted}=snapshot();write(storage,PROGRESS_KEY,{version,completed,byCharacter,legacyCompleted})};
  // Persist even an empty migration so later assisted best times never become legacy wins.

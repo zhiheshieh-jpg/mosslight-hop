@@ -11,11 +11,11 @@ server data are not part of the website. Each game keeps its own browser saves.
 
 Deployment on 2026-10-13:
 
-- Release: `/srv/mosslight/releases/20261013T083447Z`
+- Release: `/srv/mosslight/releases/20261013T112634Z`
 - Active symlink: `/srv/mosslight/current`
 - Nginx snippet: `/etc/nginx/snippets/mosslight.conf`
 - Public site: `/etc/nginx/sites-available/pelican-public`
-- Config backup: `/etc/nginx/sites-available/pelican-public.before-mosslight-20261013T083447Z`
+- Config backup: `/etc/nginx/sites-available/pelican-public.before-mosslight-20261013T112634Z`
 - Upload staging: `/home/ubuntu/mosslight-deploy`
 - Local verification reports: `.deploy/tencent/`
 
@@ -30,9 +30,14 @@ On installation failure it restores the prior configuration and active release.
 For another release, generate a new archive/manifest and update the expected
 archive SHA-256 before running the installer.
 
-Current release: 2.5.0. Both modes include chapter four, character-specific
-progression, completion-gated god mode, and the logo form. 3D remains noncombat.
-Archive SHA-256: `d0fe91fa8a6fdc98b30a83e6ff8b115a6e57b06149e26fb897a30083b04d847a`.
+Current frontend release: 2.5.1. 2D terrain decorations and city windows keep
+stable seeds and local coordinates while the camera scrolls. 3D uses only the
+original white block, with no character selector or logo form; its chapter
+progress combines previous profile wins. Both modes retain chapter four and
+completion-gated god mode. 3D remains noncombat.
+Archive SHA-256: `5046bc31ba32bf29ece8512bf65cd90bfd701c32a3c5981168023171f1ff8e7a`.
+The installer verified all 46 release files and all 46 HTTP-served file hashes.
+The account API remains 2.5.0, with its persistent database unchanged.
 
 Account API: loopback `127.0.0.1:3197`, proxied only at `/mosslight/api/`.
 Install with `bash deploy/install-api.sh`; code lives in `/opt/mosslight-api`.

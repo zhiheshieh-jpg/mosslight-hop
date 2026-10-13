@@ -25,7 +25,7 @@ names = ['README.md', 'README.txt', 'LICENSE', 'THIRD_PARTY_NOTICES.txt',
 names += ['tools/build-web.mjs', 'tools/package-web.py', 'deploy/README.md', 'deploy/install-mosslight.sh', 'deploy/mosslight.conf']
 names += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'qa').glob('lab*.mjs')) if not p.name.endswith('-results.json')]
 names += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'qa').glob('lab*.cjs'))]
-names += ['backend/account_api.py', 'backend/README.md', 'backend/.gitignore', 'qa/account-api.test.py', 'qa/chests-account-browser.cjs', 'qa/pause-account3d.cjs', 'qa/pause-cloud-live3d.cjs', 'qa/update-release.cjs', 'deploy/install-api.sh', 'deploy/mosslight-api.service', 'deploy/mosslight-backup.service', 'deploy/mosslight-backup.timer']
+names += ['backend/account_api.py', 'backend/README.md', 'backend/.gitignore', 'qa/account-api.test.py', 'qa/chests-account-browser.cjs', 'qa/pause-account3d.cjs', 'qa/pause-cloud-live3d.cjs', 'qa/update-release.cjs', 'qa/terrain-scroll.cjs', 'deploy/install-api.sh', 'deploy/mosslight-api.service', 'deploy/mosslight-backup.service', 'deploy/mosslight-backup.timer']
 names += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'qa').glob('*.test.mjs'))]
 files = {name: ROOT / name for name in names}
 for path in sorted((ROOT / 'dist').rglob('*')):

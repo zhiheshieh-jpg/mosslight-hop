@@ -1,7 +1,7 @@
 {
-  "version": "2.5.0",
+  "version": "2.5.1",
   "license": "MIT",
-  "archive": "mosslight-source-v2.5.0.zip",
+  "archive": "mosslight-source-v2.5.1.zip",
   "files": [
     {
       "path": ".gitignore",
@@ -20,13 +20,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 14520,
-      "sha256": "513c6d53946c390d813987bffaad8e4cf3c5bf5f8a1763ad41512917ab72f434"
+      "bytes": 15219,
+      "sha256": "39d6b232b3708695d2a465b62917df641fe4bf1a52114f3fafa1f8cbffbe156c"
     },
     {
       "path": "README.txt",
-      "bytes": 14520,
-      "sha256": "513c6d53946c390d813987bffaad8e4cf3c5bf5f8a1763ad41512917ab72f434"
+      "bytes": 15219,
+      "sha256": "39d6b232b3708695d2a465b62917df641fe4bf1a52114f3fafa1f8cbffbe156c"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -50,8 +50,8 @@
     },
     {
       "path": "deploy/README.md",
-      "bytes": 2776,
-      "sha256": "ae74ceac63e0fd9c61245531399042a414c8e52f9e95864c0afed4e4c61fcd2d"
+      "bytes": 3131,
+      "sha256": "adaadcc87c82b66ac9652a8f77c81d0cf12a2206a45523789570d26d91dbe31a"
     },
     {
       "path": "deploy/install-api.sh",
@@ -61,7 +61,7 @@
     {
       "path": "deploy/install-mosslight.sh",
       "bytes": 3087,
-      "sha256": "b2a18ee34225ed8cf868fb7779b45faaaf567128859161fa8f984e099cf28b5c"
+      "sha256": "987c13161463f09561bd5f0702742ccde36561134851db73934e92da31551819"
     },
     {
       "path": "deploy/mosslight-api.service",
@@ -145,8 +145,8 @@
     },
     {
       "path": "dist/2d/game.js",
-      "bytes": 50723,
-      "sha256": "7cf8b8f7d8f24b58b0fbdfa30559bf56ec83804bb4777e6a0e809f43e1db1324"
+      "bytes": 50889,
+      "sha256": "46462e4d578ba9b4d1db6674d6b76907524b6f3191ab49cefad2eca25255876a"
     },
     {
       "path": "dist/2d/index.html",
@@ -230,8 +230,8 @@
     },
     {
       "path": "dist/characters-3d.js",
-      "bytes": 2479,
-      "sha256": "d971611058844aa2da11b5682982d208e04618940880a7ec25cbf8d59615248c"
+      "bytes": 1561,
+      "sha256": "352b132786f9b08ef21aeede5894aca16b472b5670a6ee49f5aea8d6e3f1b4ce"
     },
     {
       "path": "dist/collection.js",
@@ -240,13 +240,13 @@
     },
     {
       "path": "dist/game.js",
-      "bytes": 64383,
-      "sha256": "8cea030953d4074a30eef211888b1f38e530e7a4ad5b615c2e72fdc73d725054"
+      "bytes": 60023,
+      "sha256": "13c88b91e302c9b6c21f126378556146380525a33e7a3c5670bfdf670064e5a5"
     },
     {
       "path": "dist/index.html",
-      "bytes": 8556,
-      "sha256": "18dade37570ee3131996a17dce6c30c858153be5bc34f2bc8f4ced0be2d66cb6"
+      "bytes": 7586,
+      "sha256": "80ffa52dfc7753c953e96f95098694091f14a72048e8be6f96dca2ad219a288d"
     },
     {
       "path": "dist/lab-level.js",
@@ -280,13 +280,13 @@
     },
     {
       "path": "dist/progression.js",
-      "bytes": 3097,
-      "sha256": "d601a6316b1a07db83846e85d1e6a2cccc0de6152a1eb5cd1d9f4d1d08b84d08"
+      "bytes": 3155,
+      "sha256": "d77373491b622619c8aa565e068e57c527cb236a2130e645bdee7a169d1687b8"
     },
     {
       "path": "dist/style.css",
-      "bytes": 33277,
-      "sha256": "6900f87f85e8f6d98f52fd7c5c386bc7b4b56cfe1f062dd5f456e146c5a6f58c"
+      "bytes": 30520,
+      "sha256": "9b829eac2a9a11121f794d421fa6e1156b93ad15e0160c91287af2dd103255b1"
     },
     {
       "path": "dist/vendor/LICENSE.txt",
@@ -320,8 +320,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 671,
-      "sha256": "9bc2ef237e9f22d6b6c320c2da143968277c1a251225f7a23ffc00504b4781dd"
+      "bytes": 698,
+      "sha256": "4c92163584f6fe42780620a56451a429673af3155b3d2d55a45dae2e3cb9403a"
     },
     {
       "path": "qa/account-api.test.py",
@@ -359,6 +359,11 @@
       "sha256": "5075650c83ba4a63f5c809a98dba0bfb2b48d4272ff98ad623abee3a68066300"
     },
     {
+      "path": "qa/fixed-player3d.test.mjs",
+      "bytes": 5857,
+      "sha256": "bb117d281b60c2a1ac4eb6944a0776786853d725c08f22e319f5c061799d689a"
+    },
+    {
       "path": "qa/lab-browser-playthrough.cjs",
       "bytes": 8009,
       "sha256": "41fa97069686bb77f37589a4b37211e36df9384f760233ed43971df186fb6c93"
@@ -370,8 +375,8 @@
     },
     {
       "path": "qa/lab-progression.test.mjs",
-      "bytes": 7038,
-      "sha256": "9a3275fc15b9f9a0c59453dcce22ef940b769602f75deca9b7fa34e39fa8887b"
+      "bytes": 7143,
+      "sha256": "37bb30ded4015dd782d21c48800bf602f16410d696319fecf022b677dd79568f"
     },
     {
       "path": "qa/lab-release.cjs",
@@ -425,8 +430,8 @@
     },
     {
       "path": "qa/palace-progression.test.mjs",
-      "bytes": 3151,
-      "sha256": "ef42713791f82da4679908bdf93ce392103d978ed86ffcd24823dc227d019c87"
+      "bytes": 3150,
+      "sha256": "c2085245ae4e6d9f63e3eae864535ff3582aaaaa445e6250192b3391750387bf"
     },
     {
       "path": "qa/palace-route.mjs",
@@ -440,8 +445,8 @@
     },
     {
       "path": "qa/pause-account3d.cjs",
-      "bytes": 9941,
-      "sha256": "88bb34bef919d33f07dee429b045cd19fa0fee2f583ddf0e3e30bda78df17cb8"
+      "bytes": 11333,
+      "sha256": "5c2f40a4dfbf52d51bc24edf297b4dd6a85152d02e8759bb9dcfb815fcdb6645"
     },
     {
       "path": "qa/pause-cloud-live3d.cjs",
@@ -514,9 +519,14 @@
       "sha256": "4e25b04db668900afd8566dbfbde0c69e288811f9ceee3fd0bf2f814f229852a"
     },
     {
+      "path": "qa/terrain-scroll.cjs",
+      "bytes": 5597,
+      "sha256": "edb9dcc8acacfc5f900033280b9a691b9968da4afd154ed3b910cbc8108c7fe5"
+    },
+    {
       "path": "qa/update-release.cjs",
-      "bytes": 4578,
-      "sha256": "0be2125a73edde1ce7dd0c6ffa8137e22db8591f5cd5e2df64ce2e796eafcbc5"
+      "bytes": 5019,
+      "sha256": "8db21c7217f979d7746e6671a7280c0ca63ba41cdc2829e3b98e5ee820c73173"
     },
     {
       "path": "qa/v3-browser.cjs",
@@ -555,8 +565,8 @@
     },
     {
       "path": "tools/release_source.py",
-      "bytes": 12650,
-      "sha256": "3a8637ac26866fbfef9f5c1efc9a3cf875a6ab277fa4d61ce81a6569799d40a9"
+      "bytes": 12675,
+      "sha256": "4804e7c1c7f1de1dba889a0ddcb56fae926f9bf61e25e3b82e79a69ff9ee6eb3"
     }
   ],
   "readable": [

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 cd /home/ubuntu/mosslight-deploy
-expected=d0fe91fa8a6fdc98b30a83e6ff8b115a6e57b06149e26fb897a30083b04d847a
+expected=5046bc31ba32bf29ece8512bf65cd90bfd701c32a3c5981168023171f1ff8e7a
 echo "$expected  mosslight-web.tar.gz" | sha256sum --check --status
 stamp=$(date -u +%Y%m%dT%H%M%SZ)
 release=/srv/mosslight/releases/$stamp

@@ -12,7 +12,7 @@ test('3D palace requires both previous completions in either order and persists'
 test('3D legacy completion times migrate only into historical first-three-chapter wins',()=>{
  for(const bad of ['0','-1','Infinity','NaN','null','',' ','true','{}','[]'])assert.equal(createProgression(storage({'mosslight-best-0':bad,'mosslight-best-1':'42'})).canEnter(2),false);
  const p=createProgression(storage({'mosslight-best-0':'12.5','mosslight-best-1':'32','mosslight-best-2':'180','mosslight-best-3':'360'}));
- assert.equal(p.canEnter(2),true);assert.equal(p.canEnter(3),false);assert.equal(p.snapshot().godUnlocked,false);
+ assert.equal(p.canEnter(2),true);assert.equal(p.canEnter(3),true);assert.equal(p.snapshot().godUnlocked,false);
  assert.deepEqual(p.snapshot().legacyCompleted,[true,true,true,false]);
  assert.deepEqual(p.snapshot().byCharacter,{dragon:[false,false,false,false],claude:[false,false,false,false]});
  assert.equal(createProgression(storage({'mosslight-pixel-progress':'{"version":1,"completed":[true,true,true]}'})).canEnter(2),false);

@@ -1,10 +1,10 @@
 const {chromium}=require('playwright');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
-const base=process.env.PAUSE_QA_URL||'http://127.0.0.1:4193/';
+const base=process.env.PAUSE_QA_URL||'http://127.0.0.1:4186/';
 const output='qa/pause-account3d';
 fs.mkdirSync(output,{recursive:true});
-const fullProgress={version:2,byCharacter:{dragon:[true,true,true,true],claude:[true,true,true,true]},legacyCompleted:[false,false,false,false]};
+const fullProgress={version:2,byCharacter:{dragon:[true,false,true,false],claude:[false,true,false,true]},legacyCompleted:[false,false,false,false]};
 const report={checks:[],browser:'Microsoft Edge',errors:[]};
 async function check(name,fn){await fn();report.checks.push(name);console.log('PASS '+name)}
 async function ready(page){await page.goto(base+'?qa');await page.waitForFunction(()=>window.__qa&&document.querySelector('#cloud-save')&&document.querySelector('#loading').classList.contains('hidden'),{timeout:30000})}
@@ -21,16 +21,18 @@ async function ready(page){await page.goto(base+'?qa');await page.waitForFunctio
   const page=await context.newPage();page.on('pageerror',e=>report.errors.push(String(e)));
   await ready(page);
   await check('Menu captures no run',async()=>assert.equal(await page.evaluate(()=>__qa.exportCurrentRun()),null));
-  await page.click('[data-character="claude"]');await page.click('#start');
+  await check('3D menu has no character selection and keeps split-profile completion wins',async()=>{assert.equal(await page.locator('[data-character],.character-panel,#character-choices').count(),0);const state=await page.evaluate(()=>gameInfo());assert.equal(state.characterName,'白色方块');assert.deepEqual(state.progress.completed,[true,true,true,true]);assert.equal(state.progress.godUnlocked,true);assert.equal(state.models.includes('player'),true)});
+  await page.screenshot({path:output+'/fixed-block-menu.png'});
+  await page.click('#start');
   await page.waitForFunction(()=>!!document.fullscreenElement);
   await page.waitForFunction(()=>gameInfo().camera.keyboardLock!=='locking');
   report.initialImmersion=await page.evaluate(()=>gameInfo().camera);
-  await check('Playing rejects manual character changes',async()=>assert.equal(await page.evaluate(()=>__qa.setCharacter('dragon')),false));
+  await check('Playing exposes no character-switch entry point',async()=>assert.equal(await page.evaluate(()=>typeof __qa.setCharacter),'undefined'));
   await page.keyboard.press('Escape');await page.waitForFunction(()=>gameInfo().mode==='paused');
   report.afterEscape=await page.evaluate(()=>({mode:gameInfo().mode,fullscreen:!!document.fullscreenElement,keyboardLock:gameInfo().camera.keyboardLock}));
   await check('Escape freezes game time',async()=>{const before=await page.evaluate(()=>gameInfo().time);await page.waitForTimeout(450);assert.equal(await page.evaluate(()=>gameInfo().time),before)});
   if(report.initialImmersion.keyboardLock==='locked')await check('Escape retains fullscreen when keyboard lock is granted',async()=>assert.equal(report.afterEscape.fullscreen,true));
-  await check('Pause offers no character switch',async()=>{assert.equal(await page.locator('#modal [data-character]').count(),0);assert.equal(await page.evaluate(()=>__qa.setCharacter('dragon')),false);assert.equal(await page.evaluate(()=>gameInfo().character),'claude')});
+  await check('Pause offers no character switch and identifies the white block',async()=>{assert.equal(await page.locator('#modal [data-character]').count(),0);assert.equal(await page.locator('#run-character-name').textContent(),'白色方块');assert.equal(await page.evaluate(()=>gameInfo().character),'dragon')});
   await page.screenshot({path:output+'/escape-paused.png'});
   await page.click('#modal-primary');await page.waitForFunction(()=>gameInfo().mode==='playing');
   await check('Fullscreen exit pauses without pointer lock',async()=>{await page.evaluate(()=>{window.__originalPointerLock=HTMLCanvasElement.prototype.requestPointerLock;HTMLCanvasElement.prototype.requestPointerLock=undefined;document.exitPointerLock()});await page.waitForFunction(()=>gameInfo().mode==='paused');await page.click('#modal-primary');assert.equal(await page.evaluate(()=>document.pointerLockElement),null);await page.evaluate(()=>document.exitFullscreen());await page.waitForFunction(()=>gameInfo().mode==='paused');const t=await page.evaluate(()=>gameInfo().time);await page.waitForTimeout(350);assert.equal(await page.evaluate(()=>gameInfo().time),t);await page.evaluate(()=>HTMLCanvasElement.prototype.requestPointerLock=window.__originalPointerLock)});
@@ -42,15 +44,15 @@ async function ready(page){await page.goto(base+'?qa');await page.waitForFunctio
   await check('Pause save captures the current run',async()=>{const r=await page.evaluate(async()=>{const account=await import('./account.js');return account.loadRun('3d')});assert.equal(r.time,saved.time);assert.deepEqual(r.player,saved.player);assert.deepEqual(r.collected,saved.collected)});
   await page.click('#home');await page.waitForFunction(()=>gameInfo().mode==='menu');
   await check('Home saves before rebuilding menu',async()=>{const r=await page.evaluate(async()=>{const account=await import('./account.js');return account.loadRun('3d')});assert.equal(r.time,saved.time);assert.deepEqual(r.player,saved.player);assert.equal(await page.evaluate(()=>__qa.exportCurrentRun()),null)});
-  await page.click('[data-character="dragon"]');
-  await check('Menu permits character changes',async()=>assert.equal(await page.evaluate(()=>gameInfo().character),'dragon'));
+  await check('Returning home keeps the fixed white-block player',async()=>assert.equal(await page.evaluate(()=>gameInfo().characterName),'白色方块'));
   await page.click('#cloud-load');console.log('LOAD',await page.evaluate(()=>({mode:gameInfo().mode,status:document.querySelector('[data-cloud-status]')?.textContent})));await page.waitForFunction(()=>gameInfo().mode==='paused');
   await check('Load restores player, collection, mechanisms and camera exactly',async()=>assert.deepEqual(await page.evaluate(()=>__qa.exportCurrentRun()),saved));
   await check('Invalid save leaves the current run unchanged',async()=>{const result=await page.evaluate(()=>{const before=JSON.stringify(__qa.exportCurrentRun());const record=__qa.exportCurrentRun();record.player.x=NaN;return {accepted:__qa.restoreCurrentRun(record),same:JSON.stringify(__qa.exportCurrentRun())===before}});assert.deepEqual(result,{accepted:false,same:true})});
+  for(const character of ['claude','logo'])await check('Legacy '+character+' save restores as a white block and preserves run audit',async()=>{const result=await page.evaluate(({saved,character})=>{const old={...saved,character,runCharacter:character,lastNormalCharacter:'claude',godMode:character==='logo',usedGodMode:character==='logo',dashTime:character==='logo'?.2:0};const accepted=__qa.restoreCurrentRun(old);return {accepted,record:__qa.exportCurrentRun(),name:gameInfo().characterName}}, {saved,character});assert.equal(result.accepted,true);assert.equal(result.name,'白色方块');assert.equal(result.record.character,'dragon');assert.equal(result.record.runCharacter,'dragon');assert.equal(result.record.usedGodMode,character==='logo');assert.equal(result.record.dashTime,0);assert.deepEqual(result.record.player,saved.player);assert.deepEqual(result.record.collected,saved.collected)});
   for(const level of [1,2,3])await check('Chapter '+(level+1)+' resumes all mechanism state',async()=>{const result=await page.evaluate(level=>{__qa.begin(level);const w=__qa.world();for(let i=0;i<120;i++)w.step(1/120,{});w.platforms.filter(p=>p.kind==='crumble').slice(0,1).forEach(p=>p.triggerAt=w.attemptTime);__qa.pause();const r=__qa.exportCurrentRun();return {accepted:__qa.restoreCurrentRun(r),before:r,after:__qa.exportCurrentRun()}},level);assert.equal(result.accepted,true);assert.deepEqual(result.after,result.before)});
   await page.click('#home');
-  await page.evaluate(()=>{__qa.setGodMode(true);__qa.setCharacter('logo')});await page.click('#start');await page.keyboard.press('Escape');await page.waitForFunction(()=>gameInfo().mode==='paused');
-  await check('Logo may disable god mode via the required normal-character fallback',async()=>{const result=await page.evaluate(()=>{__qa.setGodMode(false);return {god:gameInfo().godMode,character:gameInfo().character,used:gameInfo().usedGodMode}});assert.equal(result.god,false);assert.notEqual(result.character,'logo');assert.equal(result.used,true)});
+  await page.evaluate(()=>__qa.setGodMode(true));await page.click('#start');await page.keyboard.press('Escape');await page.waitForFunction(()=>gameInfo().mode==='paused');
+  await check('God mode toggles off while keeping the white block and assisted-run audit',async()=>{const result=await page.evaluate(()=>{__qa.setGodMode(false);return {god:gameInfo().godMode,name:gameInfo().characterName,used:gameInfo().usedGodMode}});assert.equal(result.god,false);assert.equal(result.name,'白色方块');assert.equal(result.used,true)});
   await page.click('#modal-primary');await page.evaluate(()=>{const w=__qa.world();w.emit('checkpoint')});await page.waitForTimeout(150);
   await check('Checkpoint event captures a run',async()=>assert.ok(await page.evaluate(async()=>{const a=await import('./account.js');return a.loadRun('3d')?.schema==='mosslight-3d-run'})));
   await page.evaluate(()=>{const w=__qa.world();w.complete=true;w.emit('complete')});await page.waitForFunction(()=>gameInfo().mode==='complete');

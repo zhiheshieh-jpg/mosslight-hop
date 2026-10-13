@@ -6,16 +6,16 @@ function storage(seed={}){const values=new Map(Object.entries(seed));return {get
 const empty=[false,false,false,false];
 const clearFirstThree=p=>{for(const id of ['dragon','claude'])for(const level of [0,1,2])assert.equal(p.complete(level,id),true)};
 
-for(const [name,api] of [['2D',pixel],['3D',palace]]){
- test(`${name} both normal characters must clear the first three chapters before the laboratory opens`,()=>{
+for(const [name,api,needsBoth] of [['2D',pixel,true],['3D',palace,false]]){
+ test(`${name} laboratory uses its own normal-completion requirement`,()=>{
   const store=storage();let p=api.createProgression(store);
   assert.deepEqual(p.snapshot().unlocked,[true,true,false,false]);
   for(const level of [0,1,2])assert.equal(p.complete(level,'dragon'),true);
-  assert.deepEqual(p.snapshot().completed,[true,true,true,false]);assert.equal(p.canEnter(3),false);
-  assert.equal(p.complete(3,'dragon'),false);assert.equal(p.snapshot().godUnlocked,false);
+  assert.deepEqual(p.snapshot().completed,[true,true,true,false]);assert.equal(p.canEnter(3),!needsBoth);
+  if(needsBoth)assert.equal(p.complete(3,'dragon'),false);assert.equal(p.snapshot().godUnlocked,false);
   p=api.createProgression(store);assert.deepEqual(p.snapshot().byCharacter.dragon,[true,true,true,false]);
   assert.deepEqual(p.snapshot().byCharacter.claude,empty);
-  for(const level of [2,0]){assert.equal(p.complete(level,'claude'),true);assert.equal(p.canEnter(3),false)}
+  for(const level of [2,0]){assert.equal(p.complete(level,'claude'),true);assert.equal(p.canEnter(3),!needsBoth)}
   assert.equal(p.complete(1,'claude'),true);assert.equal(p.canEnter(3),true);assert.equal(p.snapshot().godUnlocked,false);
   assert.deepEqual(api.createProgression(store).snapshot().unlocked,[true,true,true,true]);
  });
@@ -46,10 +46,10 @@ for(const [name,api] of [['2D',pixel],['3D',palace]]){
   assert.deepEqual(p.snapshot().byCharacter.dragon,[true,false,false,false]);assert.deepEqual(p.snapshot().byCharacter.claude,empty);
  });
 
- test(`${name} old three-chapter wins retain access but do not stand in for either character`,()=>{
+ test(`${name} historical first-three wins follow its own laboratory rule`,()=>{
   const store=storage({[api.PROGRESS_KEY]:JSON.stringify({version:1,completed:[true,true,true,true]})}),p=api.createProgression(store);
-  assert.deepEqual(p.snapshot().completed,[true,true,true,false]);assert.equal(p.canEnter(2),true);assert.equal(p.canEnter(3),false);
-  for(const level of [0,1,2])p.complete(level,'dragon');assert.equal(p.canEnter(3),false);
+  assert.deepEqual(p.snapshot().completed,[true,true,true,false]);assert.equal(p.canEnter(2),true);assert.equal(p.canEnter(3),!needsBoth);
+  for(const level of [0,1,2])p.complete(level,'dragon');assert.equal(p.canEnter(3),!needsBoth);
   assert.deepEqual(p.snapshot().byCharacter.claude,empty);
   for(const level of [0,1,2])p.complete(level,'claude');assert.equal(p.canEnter(3),true);
   assert.equal(p.snapshot().godUnlocked,false);p.complete(3,'claude');assert.equal(p.snapshot().godUnlocked,true);
@@ -74,8 +74,7 @@ for(const [name,api] of [['2D',pixel],['3D',palace]]){
    {version:2,completed:[true,true,true,true],godUnlocked:true},
    {version:2,byCharacter:{dragon:{0:true,1:true,2:true,3:true},claude:[1,'true',true,true]}},
    {version:2,byCharacter:{logo:[true,true,true,true]}},
-   {version:2,byCharacter:{dragon:[true,true,true,true],claude:[true,true,false,true]}},
-   {version:2,legacyCompleted:[true,true,true,true]},
+   ...(needsBoth?[{version:2,byCharacter:{dragon:[true,true,true,true],claude:[true,true,false,true]}},{version:2,legacyCompleted:[true,true,true,true]}]:[{version:2,byCharacter:{dragon:[true,false,true,true],claude:[false,false,false,true]}}]),
    {version:1,completed:{0:true,1:true,2:true}},
   ];
   for(const saved of cases){const p=api.createProgression(storage({[api.PROGRESS_KEY]:JSON.stringify(saved)}));assert.equal(p.canEnter(3),false);assert.equal(p.snapshot().godUnlocked,false);assert.equal(p.snapshot().completed[3],false)}
