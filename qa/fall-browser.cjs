@@ -23,15 +23,17 @@ const ok=(value,label)=>{assert.ok(value,label);report.checks.push(label);consol
     const previous=await f.evaluate(({mode,level})=>{
      const qa=mode==='2d'?__pixelQA:__qa;qa.home();qa.begin(level);const w=qa.world();
      const a=w.platforms.find(a=>mode==='2d'?a.kind==='ground'&&a.section===3:a.id>=3&&!w.def.checkpoints.includes(a.id)&&['solid','rotating','moving'].includes(a.kind));
-     if(mode==='2d')Object.assign(w.player,{x:a.x+60,y:a.y-w.player.h,vx:0,vy:0,grounded:true,on:a.id});
-     else Object.assign(w.player,{x:a.x,y:a.y,z:a.z,vx:0,vy:0,vz:0,grounded:true,on:a.id});
+     if(mode==='2d')Object.assign(w.player,{x:a.x+a.w-1.75,y:a.y-w.player.h,vx:0,vy:0,grounded:true,on:a.id});
+     else {const angle=a.kind==='rotating'?(a.angle||0):0,q={x:a.w/2+.12,z:.2};Object.assign(w.player,{x:a.x+q.x*Math.cos(angle)+q.z*Math.sin(angle),y:a.y,z:a.z-q.x*Math.sin(angle)+q.z*Math.cos(angle),vx:0,vy:0,vz:0,grounded:true,on:a.id})}
      w.fallRecordAt=-1;w.rememberFallPoint();w.player.y=mode==='2d'?800:-20;w.player.grounded=false;w.player.on=null;
-     return {platform:a.id,checkpoint:w.checkpoint,score:mode==='2d'?w.score:w.stats().score};
+     return {anchor:{...w.fallHistory.at(-1)},platform:a.id,checkpoint:w.checkpoint,score:mode==='2d'?w.score:w.stats().score};
     },{mode,level});
     await f.waitForFunction(mode=>(mode==='2d'?pixelInfo():gameInfo()).falls===1,mode);
     await f.evaluate(mode=>(mode==='2d'?__pixelQA:__qa).pause(),mode);
     const state=await f.evaluate(mode=>mode==='2d'?pixelInfo():gameInfo(),mode);
     ok(state.player.hp===4&&state.player.on===previous.platform&&state.checkpoint===previous.checkpoint&&state.deaths===0,mode+' chapter '+(level+1)+' recovers to the recent platform for exactly 2 HP');
+    const exact=await f.evaluate(({mode,anchor})=>{const w=(mode==='2d'?__pixelQA:__qa).world(),p=w.player,a=w.platforms.find(a=>a.id===anchor.id);if(mode==='2d')return Math.abs(p.x-a.x-anchor.x)<1e-6;const angle=a.kind==='rotating'?(a.angle||0):0,dx=p.x-a.x,dz=p.z-a.z;return Math.hypot(dx*Math.cos(angle)-dz*Math.sin(angle)-anchor.x,dx*Math.sin(angle)+dz*Math.cos(angle)-anchor.z)<1e-6},{mode,anchor:previous.anchor});
+    ok(exact,mode+' chapter '+(level+1)+' returns to the precise edge coordinate without relocation');
     if(mode==='3d')ok((await f.locator('#health').textContent()).includes('4 / 6'),'3D chapter '+(level+1)+' health HUD matches recovery');
     await f.click('#cloud-save');
     const saved=await f.evaluate(({prefix,mode})=>JSON.parse(localStorage.getItem(prefix+'mosslight-run-'+mode)),{prefix,mode});

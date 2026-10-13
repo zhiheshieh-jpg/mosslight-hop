@@ -1,1 +1,1 @@
-c73bddb14be2afac95ce5dec8f9d19c34e3263b6e0650f250eb34f772adebc12  mosslight-source-v2.6.0.zip
+fb0f2e4df9943c75f6c2d37a56598a391a99dc94f8a52e77c87deac3310ba305  mosslight-source-v2.6.1.zip

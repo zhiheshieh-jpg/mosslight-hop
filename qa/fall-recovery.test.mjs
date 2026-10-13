@@ -20,18 +20,24 @@ test('2D falling costs exactly two HP and returns to the latest standing area in
   w.step(STEP,{jump:true});assert.ok(w.player.vy<0,'jump remains usable after recovery');
  }
 });
-test('2D safe history excludes disappearing bridges and uses current moving-platform height',()=>{
- const w=new PixelWorld(2),a=w.level.ground[8];land2(w,a);
- const bridge=w.platforms.find(a=>a.kind==='crumble');land2(w,bridge,bridge.x+25);bridge.gone=true;fall(w);
- assert.equal(w.player.on,a.id);assert.equal(w.player.hp,4);
- const city=new PixelWorld(1),moving=city.platforms.find(a=>a.kind==='moving');assert.ok(moving);land2(city,moving,moving.x+30);city.time=2.4;fall(city);
- assert.equal(city.player.on,moving.id);assert.equal(city.player.y,moving.y-city.player.h);
+test('2D records temporary bridges and restores the exact position at the current moving-platform height',()=>{
+ const w=new PixelWorld(2),bridge=w.platforms.find(a=>a.kind==='crumble');land2(w,bridge,bridge.x+bridge.w-1.5);const x=w.player.x;
+ bridge.gone=true;fall(w);assert.equal(w.player.on,bridge.id);assert.equal(w.player.x,x);assert.equal(bridge.gone,false);assert.equal(bridge.trigger,w.time);assert.equal(w.player.hp,4);
+ w.step(STEP,{jump:true});assert.ok(w.player.vy<0);
+ const city=new PixelWorld(1),moving=city.platforms.find(a=>a.kind==='moving');land2(city,moving,moving.x+30);city.time=2.4;fall(city);
+ assert.equal(city.player.on,moving.id);assert.equal(city.player.x,moving.x+30);assert.equal(city.player.y,moving.y-city.player.h);
 });
-test('2D recovery searches nearby safe ground when the former standing point becomes hazardous',()=>{
+test('2D returns to the same coordinate even if a hazard now occupies that coordinate',()=>{
  const w=new PixelWorld(2),a=w.level.ground[1];land2(w,a,a.x+220);
- const recorded=w.player.x;w.hazards.push({kind:'beam',x:recorded-4,y:a.y-100,w:32,h:100,period:10,on:0,duration:10});
- fall(w);assert.equal(w.player.on,a.id);assert.notEqual(w.player.x,recorded);assert.equal(w.player.hp,4);
- for(const h of w.hazards){const s=hazardState(h,w.time);assert.ok(!s.active||!intersects(w.player,s.rect))}
+ const x=w.player.x;w.hazards.push({kind:'beam',x:x-4,y:a.y-100,w:32,h:100,period:10,on:0,duration:10});
+ fall(w);assert.equal(w.player.on,a.id);assert.equal(w.player.x,x);assert.equal(w.player.hp,4);
+ w.step(STEP,{});assert.equal(w.player.hp,4,'brief recovery protection applies without relocating the player');
+});
+test('2D records the final grounded frame at the edge, without sampling delay or clamping',()=>{
+ const w=new PixelWorld(0),a=w.platforms[0];land2(w,a,a.x+a.w-.5);const x=w.player.x;
+ w.player.vx=250;w.step(STEP,{x:1});assert.equal(w.player.grounded,false);fall(w);
+ assert.equal(w.player.x,x);assert.equal(w.player.on,a.id);assert.equal(w.player.hp,4);
+ const save=w.exportState(),copy=new PixelWorld();assert.equal(copy.importState(save),true);assert.deepEqual(copy.fallHistory,w.fallHistory);
 });
 test('2D falls bypass dash immunity and only a lethal fall invokes the existing death reset',()=>{
  const w=new PixelWorld(2),a=w.level.ground[2];land2(w,a);w.score=900;w.player.invuln=99;w.player.dash=.1;fall(w);
@@ -55,21 +61,30 @@ test('3D falling returns to a recent platform without resetting collection, cloc
   w.step(STEP,{jump:true});assert.ok(w.player.vy>0,'jump works after safe restoration');
  }
 });
-test('3D recovery follows rotated and moving decks, rejecting temporary and missing platforms',()=>{
+test('3D recovery follows the same foot position on moving and rotating decks',()=>{
  for(const kind of ['rotating','moving']){
   const w=new GameWorld(kind==='moving'?1:0),a=w.platforms.find(a=>a.kind===kind);land3(w,a,.4,.3);w.time=2.8;fall(w);
   assert.equal(w.player.on,a.id);const expected=platformToWorld(a,.4,.3);assert.ok(Math.hypot(w.player.x-expected.x,w.player.z-expected.z)<1e-6);
  }
- const w=new GameWorld(2),safe=w.platforms.find(a=>a.id>0&&a.kind==='solid');land3(w,safe);
- for(const kind of ['crumble','pulse']){const a=w.platforms.find(a=>a.kind===kind);land3(w,a);assert.notEqual(w.fallHistory.at(-1).id,a.id)}
- const last=w.fallHistory.at(-1);w.platforms[last.id].gone=true;w.fallHistory.push({id:999,x:0,z:0});fall(w);assert.equal(w.player.on,0);
 });
-test('3D lasers, sweepers and crushers have safe recovery rims while their mechanisms continue',()=>{
+test('3D temporary platforms return at the original coordinate with a fresh standing window',()=>{
+ for(const kind of ['crumble','pulse']){
+  const w=new GameWorld(2),a=w.platforms.find(a=>a.kind===kind);land3(w,a,.4,.3);a.gone=true;fall(w);
+  const expected=platformToWorld(a,.4,.3);assert.equal(w.player.on,a.id);assert.ok(Math.hypot(w.player.x-expected.x,w.player.z-expected.z)<1e-6);assert.equal(a.gone,false);
+  if(kind==='pulse')assert.ok(a.recoveryUntil>w.attemptTime+1.4);else assert.equal(a.triggerAt,w.attemptTime);
+  w.step(STEP,{jump:true});assert.ok(w.player.vy>0);assert.equal(w.player.hp,4);
+ }
+});
+test('3D retains the final grounded edge coordinate and accepts that edge in saved history',()=>{
+ const w=new GameWorld(0),a=w.platforms[0];land3(w,a,a.w/2+.2,0);const x=w.player.x;
+ w.player.vx=7.6;w.step(STEP,{x:1});assert.equal(w.player.grounded,false);fall(w);
+ assert.equal(w.player.x,x);assert.equal(w.player.on,0);assert.equal(w.player.hp,4);
+ assert.equal(new GameWorld().restoreFallHistory(w.fallHistory),true);
+});
+test('3D recovery preserves the former coordinate even when a trap is active there',()=>{
  for(const kind of ['laser','sweeper','crusher']){
-  const w=new GameWorld(2),a=w.platforms.find(a=>a.kind===kind);w.attemptTime=kind==='laser'?2.4:kind==='crusher'?a.period*.79:0;
-  const point=w.fallPoint({id:a.id,x:0,z:0});assert.ok(point,kind+' has a stable safe rim');
-  assert.equal(platformHurtsPlayer(a,point),false);w.fallHistory.push({id:a.id,...point.local});fall(w);
-  assert.equal(w.player.on,a.id);assert.equal(w.player.hp,4);assert.equal(platformHurtsPlayer(a,w.player),false);assert.ok(w.respawnGrace>1.4);
+  const w=new GameWorld(2),a=w.platforms.find(a=>a.kind===kind);w.attemptTime=kind==='laser'?2.4:kind==='crusher'?a.period*.79:0;land3(w,a,0,0);fall(w);
+  assert.equal(w.player.on,a.id);assert.equal(w.player.x,a.x);assert.equal(w.player.z,a.z);assert.equal(w.player.hp,4);assert.ok(w.respawnGrace>1.4);
  }
 });
 test('3D third fall invokes the ordinary death rule and checkpoint health is restored only when activated',()=>{
@@ -90,7 +105,7 @@ test('Both hard 2D routes remain completable with ordinary controls after one st
   for(let tick=0;tick<120*600&&!w.complete&&w.deaths<3;tick++){
    w.step(STEP,drive(w));w.drain();
    const a=w.platforms.find(a=>a.id===w.player.on);
-   if(!injected&&a?.kind==='ground'&&a.section>=(level===3?12:6)&&w.fallHistory.at(-1)?.id===a.id){
+   if(!injected&&a?.kind==='ground'&&a.section>=(level===3?12:6)&&w.player.x>a.x+40&&w.player.x<a.x+120&&w.fallHistory.at(-1)?.id===a.id){
     const score=w.score,hp=w.player.hp;fall(w);assert.equal(w.player.hp,hp-2);assert.equal(w.score,score);injected=true;drive=skyDriver();
    }
   }

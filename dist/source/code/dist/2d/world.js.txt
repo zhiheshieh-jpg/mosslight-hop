@@ -49,38 +49,28 @@ export class PixelWorld{
  constructor(level=0){this.godMode=false;this.usedGodMode=false;this.characterId='dragon';this.usedLogo=false;this.reset(level)}
  reset(level,{chests,powerup=null}={}){this.attemptSerial=(this.attemptSerial||0)+1;this.level=createLevel(level);this.time=0;this.realTime=0;this.events=[];this.deaths=0;this.kills=0;this.score=0;this.collected=new Set;this.checkpoint=0;this.complete=false;this.hitstop=0;this.combo=0;this.comboTimer=0;this.bestCombo=0;this.attackSerial=0;this.logoAngle=0;this.projectiles=[];this.hazards=this.level.hazards.map(h=>({...h,...(()=>{const a=hazardState(h,0);return {active:a.active,warning:a.warning,rect:a.rect}})()}));this.platforms=this.level.platforms.map(p=>({...p,trigger:-1,gone:false}));this.enemies=this.level.enemies.map((e,id)=>({...e,id,w:e.type==='boss'?(level===3?84:level===2?76:64):e.type==='brute'?38:28,h:e.type==='boss'?(level===3?108:level===2?98:level?86:76):e.type==='brute'?42:e.type==='drone'||e.type==='wisp'?26:30,maxHp:e.type==='boss'?(level===3?132:level===2?84:level?36:24):e.type==='brute'?5:e.type==='sentry'?3:2,hp:e.type==='boss'?(level===3?132:level===2?84:level?36:24):e.type==='brute'?5:e.type==='sentry'?3:2,vx:0,vy:0,dir:-1,mode:'patrol',timer:level>=2&&e.type==='boss'?1:.5+id*.17,flash:0,stun:0,baseY:e.y,spawnX:e.x,dead:false,hitBy:-1,phase:0}));this.player={x:75,y:378,w:22,h:42,vx:0,vy:0,face:1,grounded:true,on:0,jumps:2,coyote:.1,jumpBuffer:0,hp:6,maxHp:6,invuln:0,dash:0,dashCooldown:0,attack:0,attackStage:0,attackCooldown:0,chainWindow:0,attackQueued:false,attackId:0,hurt:0};this.previous={};this.falls=0;this.fallHistory=[{id:0,x:75}];this.fallRecordAt=-1;this.attackBoost=false;this.chests=this.level.decor.filter(d=>d.kind==='chest').map((d,id)=>({id,x:d.x,y:d.y,platformId:this.level.platforms.find(a=>d.x>=a.x&&d.x+24<=a.x+a.w&&d.y===a.y)?.id,opened:!!chests?.[id]?.opened,reward:!!chests?.[id]?.reward,collected:!!chests?.[id]?.collected}));this.rewardChestId=chests?this.chests.find(c=>c.reward)?.id:Math.floor(Math.random()*this.chests.length);if(!chests&&this.chests.length)this.chests[this.rewardChestId].reward=true;this.powerup=powerup?{...powerup}:null;this.updateChests();}
  emit(type,data={}){this.events.push({type,...data})}
- // These are landing history, not checkpoints. Temporary bridges are never recovery anchors.
- fallPoint(anchor,search=true){
-  const a=this.platforms.find(a=>a.id===anchor.id),p=this.player;
-  if(!a||a.gone||['crumble','pulse'].includes(a.kind)||a.w<p.w+16)return null;
-  const offsets=search?[anchor.x,...[-24,24,-48,48,-80,80].map(dx=>anchor.x+dx),a.w/2-p.w/2]:[anchor.x];
-  const nearby=this.hazards.filter(h=>h.x+(h.travel||0)+h.w>=a.x&&h.x-(h.travel||0)<=a.x+a.w);
-  for(const offset of offsets){
-   const x=clamp(offset,8,a.w-p.w-8),box={x:a.x+x,y:a.y-p.h,w:p.w,h:p.h};
-   if(this.platforms.some(b=>b.id!==a.id&&!b.gone&&intersects(box,b)))continue;
-   if(nearby.some(h=>[0,.35,.7,1.05,1.4].some(dt=>{const s=hazardState(h,this.time+dt);return s.active&&intersects(box,{...s.rect,x:s.rect.x-6,w:s.rect.w+12})})))continue;
-   return {...box,on:a.id,offset:x};
-  }
-  return null;
+ // Record the exact last grounded foot position, including platform edges and temporary bridges.
+ fallPoint(anchor){
+  const a=this.platforms.find(a=>a.id===anchor.id);if(!a)return null;
+  return {x:a.x+anchor.x,y:a.y-this.player.h,w:this.player.w,h:this.player.h,on:a.id};
  }
  rememberFallPoint(){
   const p=this.player,a=this.platforms.find(a=>a.id===p.on);
-  if(this.godMode||!p.grounded||!a||p.x<a.x+8||p.x+p.w>a.x+a.w-8||this.time-(this.fallRecordAt??-1)<.15)return;
-  this.fallRecordAt=this.time;const anchor={id:a.id,x:p.x-a.x};
-  if(!this.fallPoint(anchor,false))return;
-  const history=this.fallHistory,last=history.at(-1);
+  if(this.godMode||!p.grounded||!a||a.gone||p.x+p.w<=a.x||p.x>=a.x+a.w||Math.abs(p.y+p.h-a.y)>.05)return;
+  const anchor={id:a.id,x:p.x-a.x},history=this.fallHistory,last=history.at(-1);
   if(last?.id===a.id)history[history.length-1]=anchor;else history.push(anchor);
   if(history.length>128)history.shift();
  }
  restoreFallHistory(history){
-  if(history!==undefined&&(!Array.isArray(history)||history.length>128||!history.every(q=>q&&Number.isInteger(q.id)&&this.platforms.some(a=>a.id===q.id&&Number.isFinite(q.x)&&q.x>=0&&q.x<=a.w-this.player.w))))return false;
+  if(history!==undefined&&(!Array.isArray(history)||history.length>128||!history.every(q=>q&&Number.isInteger(q.id)&&this.platforms.some(a=>a.id===q.id&&Number.isFinite(q.x)&&q.x>=-this.player.w&&q.x<=a.w))))return false;
   this.fallHistory=history?.map(q=>({id:q.id,x:q.x}))||[{id:0,x:75}];this.fallRecordAt=-1;return true;
  }
  recoverFall(){
   const p=this.player;this.falls++;p.hp=Math.max(0,p.hp-2);
   if(p.hp===0){this.respawn();return}
-  const point=[...this.fallHistory].reverse().map(q=>this.fallPoint(q)).find(Boolean)||this.fallPoint({id:0,x:75});
+  const point=this.fallPoint(this.fallHistory.at(-1)||{id:0,x:75});
   if(!point){this.respawn();return}
+  const a=this.platforms.find(a=>a.id===point.on);if(a.kind==='crumble'){a.trigger=this.time;a.gone=false}
   Object.assign(p,{x:point.x,y:point.y,vx:0,vy:0,grounded:true,on:point.on,jumps:2,coyote:.1,jumpBuffer:0,dash:0,attack:0,attackQueued:false,hurt:0,invuln:1.5});
   this.hitstop=0;this.fallRecordAt=-1;this.rememberFallPoint();
   this.emit('fallRecovered',{x:p.x,y:p.y,platform:p.on,damage:2,hp:p.hp});
@@ -139,7 +129,7 @@ export class PixelWorld{
  hitEnemy(e,damage,stage){if(e.dead||e.hitBy===this.player.attackId)return;e.hitBy=this.player.attackId;e.hp=Math.max(0,e.hp-damage);e.flash=.13;const charging=this.level.lab&&e.type==='boss'&&e.mode==='attack'&&e.pattern==='charge';e.stun=charging?0:e.type==='boss'?.09:stage===2?.5:.24;if(!charging)e.vx=this.player.face*(e.type==='boss'?45:stage===2?390:200);if(e.type!=='boss'&&stage===2)e.vy=-230;this.combo++;this.comboTimer=2;this.bestCombo=Math.max(this.bestCombo,this.combo);this.score+=damage*20;this.hitstop=Math.max(this.hitstop,e.hp<=0?.085:stage===2?.07:.045);this.emit('hit',{x:e.x+e.w/2,y:e.y+e.h/2,damage,heavy:stage===2,kill:e.hp<=0,face:this.player.face});if(e.hp<=0){e.dead=true;this.kills++;this.score+=e.type==='boss'?1000:100;this.emit('kill',{x:e.x+e.w/2,y:e.y+e.h/2,boss:e.type==='boss'});if(e.type==='boss')this.emit('bossDefeated')}}
  setGodMode(enabled){this.godMode=!!enabled;this.usedGodMode ||= this.godMode;const p=this.player;Object.assign(p,{hurt:0,vy:0,invuln:0,dash:0,jumpBuffer:0});this.hitstop=0;if(!this.godMode){if(this.characterId==='logo')this.setCharacter('dragon');const slabs=this.platforms.filter(a=>!a.gone&&intersects(p,a)).sort((a,b)=>a.y-b.y);if(slabs.length){const a=slabs[0];p.y=a.y-p.h;p.grounded=true;p.on=a.id;p.jumps=2}}this.emit('godMode',{enabled:this.godMode});return this.godMode}
  step(dt,input={}){
-  if(this.complete)return;this.usedGodMode ||= this.godMode;this.usedLogo ||= this.logoActive;dt=Math.min(dt,1/30);this.realTime+=dt;
+  if(this.complete)return;this.rememberFallPoint();this.usedGodMode ||= this.godMode;this.usedLogo ||= this.logoActive;dt=Math.min(dt,1/30);this.realTime+=dt;
   const attempt=this.attemptSerial,p=this.player,jumpEdge=!!input.jump&&!this.previous.jump,dashEdge=!!input.dash&&!this.previous.dash,interactEdge=!!input.interact&&!this.previous.interact;
   if(interactEdge)this.interact();if(jumpEdge)p.jumpBuffer=.13;if(input.attack)p.attackQueued=true;this.previous={...input};
   if(this.hitstop>0){this.hitstop=Math.max(0,this.hitstop-dt);return}

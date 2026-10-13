@@ -82,52 +82,39 @@ export function platformHurtsPlayer(a,p){
 }
 export class GameWorld {
  constructor(level=0,character='dragon'){this.character=character==='claude'?'claude':'dragon';this.lastNormalCharacter=this.character;this.reset(level)}
- reset(level){if(this.character==='logo')this.character=this.lastNormalCharacter||'dragon';this.level=level;this.def=LEVELS[level];this.restartFromStart=!!(this.def.sky||this.def.restartFromStart);this.dashTime=0;this.dashDirection={x:0,y:0,z:-1};this.time=0;this.attemptTime=0;this.deaths=0;this.godMode=false;this.usedGodMode=false;this.collected=new Set;this.collectibles=makeCollectibles(level);this.checkpoint=0;this.farthest=0;this.complete=false;this.events=[];this.platforms=this.def.platforms.map((p,i)=>{const a={...p,id:i,baseX:p.x,dx:0,triggerAt:null,gone:false,laserOn:false};updateMechanism(a,0);return a});this.flightBounds={minX:Math.min(...this.platforms.map(a=>a.x-a.w/2))-18,maxX:Math.max(...this.platforms.map(a=>a.x+a.w/2))+18,minY:-8,maxY:Math.max(...this.platforms.map(a=>a.y))+18,minZ:this.platforms.at(-1).z-14,maxZ:14};this.player={x:0,y:0,z:1.3,vx:0,vz:0,vy:0,grounded:true,on:0,coyote:.14,buffer:0,facing:0,hp:6,maxHp:6};this.respawnGrace=.6;this.jumpHeld=false;this.falls=0;this.fallHistory=[{id:0,x:0,z:1.3}];this.fallRecordAt=-1;}
+ reset(level){if(this.character==='logo')this.character=this.lastNormalCharacter||'dragon';this.level=level;this.def=LEVELS[level];this.restartFromStart=!!(this.def.sky||this.def.restartFromStart);this.dashTime=0;this.dashDirection={x:0,y:0,z:-1};this.time=0;this.attemptTime=0;this.deaths=0;this.godMode=false;this.usedGodMode=false;this.collected=new Set;this.collectibles=makeCollectibles(level);this.checkpoint=0;this.farthest=0;this.complete=false;this.events=[];this.platforms=this.def.platforms.map((p,i)=>{const a={...p,id:i,baseX:p.x,dx:0,triggerAt:null,gone:false,laserOn:false,recoveryUntil:-1};updateMechanism(a,0);return a});this.flightBounds={minX:Math.min(...this.platforms.map(a=>a.x-a.w/2))-18,maxX:Math.max(...this.platforms.map(a=>a.x+a.w/2))+18,minY:-8,maxY:Math.max(...this.platforms.map(a=>a.y))+18,minZ:this.platforms.at(-1).z-14,maxZ:14};this.player={x:0,y:0,z:1.3,vx:0,vz:0,vy:0,grounded:true,on:0,coyote:.14,buffer:0,facing:0,hp:6,maxHp:6};this.respawnGrace=.6;this.jumpHeld=false;this.falls=0;this.fallHistory=[{id:0,x:0,z:1.3}];this.fallRecordAt=-1;}
  emit(type,data={}){this.events.push({type,...data})}
- fallPoint(anchor,search=true){
-  const a=this.platforms[anchor.id];if(!a||a.gone||['crumble','pulse'].includes(a.kind))return null;
-  const mx=a.w/2-RADIUS-.35,mz=a.d/2-RADIUS-.35;if(mx<=0||mz<=0)return null;
-  const clamp=(v,m)=>Math.max(-m,Math.min(m,v));
-  const positions=[{x:clamp(anchor.x,mx),z:clamp(anchor.z,mz)}];
-  if(search)for(const x of [-mx,0,mx])for(const z of [-mz,0,mz])positions.push({x,z});
-  positions.sort((u,v)=>Math.hypot(u.x-anchor.x,u.z-anchor.z)-Math.hypot(v.x-anchor.x,v.z-anchor.z));
-  for(const q of positions){
-   const point={...platformToWorld(a,q.x,q.z),y:a.y,on:a.id};
-   if(this.platforms.some(b=>b.id!==a.id&&!b.gone&&point.y<b.y-.05&&point.y+HEIGHT>b.y-.65&&platformContains(b,point.x,point.z,RADIUS)))continue;
-   if([0,.35,.7,1.05,1.4].some(dt=>{const copy={...a};updateMechanism(copy,this.attemptTime+dt);return platformHurtsPlayer(copy,point)}))continue;
-   return {...point,local:q};
-  }
-  return null;
+ fallPoint(anchor){
+  const a=this.platforms[anchor.id];if(!a)return null;
+  return {...platformToWorld(a,anchor.x,anchor.z),y:a.y,on:a.id};
  }
  rememberFallPoint(){
   const p=this.player,a=this.platforms[p.on];
-  if(this.godMode||!p.grounded||!a||this.time-(this.fallRecordAt??-1)<.15)return;
-  this.fallRecordAt=this.time;const q=platformToLocal(a,p.x,p.z);
-  if(Math.abs(q.x)>a.w/2-RADIUS-.35||Math.abs(q.z)>a.d/2-RADIUS-.35)return;
-  const anchor={id:a.id,...q};if(!this.fallPoint(anchor,false))return;
-  const history=this.fallHistory,last=history.at(-1);
+  if(this.godMode||!p.grounded||!a||a.gone||!platformContains(a,p.x,p.z,RADIUS*.72)||Math.abs(p.y-a.y)>.05)return;
+  const anchor={id:a.id,...platformToLocal(a,p.x,p.z)},history=this.fallHistory,last=history.at(-1);
   if(last?.id===a.id)history[history.length-1]=anchor;else history.push(anchor);
   if(history.length>128)history.shift();
  }
  restoreFallHistory(history){
-  if(history!==undefined&&(!Array.isArray(history)||history.length>128||!history.every(q=>q&&Number.isInteger(q.id)&&this.platforms[q.id]&&Number.isFinite(q.x)&&Number.isFinite(q.z)&&Math.abs(q.x)<=this.platforms[q.id].w/2&&Math.abs(q.z)<=this.platforms[q.id].d/2)))return false;
+  if(history!==undefined&&(!Array.isArray(history)||history.length>128||!history.every(q=>q&&Number.isInteger(q.id)&&this.platforms[q.id]&&Number.isFinite(q.x)&&Number.isFinite(q.z)&&Math.abs(q.x)<=this.platforms[q.id].w/2+RADIUS&&Math.abs(q.z)<=this.platforms[q.id].d/2+RADIUS)))return false;
   this.fallHistory=history?.map(q=>({id:q.id,x:q.x,z:q.z}))||[{id:0,x:0,z:1.3}];this.fallRecordAt=-1;return true;
  }
  recoverFall(){
   const p=this.player;this.falls++;p.hp=Math.max(0,p.hp-2);
   if(p.hp===0){this.respawn();return}
-  const point=[...this.fallHistory].reverse().map(q=>this.fallPoint(q)).find(Boolean)||this.fallPoint({id:0,x:0,z:1.3});
+  const point=this.fallPoint(this.fallHistory.at(-1)||{id:0,x:0,z:1.3});
   if(!point){this.respawn();return}
+  const a=this.platforms[point.on];if(a.kind==='crumble'){a.triggerAt=this.attemptTime;a.gone=false}if(a.kind==='pulse'){a.recoveryUntil=this.attemptTime+1.5;a.gone=false}
   Object.assign(p,{x:point.x,y:point.y,z:point.z,vx:0,vy:0,vz:0,grounded:true,on:point.on,coyote:.14,buffer:0});
   this.jumpHeld=false;this.dashTime=0;this.respawnGrace=1.5;this.fallRecordAt=-1;this.rememberFallPoint();
   this.emit('fallRecovered',{x:p.x,y:p.y,z:p.z,platform:p.on,damage:2,hp:p.hp});
  }
  setCharacter(id){if(!['dragon','claude','logo'].includes(id)||id==='logo'&&!this.godMode)return false;this.character=id;if(id!=='logo')this.lastNormalCharacter=id;this.dashTime=0;return true}
  setGodMode(enabled){const next=!!enabled;if(this.godMode===next)return;this.godMode=next;this.usedGodMode||=next;this.dashTime=0;if(!next&&this.character==='logo')this.character=this.lastNormalCharacter||'dragon';const p=this.player;p.vy=0;p.buffer=0;p.coyote=0;this.jumpHeld=false;if(next){p.grounded=false;p.on=null}else{p.grounded=false;p.on=null;for(const a of this.platforms){if(a.gone||!platformContains(a,p.x,p.z,RADIUS*.72))continue;if(p.y<a.y&&p.y+HEIGHT>a.y-.65){p.y=a.y;p.grounded=true;p.on=a.id;break}}}this.emit('godMode',{enabled:next})}
- respawn(){this.dashTime=0;this.deaths++;if(this.restartFromStart){this.checkpoint=0;this.farthest=0;this.attemptTime=0;this.collected.clear();for(const a of this.platforms){Object.assign(a,this.def.platforms[a.id],{x:a.baseX,dx:0,dAngle:0,triggerAt:null,gone:false,laserOn:false,angle:0});updateMechanism(a,0)}}const c=this.platforms[this.checkpoint],p=this.player;Object.assign(p,{x:c.x,y:c.y,z:this.restartFromStart?1.3:c.z+.5,vx:0,vz:0,vy:0,grounded:true,on:c.id,coyote:.14,buffer:0,hp:p.maxHp});if(this.restartFromStart)this.jumpHeld=false;this.respawnGrace=.8;this.fallHistory=[];this.fallRecordAt=-1;this.rememberFallPoint();this.emit('respawn',{restarted:!!this.restartFromStart});}
+ respawn(){this.dashTime=0;this.deaths++;if(this.restartFromStart){this.checkpoint=0;this.farthest=0;this.attemptTime=0;this.collected.clear();for(const a of this.platforms){Object.assign(a,this.def.platforms[a.id],{x:a.baseX,dx:0,dAngle:0,triggerAt:null,gone:false,laserOn:false,angle:0,recoveryUntil:-1});updateMechanism(a,0)}}const c=this.platforms[this.checkpoint],p=this.player;Object.assign(p,{x:c.x,y:c.y,z:this.restartFromStart?1.3:c.z+.5,vx:0,vz:0,vy:0,grounded:true,on:c.id,coyote:.14,buffer:0,hp:p.maxHp});if(this.restartFromStart)this.jumpHeld=false;this.respawnGrace=.8;this.fallHistory=[];this.fallRecordAt=-1;this.rememberFallPoint();this.emit('respawn',{restarted:!!this.restartFromStart});}
  collect(){const p=this.player;for(const item of this.collectibles){if(this.collected.has(item.id))continue;const a=this.platforms[item.platform];if(a.gone)continue;const {x,z}=platformToWorld(a,item.x,item.z),y=a.y+item.y;if(Math.hypot(p.x-x,p.z-z)<.82&&Math.abs(p.y+HEIGHT*.6-y)<1.05){this.collected.add(item.id);this.emit('pickup',{item,x,y,z});if(this.collected.size===this.collectibles.length)this.emit('allCollected')}}}
  finishAtExit(){const p=this.player,end=this.platforms.at(-1),near=Math.hypot(p.x-end.x,p.z-(end.z-1.5))<1.0;if(near&&(this.godMode?Math.abs(p.y-end.y)<2.6:p.grounded&&p.on===end.id)){this.complete=true;this.emit('complete')}}
- step(dt,input={}){if(this.complete)return;dt=Math.min(dt,1/30);this.time+=dt;this.attemptTime=this.restartFromStart?this.attemptTime+dt:this.time;const mechanismTime=this.attemptTime;this.respawnGrace=Math.max(0,this.respawnGrace-dt);const p=this.player;for(const a of this.platforms){const old=a.x,oldAngle=a.angle||0;if(a.kind==='moving')a.x=a.baseX+Math.sin(mechanismTime*Math.PI*2/a.period)*a.amp;a.dx=a.x-old;if(a.kind==='crumble'&&a.triggerAt!==null){const age=mechanismTime-a.triggerAt,delay=a.crumbleDelay??1.15,restore=a.restoreDelay??4.2;a.gone=age>delay&&age<restore;if(age>=restore){a.triggerAt=null;a.gone=false}}updateMechanism(a,mechanismTime);a.dAngle=(a.angle||0)-oldAngle;}
+ step(dt,input={}){if(this.complete)return;this.rememberFallPoint();dt=Math.min(dt,1/30);this.time+=dt;this.attemptTime=this.restartFromStart?this.attemptTime+dt:this.time;const mechanismTime=this.attemptTime;this.respawnGrace=Math.max(0,this.respawnGrace-dt);const p=this.player;for(const a of this.platforms){const old=a.x,oldAngle=a.angle||0;if(a.kind==='moving')a.x=a.baseX+Math.sin(mechanismTime*Math.PI*2/a.period)*a.amp;a.dx=a.x-old;if(a.kind==='crumble'&&a.triggerAt!==null){const age=mechanismTime-a.triggerAt,delay=a.crumbleDelay??1.15,restore=a.restoreDelay??4.2;a.gone=age>delay&&age<restore;if(age>=restore){a.triggerAt=null;a.gone=false}}updateMechanism(a,mechanismTime);if((a.recoveryUntil??-1)>mechanismTime)a.gone=false;a.dAngle=(a.angle||0)-oldAngle;}
  if(this.godMode){let ix=input.x||0,iy=input.y||0,iz=input.z||0;const length=Math.hypot(ix,iy,iz);if(length>1){ix/=length;iy/=length;iz/=length}const logo=this.character==='logo';this.dashTime=Math.max(0,this.dashTime-dt);if(logo&&input.dash&&this.dashTime===0){this.dashTime=.28;const n=Math.hypot(ix,iy,iz);this.dashDirection=n>.1?{x:ix/n,y:iy/n,z:iz/n}:{x:Math.sin(p.facing),y:0,z:Math.cos(p.facing)};this.emit('dash')}const speed=logo?18.5:10.5,blend=1-Math.exp(-18*dt);if(logo&&this.dashTime>0){p.vx=this.dashDirection.x*38;p.vy=this.dashDirection.y*38;p.vz=this.dashDirection.z*38}else{p.vx+=(ix*speed-p.vx)*blend;p.vy+=(iy*speed-p.vy)*blend;p.vz+=(iz*speed-p.vz)*blend}const b=this.flightBounds;p.x=Math.max(b.minX,Math.min(b.maxX,p.x+p.vx*dt));p.y=Math.max(b.minY,Math.min(b.maxY,p.y+p.vy*dt));p.z=Math.max(b.minZ,Math.min(b.maxZ,p.z+p.vz*dt));p.grounded=false;p.on=null;p.coyote=0;p.buffer=0;this.jumpHeld=!!input.jump;if(Math.hypot(p.vx,p.vz)>.3)p.facing=Math.atan2(p.vx,p.vz);for(const a of this.platforms)if(p.z<=a.z)this.farthest=Math.max(this.farthest,a.id);this.collect();this.finishAtExit();return}
  if(p.grounded&&p.on!==null){const a=this.platforms[p.on];p.x+=a.dx;if(a.kind==='rotating'){const dx=p.x-a.x,dz=p.z-a.z,c=Math.cos(a.dAngle),s=Math.sin(a.dAngle);p.x=a.x+dx*c+dz*s;p.z=a.z-dx*s+dz*c;p.facing+=a.dAngle}if(a.gone){p.grounded=false;p.on=null;p.coyote=0}}
  const jump=!!input.jump;if(jump&&!this.jumpHeld)p.buffer=.15;this.jumpHeld=jump;p.buffer=Math.max(0,p.buffer-dt);p.coyote=p.grounded?.14:Math.max(0,p.coyote-dt);

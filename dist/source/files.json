@@ -1,7 +1,7 @@
 {
-  "version": "2.6.0",
+  "version": "2.6.1",
   "license": "MIT",
-  "archive": "mosslight-source-v2.6.0.zip",
+  "archive": "mosslight-source-v2.6.1.zip",
   "files": [
     {
       "path": ".gitignore",
@@ -20,13 +20,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 16931,
-      "sha256": "4de02765a758c73203fffb1aa020660008354338a04f8f1aa3f2510eb17652f0"
+      "bytes": 17595,
+      "sha256": "ef5552464f9b5fe856bc7a5fb7e2f507b6785dc9b1ecf85742c7cc6cd091e5c3"
     },
     {
       "path": "README.txt",
-      "bytes": 16931,
-      "sha256": "4de02765a758c73203fffb1aa020660008354338a04f8f1aa3f2510eb17652f0"
+      "bytes": 17595,
+      "sha256": "ef5552464f9b5fe856bc7a5fb7e2f507b6785dc9b1ecf85742c7cc6cd091e5c3"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -50,8 +50,8 @@
     },
     {
       "path": "deploy/README.md",
-      "bytes": 3303,
-      "sha256": "022c998d3984633b814f30b7dd34e0b88790c7dc01066ef17c5918ca318d7a46"
+      "bytes": 3613,
+      "sha256": "2de2124e78ba8e40aa45e01dcbfd5373660a170a809b29c510caaba833d21c10"
     },
     {
       "path": "deploy/install-api.sh",
@@ -61,7 +61,7 @@
     {
       "path": "deploy/install-mosslight.sh",
       "bytes": 3087,
-      "sha256": "95877f12317c20b1507b7c3b925815c03a446f163ab43b96f6e203176b567c55"
+      "sha256": "922fa23eaf47b92ba7cf6aeadb32f82f8b71b4d4b8d118d02b8c9136d70b95b5"
     },
     {
       "path": "deploy/mosslight-api.service",
@@ -145,8 +145,8 @@
     },
     {
       "path": "dist/2d/game.js",
-      "bytes": 51124,
-      "sha256": "23d9117e8ae26b9ccf593a581a5c17200a61ccf360e0931778faa6b58437576e"
+      "bytes": 51127,
+      "sha256": "264a850fbaba28281f9feccc2bcc07720f03bba8a48f505dd481712f23a5c55f"
     },
     {
       "path": "dist/2d/index.html",
@@ -185,8 +185,8 @@
     },
     {
       "path": "dist/2d/world.js",
-      "bytes": 30625,
-      "sha256": "7a73a819323278fee409c35fe66ddc360b74d4ab2467916418cdc2ac4a05b411"
+      "bytes": 30002,
+      "sha256": "e431b837e3bcae2d71799cb011d906cfc6f59eb0b1eb668d8fc6b80e0bf2f0c1"
     },
     {
       "path": "dist/account.css",
@@ -240,8 +240,8 @@
     },
     {
       "path": "dist/game.js",
-      "bytes": 60826,
-      "sha256": "c55dd7fec0dd341e5d71165c1f024294039bf938479ca5bedc26e77122024c51"
+      "bytes": 60984,
+      "sha256": "520a915821189f1d0f3c0ba075d131d78480409076bbf13bdfb705defbf59b87"
     },
     {
       "path": "dist/index.html",
@@ -275,8 +275,8 @@
     },
     {
       "path": "dist/physics.js",
-      "bytes": 14852,
-      "sha256": "319e8e45813e5827302c009f93ff8978f7452c2c623f61f331ac2b22b1337799"
+      "bytes": 14150,
+      "sha256": "29e6b472e0f83d23bf64543a18083f17a8117e80785b4184d635f5acc87e31c0"
     },
     {
       "path": "dist/progression.js",
@@ -321,7 +321,7 @@
     {
       "path": "package.json",
       "bytes": 724,
-      "sha256": "80b1963c9ccba70158f622bafa0999a9c2ec34b324d4584cc2aad895db2dbf0b"
+      "sha256": "fb4e17df9ec3c36a15cafc4096641687d4a1e9fe725a98397140ae6d240c85ca"
     },
     {
       "path": "qa/account-api.test.py",
@@ -360,13 +360,13 @@
     },
     {
       "path": "qa/fall-browser.cjs",
-      "bytes": 5802,
-      "sha256": "b7ad02cd472198c66a03301b32768ce48f8588bdd8fb1dd01134dda4107be97e"
+      "bytes": 6516,
+      "sha256": "e7f685f5d92e198d978d0b083ed4bebbf85cebf37aa8b822a5288c83e778526f"
     },
     {
       "path": "qa/fall-recovery.test.mjs",
-      "bytes": 9288,
-      "sha256": "0b892b23ef6bd2e117ba1c9e9e9a17bf2df788d9e7c14ab0c419ac4335b4aeaf"
+      "bytes": 10461,
+      "sha256": "920d34fe47af49f044740d661711ff17c060b652982e9f0d09963b59d2c7f978"
     },
     {
       "path": "qa/fixed-player3d.test.mjs",
@@ -536,7 +536,7 @@
     {
       "path": "qa/update-release.cjs",
       "bytes": 6318,
-      "sha256": "bb1796c7e509a12cd8b247bfd61d03fd12f19592ec83dcc4b84f2e5b36cb4f49"
+      "sha256": "bc73ca5b23b23e685106fdef9bffa8485ad04ca6f4e14ec553df81418b36cb8d"
     },
     {
       "path": "qa/v3-browser.cjs",
