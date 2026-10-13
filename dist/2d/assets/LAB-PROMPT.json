@@ -1,0 +1,8 @@
+{
+  "generator": "Built-in ImageGen",
+  "mode": "generate",
+  "key": "lab",
+  "file": "lab.png",
+  "transparent_background": false,
+  "prompt": "Use case: stylized-concept. Asset type: pixel-art background panorama for chapter four of a 2D side-scrolling action-platform game, 'Stellar Laboratory'. Create a richly detailed widescreen 1536x1024 landscape interior of a pristine operating futuristic research laboratory: monumental cool-white ceramic chambers, cyan luminous energy conduits, dark navy glass, suspended spherical plasma reactor inside concentric scientific containment rings, transparent specimen cylinders with abstract light structures, gantry bridges and intricate clean machinery receding into deep atmospheric layers. Technology-forward, sophisticated, beautiful, highly advanced, not a ruin, no decay or broken structures. Crisp professional 32-bit pixel art with deliberately square pixel clusters and carefully chosen color ramps, not smooth rendering. Side-on horizontal background panorama, no perspective road. Strong quiet mid-lower area for legible foreground combat. White and icy cyan lights, deep blue-violet shadows, small amber warning lights. Background scenery only: NO playable foreground ledges, characters, people, monsters, game UI, readable words, logos, borders or watermarks. Fill entire composition."
+}

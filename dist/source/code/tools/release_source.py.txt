@@ -22,6 +22,9 @@ names = ['README.md', 'README.txt', 'LICENSE', 'THIRD_PARTY_NOTICES.txt',
          'qa/sky-browser.cjs', 'qa/sky-browser-playthrough.cjs',
          'qa/palace-world.test.mjs', 'qa/palace-progression.test.mjs', 'qa/palace-driver.mjs', 'qa/palace-route.mjs',
          'qa/palace-browser.cjs', 'qa/palace-browser-playthrough.cjs']
+names += ['tools/build-web.mjs', 'tools/package-web.py', 'deploy/README.md', 'deploy/install-mosslight.sh', 'deploy/mosslight.conf']
+names += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'qa').glob('lab*.mjs')) if not p.name.endswith('-results.json')]
+names += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'qa').glob('lab*.cjs'))]
 files = {name: ROOT / name for name in names}
 for path in sorted((ROOT / 'dist').rglob('*')):
     if path.is_file() and OUT not in path.parents and '.openai' not in path.parts:
@@ -45,6 +48,7 @@ readable = ['README.md', 'LICENSE', 'dist/2d/world.js', 'dist/2d/game.js',
             'qa/physics.test.mjs', 'qa/collection-camera.test.mjs',
             'qa/v3-browser.cjs', 'tools/release_source.py', 'package.json',
             'ASSETS.txt', 'THIRD_PARTY_NOTICES.txt']
+readable += ['dist/2d/lab-level.js', 'dist/2d/lab-render.js', 'dist/lab-level.js', 'dist/lab-scene.js', 'dist/characters-3d.js', 'tools/build-web.mjs', 'qa/lab-progression.test.mjs', 'qa/lab-world.test.mjs', 'qa/lab3d-world.test.mjs']
 generated = {}
 for name in readable:
     target = OUT / 'code' / (name + '.txt')
@@ -67,11 +71,11 @@ PAGE = r'''<!doctype html>
 </style></head><body>
 <header><a href="../"><b class="logo">MOSSLIGHT</b> <span>苔光跃迁</span></a><a href="../">返回游戏 ↗</a></header>
 <main><div class="eyebrow">OPEN SOURCE · VERSION __VERSION__</div><h1>把这片世界，带走。</h1><p>3D 平台跳跃与 2D 像素动作冒险的完整源码。可以阅读、修改，也可以做成自己的新世界。代码、模型、动作图集与生成脚本一并提供；角色来源说明见第三方声明。</p>
-<div class="actions"><a class="download" href="__SITE__/source/__ARCHIVE__" download>下载完整源码 ZIP ↓</a><a class="download" href="https://github.com/zhiheshieh-jpg/mosslight-hop" target="_blank" rel="noopener">GitHub 仓库 ↗</a><small>代码 MIT 许可 · 包含可编辑 Blender 模型</small></div>
+<div class="actions"><a class="download" href="__ARCHIVE__" download>下载完整源码 ZIP ↓</a><a class="download" href="https://github.com/zhiheshieh-jpg/mosslight-hop" target="_blank" rel="noopener">GitHub 仓库 ↗</a><small>代码 MIT 许可 · 包含可编辑 Blender 模型</small></div>
 <div class="facts"><div class="fact"><strong>完整可运行</strong><p>两种版本、长路线、敌人首领、收集物与合成音频</p></div><div class="fact"><strong>素材与源文件</strong><p>.blend 模型、GLB、角色动画图集、背景与提示词</p></div><div class="fact"><strong>MIT</strong><p>代码开放使用；角色与品牌权利见第三方声明</p></div></div>
 <div class="section-label">在本机运行</div><div class="run"><code>node server.mjs</code><span>解压后在项目目录运行，打开 http://127.0.0.1:4186/</span></div>
 <div class="section-label">浏览源代码 <span id="file-count"></span></div><div class="browser"><nav id="files" aria-label="源码文件"></nav><section><div class="code-head"><span id="filename">README.md</span><a id="raw" href="code/README.md.txt" target="_blank" rel="noopener">原始文本 ↗</a></div><pre id="code" tabindex="0" aria-label="源代码">正在读取源码…</pre></section></div>
-<footer>全部运行依赖均随源码提供，游戏无运行时 CDN 依赖。Three.js r169 使用 MIT 许可证，详见源码内 THIRD_PARTY_NOTICES.txt。<br>源码包内含测试与发布脚本；查看完整文件及 SHA-256：<a href="files.json">文件清单</a> · <a href="__SITE__/source/SHA256SUMS.txt">下载校验</a>。</footer></main>
+<footer>全部运行依赖均随源码提供，游戏无运行时 CDN 依赖。Three.js r169 使用 MIT 许可证，详见源码内 THIRD_PARTY_NOTICES.txt。<br>源码包内含测试与发布脚本；查看完整文件及 SHA-256：<a href="files.json">文件清单</a> · <a href="SHA256SUMS.txt">下载校验</a>。</footer></main>
 <script>
 let selection=0;
 fetch('files.json').then(r=>{if(!r.ok)throw Error('manifest');return r.json()}).then(data=>{

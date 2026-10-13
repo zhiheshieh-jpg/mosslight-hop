@@ -1,4 +1,12 @@
 node_modules/
+.web/
+qa/lab-browser/
+qa/lab-features/
+qa/lab-release/
+qa/lab3d-browser/
+qa/lab3d-route-results.json
+.deploy/
+qa/desktop-merged/
 qa/*.png
 qa/pixel-playthrough-results.json
 qa/sky-*-results.json

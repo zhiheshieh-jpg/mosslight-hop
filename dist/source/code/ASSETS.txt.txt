@@ -1,16 +1,29 @@
-贴图使用 ImageGen 生成。
+Mosslight / 苔光跃迁 2.4.0 — 素材来源
+
+场景贴图与普通角色动作图集使用内置 ImageGen 生成或编辑；Logo SVG 来自 Simple Icons，不是 ImageGen 生成。生成记录不构成对参考角色、品牌或商标的权利主张。项目原创内容的许可范围及第三方声明见 LICENSE 与 THIRD_PARTY_NOTICES.txt。
 2D 像素版素材使用内置 ImageGen 生成与编辑：
-dist/2d/assets/dragon.png：根据用户提供的白紫小龙娘参考形象制作，透明背景 4×2 八帧动作图集。
+dist/2d/assets/dragon.png：角色显示名为 GPT （同人Q版形象），根据用户提供的白紫龙娘参考形象制作，透明背景 4×2 八帧动作图集；内部角色 ID 仍为 dragon。
 dist/2d/assets/claude.png：根据用户提供的橙色 Claude 方块参考形象制作，透明背景 4×2 八帧动作图集。
 两个角色为参考形象的游戏化改编；不声称拥有原始角色或品牌权利。
 dist/2d/assets/forest.png：晨光森林像素背景。
 dist/2d/assets/city.png：雨夜赛博都市像素背景。
 dist/2d/assets/palace.png：第三关绯晶天宫，内置 ImageGen 生成的完整玫瑰晶体云海宫殿背景。
-完整生成提示词和编辑说明：dist/2d/assets/PROMPTS.json。
-2D 地形、敌人、刀光、粒子与灯光由 Canvas2D 实时绘制，音效与音乐由 WebAudio 合成。
+dist/2d/assets/lab.png：第四章星穹实验室背景，使用内置 ImageGen 新生成，描绘完整运转的未来研究设施、青白能源管线与球形反应堆；不是第三方照片或现有实验室素材。
+完整生成提示词和编辑说明：dist/2d/assets/PROMPTS.json。实验室的独立生成记录：dist/2d/assets/LAB-PROMPT.json。
+2D 地形、敌人、刀光、粒子、旋转光针与灯光由 Canvas2D 实时绘制，音效与音乐由 WebAudio 合成。
 
-3D 原版：
+Logo 角色 Δ0x7F_∴▒9：
+dist/2d/assets/logo.svg 与 dist/assets/logo.svg 的图形来源为 Simple Icons 11.15.0 的 OpenAI SVG。
+下载来源：https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/openai.svg
+上游文件：https://github.com/simple-icons/simple-icons/blob/11.15.0/icons/openai.svg
+图形文件许可：CC0 1.0 Universal，见 https://github.com/simple-icons/simple-icons/blob/11.15.0/LICENSE.md 。
+CC0 不授予品牌、商标或第三方角色权利；OpenAI 名称和标志的品牌权利仍归 OpenAI。项目无官方关联或背书。
+2D 用 SVG 图形配合程序绘制的光环、光针和攻击效果；3D 使用 Three.js r169 的 SVGLoader 构造标志几何并添加程序化光针。游戏中的染色、发光和旋转效果不改变标志来源。
+
+3D 版：
 第三关绯晶天宫通过 dist/palace-scene.js 的 Three.js 几何生成：完整宫殿、金色拱门、晶体、悬空花园、云海和平台饰件。远景按材质合并，保留真实三维视差；无需额外图片下载。
+第四关星穹实验室通过 dist/lab-scene.js 的 Three.js 几何与材质生成研究舱室、实验通道、设备和核心装置；3D 保持无战斗机关跳跃，不使用 2D 战斗特效。
+Three.js r169、GLTFLoader、SVGLoader 与 BufferGeometryUtils 使用 MIT 许可，完整许可证保留在 dist/vendor/LICENSE.txt。
 最终贴图：dist/assets/world-atlas.png
 游戏通过四个独立 UV 区域使用同一张图：左上草地、右上岩壁、左下金属、右下楼窗。
 

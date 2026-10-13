@@ -1,17 +1,17 @@
 {
-  "version": "2.3.0",
+  "version": "2.4.0",
   "license": "MIT",
-  "archive": "mosslight-source-v2.3.0.zip",
+  "archive": "mosslight-source-v2.4.0.zip",
   "files": [
     {
       "path": ".gitignore",
-      "bytes": 192,
-      "sha256": "2758993a0b2d6ea6dedea72a8242c74463231e79443a1f2165c426921a581fa8"
+      "bytes": 321,
+      "sha256": "d8e957c38aa1c3efbba428074d41566deafdaa40ba0faf1343bd0f375f947228"
     },
     {
       "path": "ASSETS.txt",
-      "bytes": 2704,
-      "sha256": "4ec36f30a45d9c2cb6ba7959ee06dd72066f5c0e6420e320af350fdc1e0161a7"
+      "bytes": 4524,
+      "sha256": "0d9f711ed1c1f671fce91d6ba0e207a2cd825560246d21a90a8571e692363677"
     },
     {
       "path": "LICENSE",
@@ -20,23 +20,43 @@
     },
     {
       "path": "README.md",
-      "bytes": 11892,
-      "sha256": "35acf76777c50f02485eabe12601a4b777993a25fd4ff6652414bd2624ae4568"
+      "bytes": 11608,
+      "sha256": "27670a75d9d6e64e18fc3974423bb303e94627ed051fad2a4c114a9ed88745dd"
     },
     {
       "path": "README.txt",
-      "bytes": 11892,
-      "sha256": "35acf76777c50f02485eabe12601a4b777993a25fd4ff6652414bd2624ae4568"
+      "bytes": 11608,
+      "sha256": "27670a75d9d6e64e18fc3974423bb303e94627ed051fad2a4c114a9ed88745dd"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
-      "bytes": 1117,
-      "sha256": "816a454fd9b9469f16fd2bf11f8a8c181c640f3b66c59ead194615a571193781"
+      "bytes": 3504,
+      "sha256": "4d2f26950a71d1a1528ba08c7258023a2f3aee2b0e60449a05f9bb04e066a12e"
+    },
+    {
+      "path": "deploy/README.md",
+      "bytes": 1944,
+      "sha256": "74e8e4982827e23ea462da741be7befa33b0f4a44414df3cca8e1b0376bd3bf1"
+    },
+    {
+      "path": "deploy/install-mosslight.sh",
+      "bytes": 3087,
+      "sha256": "22a07160490243b03fafb56b479d917a700e1e1019abf18a890efeeeb310cf49"
+    },
+    {
+      "path": "deploy/mosslight.conf",
+      "bytes": 416,
+      "sha256": "742ae63cfeace5b6f3cc660d711ab3c3addf1cc231075aee5bf10670bc4eeac4"
+    },
+    {
+      "path": "dist/2d/assets/LAB-PROMPT.json",
+      "bytes": 1346,
+      "sha256": "2daf0e4739b0f31b7881e705418d4a9728d255eaeb4bcb24a91c9c30ff5894fd"
     },
     {
       "path": "dist/2d/assets/PROMPTS.json",
-      "bytes": 10546,
-      "sha256": "fe86e2f006aa569496afc01c3071201946ce1168add5df675095cd0df4fc0e73"
+      "bytes": 11931,
+      "sha256": "0c529873b5817026ae42f3e1fce62aed7dcaad6752a07c1765d4d4be43b00737"
     },
     {
       "path": "dist/2d/assets/city.png",
@@ -59,29 +79,49 @@
       "sha256": "6cfc3b3552a92a1edcfa1c7e08398c7a06857862fb50e43a1ddb046aa25a2092"
     },
     {
+      "path": "dist/2d/assets/lab.png",
+      "bytes": 2737416,
+      "sha256": "5f955975d7507b16bc16c47a31d45dff61b8795ead66017137c8a7813d86ccbe"
+    },
+    {
+      "path": "dist/2d/assets/logo.svg",
+      "bytes": 1585,
+      "sha256": "5771aa99832ea03f9ccda2d7ececf58464cb40217fc12a1321e7ccd170d73ae0"
+    },
+    {
       "path": "dist/2d/assets/palace.png",
       "bytes": 3078471,
       "sha256": "39c800063636eb0a355ca40a5794fd6e5469d002b87969ad80dd23fc080a79e7"
     },
     {
       "path": "dist/2d/characters.js",
-      "bytes": 1529,
-      "sha256": "71824f52d42a999dbb66a8a5ae00b4f1c499adede3cb0915b07bbb7b7ee811c3"
+      "bytes": 1907,
+      "sha256": "73b0970b862e020aa7a9959cf89104555c6b4b4466df1c176e80c2bc281c222f"
     },
     {
       "path": "dist/2d/game.js",
-      "bytes": 41360,
-      "sha256": "6e2debbf0c44439666f4d133d79a51107e6e9510c967b43d9250556bdf50faa9"
+      "bytes": 46332,
+      "sha256": "e16d4003e705d5e7f17f09969a32b23ff2e1463b7af0bd9da3ef90906ae28406"
     },
     {
       "path": "dist/2d/index.html",
-      "bytes": 8124,
-      "sha256": "b1971ddb1fea98278b65eb4eadca81390a52f0df8e6303e31e8e13b40c065bc0"
+      "bytes": 9385,
+      "sha256": "6a2920073df36877c1fb7b7387b39f298d22cc0e747ea90cd950546b5a9fc26b"
+    },
+    {
+      "path": "dist/2d/lab-level.js",
+      "bytes": 2432,
+      "sha256": "5c8117a13f05fb938b7654bbb73d688f5fdf3cb278d92ae2e757d0e1e7768769"
+    },
+    {
+      "path": "dist/2d/lab-render.js",
+      "bytes": 7623,
+      "sha256": "813e0de19372c8b2d5cfa8b4d26e2108c0e6da97537732f23935a4324ebcbce7"
     },
     {
       "path": "dist/2d/progression.js",
-      "bytes": 1602,
-      "sha256": "12e0addf6312620fa17d1356e7dd226381b45bfd2af1de4bc768f232046dae8e"
+      "bytes": 3262,
+      "sha256": "c0984f5be2628e4b97baff9a053773c17a690d11376d3fe730a1331456383dcc"
     },
     {
       "path": "dist/2d/sky-level.js",
@@ -95,13 +135,18 @@
     },
     {
       "path": "dist/2d/style.css",
-      "bytes": 26231,
-      "sha256": "33b0d903f103e7222813285872d1e95192af35b6ea51e602a10cd947e29e85be"
+      "bytes": 30992,
+      "sha256": "edb2e89a1a9b485fe588f87365201d8f525e7ee743c7dbc54dee81e500ca70ec"
     },
     {
       "path": "dist/2d/world.js",
-      "bytes": 15556,
-      "sha256": "39f67d1a5c02bcb1173f8775dbc33c23a1d4cadf9a610944acd454655625e0e8"
+      "bytes": 21126,
+      "sha256": "a2107163b95ea6baaad2e7fc533e03c34936548bdc3282763c7b3118642ca7e6"
+    },
+    {
+      "path": "dist/assets/logo.svg",
+      "bytes": 1570,
+      "sha256": "2b4a04ddc2395b20d168694d3850ce2050a702c4a0cdeb4d8b31b9a970481a8c"
     },
     {
       "path": "dist/assets/models/city_kiosk.glb",
@@ -129,19 +174,34 @@
       "sha256": "96eeade75b07433da864dc2644001fa2b91dca71ca76bbb20048d2e4c38703af"
     },
     {
+      "path": "dist/characters-3d.js",
+      "bytes": 2741,
+      "sha256": "634739891aed819d6023f94375baa1b87c6b203a4b9e933de72c4a9775738d59"
+    },
+    {
       "path": "dist/collection.js",
-      "bytes": 1727,
-      "sha256": "aaaeccbbc90f6f8ce9190a1936cb319120c3216747d169243116f938294d3d33"
+      "bytes": 2145,
+      "sha256": "72156b8e36511c466a1c9d6ad00111593218dc53dc394e9e4f5330b62954cba8"
     },
     {
       "path": "dist/game.js",
-      "bytes": 50932,
-      "sha256": "2070f842986114fb7567358cf47b9d6b489da4946979340b2cead9aa44043296"
+      "bytes": 57276,
+      "sha256": "89a55fd15c6cffe4c35e92bd49ecf71d128f4d87d6e3a5cb29a5cee044d9deec"
     },
     {
       "path": "dist/index.html",
-      "bytes": 7112,
-      "sha256": "a7d625108b95834244c4e29387c4b47f8794f42d16cb928c593be71611900018"
+      "bytes": 9247,
+      "sha256": "6a429813b3008fc84884ff8a787c476cc1eacb17555c2f92ef442e81757ac566"
+    },
+    {
+      "path": "dist/lab-level.js",
+      "bytes": 1853,
+      "sha256": "9b9314e0e8f2f300392e43d6e5fb216ccdcf2e111153dbbebb91a6142f12c215"
+    },
+    {
+      "path": "dist/lab-scene.js",
+      "bytes": 5779,
+      "sha256": "c6a9836b6bfeffa8392ed41dfd0498118189c92b6702cefc1d31a346a6277314"
     },
     {
       "path": "dist/orbit.js",
@@ -160,18 +220,18 @@
     },
     {
       "path": "dist/physics.js",
-      "bytes": 10872,
-      "sha256": "457e92fd98fcedccb749124e9f47670dbef6046a7dcc64eac731abf427e2259b"
+      "bytes": 12003,
+      "sha256": "3d5999ba820c000615ca3e043012a6d2fb6509a2fee74bb0a478a340fea5eea3"
     },
     {
       "path": "dist/progression.js",
-      "bytes": 1374,
-      "sha256": "b1194f1486400d1440de4e2b337dcc4e722d35aa6e3d920bb44630c441284424"
+      "bytes": 3097,
+      "sha256": "d601a6316b1a07db83846e85d1e6a2cccc0de6152a1eb5cd1d9f4d1d08b84d08"
     },
     {
       "path": "dist/style.css",
-      "bytes": 26768,
-      "sha256": "60397c5d9b22ef6dc99007dc28c51cb9313253706cb496a6213bc765a712a262"
+      "bytes": 32988,
+      "sha256": "a46df25e4230320a42248460d6f79f02811f72beb0c9ec1977a8c99a82cda602"
     },
     {
       "path": "dist/vendor/LICENSE.txt",
@@ -182,6 +242,11 @@
       "path": "dist/vendor/loaders/GLTFLoader.js",
       "bytes": 110029,
       "sha256": "6f1719dcc6a179d30273dfb0de07a8c898a7981f7b08e600b446387f5967371f"
+    },
+    {
+      "path": "dist/vendor/loaders/SVGLoader.js",
+      "bytes": 69698,
+      "sha256": "7839736ad83df8c25d339f2c1e3b7f49c595e4d444b54905f26bece24702f51f"
     },
     {
       "path": "dist/vendor/three.module.js",
@@ -200,8 +265,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 350,
-      "sha256": "689161a7227d7a024a33c8ed966da89f070ec8ba9e486b7a1484d208dad75132"
+      "bytes": 557,
+      "sha256": "278ddabac2420536b29cb020c2907d78abe7060e7b62297937250493feb455f3"
     },
     {
       "path": "qa/characters-browser.cjs",
@@ -210,8 +275,8 @@
     },
     {
       "path": "qa/characters.test.mjs",
-      "bytes": 2973,
-      "sha256": "7ac66cbe60523c421ef864820867579031600304e1f0a1d90fd559daf7fdb80d"
+      "bytes": 3119,
+      "sha256": "6e46da555b7d2c92eb6e3478a2ef3de5b19583ae7e5081b944f331b119f34959"
     },
     {
       "path": "qa/collection-camera.test.mjs",
@@ -222,6 +287,56 @@
       "path": "qa/driver.mjs",
       "bytes": 1873,
       "sha256": "5075650c83ba4a63f5c809a98dba0bfb2b48d4272ff98ad623abee3a68066300"
+    },
+    {
+      "path": "qa/lab-browser-playthrough.cjs",
+      "bytes": 7718,
+      "sha256": "ff6f40575d32ba359b11e6bc52207eaa1a5ce5d61449a88c02338780b8a06104"
+    },
+    {
+      "path": "qa/lab-browser.cjs",
+      "bytes": 8207,
+      "sha256": "b66abd2aa4d86f6fafd83557ef90280e7aaafaf2e8399fbabdbf5bcf95bff2d4"
+    },
+    {
+      "path": "qa/lab-progression.test.mjs",
+      "bytes": 7038,
+      "sha256": "9a3275fc15b9f9a0c59453dcce22ef940b769602f75deca9b7fa34e39fa8887b"
+    },
+    {
+      "path": "qa/lab-release.cjs",
+      "bytes": 5128,
+      "sha256": "74ad9eaa958af6321c5ccbe3371b355bb070de12cab9811024729a566c364baf"
+    },
+    {
+      "path": "qa/lab-route.mjs",
+      "bytes": 2671,
+      "sha256": "c50faac93c473d36aca05e4b636be3b858d8a564880641f1af5b09df2c5b978d"
+    },
+    {
+      "path": "qa/lab-world.test.mjs",
+      "bytes": 9451,
+      "sha256": "3b452d992441fcd3ec77286c8fcb55e6fa833de3ad5e6429747997637e4a5558"
+    },
+    {
+      "path": "qa/lab3d-browser.cjs",
+      "bytes": 5787,
+      "sha256": "8ca7de667b3cbadf62bd320482c78f418accd6f1860161da64185c2d19ad32e3"
+    },
+    {
+      "path": "qa/lab3d-controls.cjs",
+      "bytes": 2484,
+      "sha256": "2b8bd85401adec06a1af9be5d3bfc3e9cf05147abf7e520d64cd043b9637df38"
+    },
+    {
+      "path": "qa/lab3d-route.mjs",
+      "bytes": 2602,
+      "sha256": "8698a07251e853e7895bed2349b5df1d11966c770d9487d91632ea5b43e8dae2"
+    },
+    {
+      "path": "qa/lab3d-world.test.mjs",
+      "bytes": 3499,
+      "sha256": "32b3b8ea479c251be3cec5b5133baae667b4cc8aebb3d39f54124a525cd0562d"
     },
     {
       "path": "qa/palace-browser-playthrough.cjs",
@@ -240,8 +355,8 @@
     },
     {
       "path": "qa/palace-progression.test.mjs",
-      "bytes": 2164,
-      "sha256": "7872d711f36de17b99173a8475f3f588c33fa27a2d3f35e5c1477f83e70a43f6"
+      "bytes": 3151,
+      "sha256": "ef42713791f82da4679908bdf93ce392103d978ed86ffcd24823dc227d019c87"
     },
     {
       "path": "qa/palace-route.mjs",
@@ -285,8 +400,8 @@
     },
     {
       "path": "qa/progression.test.mjs",
-      "bytes": 2130,
-      "sha256": "3e07e029e76d333d500f5bf938ab60bcd0160936e4e585aa7ef1bbdb58a96e97"
+      "bytes": 3346,
+      "sha256": "4dffebb688ca33d363e39cc2a800adb75cca122b12a075583fb0a4dcf65e28f4"
     },
     {
       "path": "qa/route.mjs",
@@ -335,8 +450,13 @@
     },
     {
       "path": "server.mjs",
-      "bytes": 1052,
-      "sha256": "feb7b5c28130dc17812a8e26e5eded4aa03876485d201fad2a89a42de570a7b4"
+      "bytes": 1142,
+      "sha256": "ccbffb2b76ba3a8c14fbb8e778e4fadbd21954c74684653ca7976d5841d10a8f"
+    },
+    {
+      "path": "tools/build-web.mjs",
+      "bytes": 1939,
+      "sha256": "ab04d3a4644ad9619894cfdc70e439cd38fec56e8ca330ec44fb31a3cbf891a0"
     },
     {
       "path": "tools/build_assets.py",
@@ -344,9 +464,14 @@
       "sha256": "75d6106838613c05091dd596a54dccf877890ab63328f0e7c3e7fab5d795ee25"
     },
     {
+      "path": "tools/package-web.py",
+      "bytes": 1800,
+      "sha256": "4133cf6081e3fadfa477d23dc71db41ecc5b55de8171415def814723b93d3065"
+    },
+    {
       "path": "tools/release_source.py",
-      "bytes": 11553,
-      "sha256": "9c6dd33f46d4afbe899e52808c62a141224eb80821b47327cd3f5e425ef0fe3c"
+      "bytes": 12109,
+      "sha256": "44fe414c35f85d81db192d6039b244e3408117b5ab3b66a0779f2d60c9ac563c"
     }
   ],
   "readable": [
@@ -525,6 +650,42 @@
     {
       "name": "THIRD_PARTY_NOTICES.txt",
       "url": "code/THIRD_PARTY_NOTICES.txt.txt"
+    },
+    {
+      "name": "dist/2d/lab-level.js",
+      "url": "code/dist/2d/lab-level.js.txt"
+    },
+    {
+      "name": "dist/2d/lab-render.js",
+      "url": "code/dist/2d/lab-render.js.txt"
+    },
+    {
+      "name": "dist/lab-level.js",
+      "url": "code/dist/lab-level.js.txt"
+    },
+    {
+      "name": "dist/lab-scene.js",
+      "url": "code/dist/lab-scene.js.txt"
+    },
+    {
+      "name": "dist/characters-3d.js",
+      "url": "code/dist/characters-3d.js.txt"
+    },
+    {
+      "name": "tools/build-web.mjs",
+      "url": "code/tools/build-web.mjs.txt"
+    },
+    {
+      "name": "qa/lab-progression.test.mjs",
+      "url": "code/qa/lab-progression.test.mjs.txt"
+    },
+    {
+      "name": "qa/lab-world.test.mjs",
+      "url": "code/qa/lab-world.test.mjs.txt"
+    },
+    {
+      "name": "qa/lab3d-world.test.mjs",
+      "url": "code/qa/lab3d-world.test.mjs.txt"
     }
   ]
 }

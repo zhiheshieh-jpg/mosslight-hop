@@ -3,16 +3,18 @@ import assert from 'node:assert/strict';
 import {CHARACTERS,CHARACTER_STORAGE_KEY,getCharacter,readCharacterId,saveCharacterId} from '../dist/2d/characters.js';
 import {measureAtlas} from '../dist/2d/sprite-atlas.js';
 
-test('only the two supported travellers can survive saved selection',()=>{
- assert.deepEqual(CHARACTERS.map(c=>c.id),['dragon','claude']);
+test('only supported travellers and the gated logo can survive saved selection',()=>{
+ assert.deepEqual(CHARACTERS.map(c=>c.id),['dragon','claude','logo']);
  const values=new Map(),storage={getItem:key=>values.get(key),setItem:(key,value)=>values.set(key,value)};
  assert.equal(readCharacterId(storage),'dragon');
- for(const id of ['claude','dragon']){saveCharacterId(storage,id);assert.equal(values.get(CHARACTER_STORAGE_KEY),id);assert.equal(readCharacterId(storage),id)}
+ for(const id of ['claude','dragon','logo']){saveCharacterId(storage,id);assert.equal(values.get(CHARACTER_STORAGE_KEY),id);assert.equal(readCharacterId(storage),id)}
  for(const invalid of ['retired-character','__proto__','constructor','',null,{},3]){
   values.set(CHARACTER_STORAGE_KEY,invalid);assert.equal(readCharacterId(storage),'dragon');
   assert.equal(saveCharacterId(storage,invalid),'dragon');assert.equal(values.get(CHARACTER_STORAGE_KEY),'dragon');
  }
  assert.equal(getCharacter('claude').name,'Claude');
+ assert.equal(getCharacter('dragon').name,'GPT （同人Q版形象）');
+ assert.equal(getCharacter('logo').asset,null);
 });
 
 test('denied reads and quota failures do not block session selection',()=>{

@@ -1,22 +1,62 @@
-Mosslight / 苔光跃迁
+Mosslight / 苔光跃迁 — version 2.4.0
 
-Original game code, Blender models, model generator, game textures and original
-synthesized audio are distributed under the MIT License in LICENSE.
-The original texture atlas was generated with ImageGen. Its prompt is in ASSETS.txt.
+Project code and original contributions
+Original game code, project-authored Blender models, the model generator,
+procedural geometry and original synthesized audio are distributed under the
+MIT License in LICENSE. Project-authored asset contributions and generated
+scenery textures are offered under the same terms to the extent that the
+project can license them. This does not license third-party character designs,
+brands, trademarks or other rights in supplied references.
 
-Three.js r169, GLTFLoader and BufferGeometryUtils
+Generated images and character references
+The 3D texture atlas dist/assets/world-atlas.png was generated with ImageGen;
+its recorded prompt is in ASSETS.txt.
+The 2D forest, city, palace and laboratory backgrounds were generated with
+built-in ImageGen. The two ordinary character animation atlases were generated
+and edited with built-in ImageGen using reference images supplied by the user.
+Prompts and editing records are in dist/2d/assets/PROMPTS.json.
+The new fourth-chapter background is dist/2d/assets/lab.png; its separate
+ImageGen record is dist/2d/assets/LAB-PROMPT.json.
+
+The white/lilac dragon-girl fan character is displayed as
+"GPT （同人Q版形象）" and retains the internal ID "dragon".
+The orange pixel creature is displayed as "Claude".
+These are game adaptations of user-supplied references, not a claim of
+ownership of the underlying character designs or brand identities.
+This is an independent fan game, not an official OpenAI or Anthropic product;
+no endorsement or affiliation is claimed. Character and brand rights remain
+with their respective owners. Generating or editing an image does not itself
+clear third-party rights depicted in that image.
+
+OpenAI logo SVG / Simple Icons 11.15.0
+Files: dist/2d/assets/logo.svg and dist/assets/logo.svg
+Used by the optional god-mode character "Δ0x7F_∴▒9".
+Source: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/openai.svg
+Upstream: https://github.com/simple-icons/simple-icons/blob/11.15.0/icons/openai.svg
+Project: https://simpleicons.org/
+Graphic-file license: CC0 1.0 Universal, as distributed by Simple Icons 11.15.0.
+License: https://github.com/simple-icons/simple-icons/blob/11.15.0/LICENSE.md
+Upstream disclaimer: https://github.com/simple-icons/simple-icons/blob/11.15.0/DISCLAIMER.md
+CC0 summary and full legal code: https://creativecommons.org/publicdomain/zero/1.0/
+The SVG is a sourced third-party graphic, not an ImageGen output. Runtime
+color, glow, rotation, surrounding needles and 3D geometry are applied by the
+game. CC0 concerns the distributed graphic file; it does not grant trademark
+or brand rights. OpenAI's name, logo and related brand rights remain with
+OpenAI. The project's MIT license does not supersede those rights or imply
+OpenAI approval of the game or the logo character.
+
+Three.js r169, GLTFLoader, SVGLoader and BufferGeometryUtils
 Copyright 2010-2024 Three.js Authors
 License: MIT
 Full license: dist/vendor/LICENSE.txt
 Project: https://threejs.org/
+SVGLoader: dist/vendor/loaders/SVGLoader.js
+The 3D logo character uses SVGLoader to construct geometry from the sourced
+SVG. Third- and fourth-chapter 3D scenery also uses project-authored Three.js
+geometry and materials.
 
+Authoring tools, fonts and audio
 Blender is used only to author and export assets and is not bundled.
-No external audio recordings or proprietary fonts are included. UI fonts are selected from fonts installed on the visitor's system.
-
-2D character references (version 2.1)
-The white/lilac dragon girl and orange Claude pixel creature follow two
-reference images supplied by the user. Their animation atlases were adapted
-with built-in ImageGen; prompts are in dist/2d/assets/PROMPTS.json.
-This is an independent fan game, not an official OpenAI or Anthropic product.
-The MIT license covers our code and original work; it does not grant rights
-to third-party character designs, brands or trademarks.
+No external audio recordings or proprietary fonts are included.
+Music and sound effects are synthesized with WebAudio. UI fonts are selected
+from fonts installed on the visitor's system.
