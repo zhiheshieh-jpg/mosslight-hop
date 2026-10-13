@@ -52,7 +52,9 @@ export class PixelWorld{
  // Record the exact last grounded foot position, including platform edges and temporary bridges.
  fallPoint(anchor){
   const a=this.platforms.find(a=>a.id===anchor.id);if(!a)return null;
-  return {x:a.x+anchor.x,y:a.y-this.player.h,w:this.player.w,h:this.player.h,on:a.id};
+  const width=this.player.w,margin=Math.min(32,Math.max(0,(a.w-width)/2));
+  const x=a.w<width?a.x+(a.w-width)/2:Math.max(a.x+margin,Math.min(a.x+a.w-width-margin,a.x+anchor.x));
+  return {x,y:a.y-this.player.h,w:width,h:this.player.h,on:a.id};
  }
  rememberFallPoint(){
   const p=this.player,a=this.platforms.find(a=>a.id===p.on);

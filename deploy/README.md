@@ -11,11 +11,11 @@ server data are not part of the website. Each game keeps its own browser saves.
 
 Deployment on 2026-10-13:
 
-- Release: `/srv/mosslight/releases/20261013T143300Z`
+- Release: `/srv/mosslight/releases/20261013T145519Z`
 - Active symlink: `/srv/mosslight/current`
 - Nginx snippet: `/etc/nginx/snippets/mosslight.conf`
 - Public site: `/etc/nginx/sites-available/pelican-public`
-- Config backup: `/etc/nginx/sites-available/pelican-public.before-mosslight-20261013T143300Z`
+- Config backup: `/etc/nginx/sites-available/pelican-public.before-mosslight-20261013T145519Z`
 - Upload staging: `/home/ubuntu/mosslight-deploy`
 - Local verification reports: `.deploy/tencent/`
 
@@ -30,12 +30,12 @@ On installation failure it restores the prior configuration and active release.
 For another release, generate a new archive/manifest and update the expected
 archive SHA-256 before running the installer.
 
-Current frontend release: 2.6.1. 2D terrain decorations and city windows keep
+Current frontend release: 2.6.2. 2D terrain decorations and city windows keep
 stable seeds and local coordinates while the camera scrolls. 3D uses only the
 original white block, with no character selector or logo form; its chapter
 progress combines previous profile wins. Both modes retain chapter four and
 completion-gated god mode. 3D remains noncombat.
-Archive SHA-256: `ac127b4a1f35060452c4b142fe0e0bbb5474fed34d6a22287caf1b46afb00529`.
+Archive SHA-256: `ce004f5f6fe215dc5016ca88810418fc4f52fb634fd0b57b9b1f1ad1241bba4a`.
 The installer verified all 46 release files and all 46 HTTP-served file hashes.
 The account API remains 2.5.0, with its persistent database unchanged.
 
@@ -50,4 +50,4 @@ full-run saves, menu-only character selection, Escape pause fallback, and restor
 Production verification also restarted the API service and proved that an existing
 account token and its saved data survived; a new verified backup was then created.
 
-Version 2.6.1 returns to the exact last grounded foot position before falling in both modes, including platform edges and temporary platforms. Moving or rotating platforms preserve the local foot position; temporary platforms offer a brief standing window at the same location. No safety search, earlier-platform fallback or center relocation occurs. Two-HP fall recovery, the six-HP 3D HUD and backward-compatible run saves are retained. Accounts and SQLite data are unchanged.
+Version 2.6.2 keeps two-HP fall recovery in 2D, placing the body fully on the last platform with a small 32-pixel edge margin. Interior coordinates stay unchanged; narrow platforms reduce the margin. 3D returns directly to its checkpoint on every fall and has no HP system or health HUD. Existing 3D saves still load, while removed HP and fall-history fields are omitted from new saves. Accounts and SQLite data are unchanged.

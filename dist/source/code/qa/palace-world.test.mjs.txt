@@ -6,7 +6,7 @@ const step=(w,n,input={})=>{for(let i=0;i<n;i++)w.step(1/120,input)};
 const stand=(w,a,extra={})=>Object.assign(w.player,{x:a.x,y:a.y,z:a.z,vx:0,vz:0,vy:0,grounded:true,on:a.id,...extra});
 
 test('palace is a long intact sky ascent with seven kinds of traps and only the start savepoint',()=>{
- const w=new GameWorld(2);assert.equal(w.def.sky,true);assert.equal(w.platforms.length,44);assert.equal(w.platforms.filter(a=>a.kind!=='solid').length,37);assert.equal(new Set(w.platforms.map(a=>a.kind)).size,8);assert.ok(w.platforms.at(-1).z<-330);assert.ok(w.platforms.at(-1).y>10);assert.deepEqual(w.def.checkpoints,[]);assert.equal(w.checkpoint,0);assert.equal(w.godMode,false);assert.equal(w.usedGodMode,false);assert.equal(w.enemies,undefined);assert.equal(w.player.hp,6);
+ const w=new GameWorld(2);assert.equal(w.def.sky,true);assert.equal(w.platforms.length,44);assert.equal(w.platforms.filter(a=>a.kind!=='solid').length,37);assert.equal(new Set(w.platforms.map(a=>a.kind)).size,8);assert.ok(w.platforms.at(-1).z<-330);assert.ok(w.platforms.at(-1).y>10);assert.deepEqual(w.def.checkpoints,[]);assert.equal(w.checkpoint,0);assert.equal(w.godMode,false);assert.equal(w.usedGodMode,false);assert.equal(w.enemies,undefined);assert.equal('hp' in w.player,false);
 });
 test('earlier courses retain their original geometry and checkpoint counts',()=>{assert.equal(LEVELS[0].platforms.length,22);assert.equal(LEVELS[1].platforms.length,30);assert.deepEqual(LEVELS[0].checkpoints,[4,9,14,18]);assert.deepEqual(LEVELS[1].checkpoints,[4,9,14,19,24])});
 test('palace collectibles live inside actual decks and rare items sit on safe balconies',()=>{
@@ -14,7 +14,7 @@ test('palace collectibles live inside actual decks and rare items sit on safe ba
  for(const item of w.collectibles){const a=w.platforms[item.platform];assert.ok(a);assert.ok(Math.abs(item.x)<a.w/2-.5&&Math.abs(item.z)<a.d/2-.5);assert.ok(item.y<HEIGHT*.6+JUMP*JUMP/(2*GRAVITY));if(item.type==='relic')assert.equal(a.kind,'solid')}
 });
 test('lethal falling restarts the whole palace attempt, while total time and death count remain',()=>{
- const w=new GameWorld(2);step(w,400);w.collected.add('light-15');w.farthest=21;w.platforms[5].triggerAt=.1;w.platforms[5].gone=true;const total=w.time;w.player.hp=2;w.player.y=-13;w.step(1/120);
+ const w=new GameWorld(2);step(w,400);w.collected.add('light-15');w.farthest=21;w.platforms[5].triggerAt=.1;w.platforms[5].gone=true;const total=w.time;w.player.y=-13;w.step(1/120);
  assert.equal(w.deaths,1);assert.ok(w.time>total);assert.equal(w.attemptTime,0);assert.equal(w.collected.size,0);assert.equal(w.farthest,0);assert.equal(w.checkpoint,0);assert.equal(w.player.on,0);assert.equal(w.player.z,1.3);
  const fresh=new GameWorld(2);for(const a of w.platforms){assert.equal(a.triggerAt,null);assert.equal(a.gone,fresh.platforms[a.id].gone);assert.equal(a.x,fresh.platforms[a.id].x);assert.equal(a.angle||0,fresh.platforms[a.id].angle||0)}
  assert.ok(w.drain().some(e=>e.type==='respawn'&&e.restarted));
