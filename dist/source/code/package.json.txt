@@ -1,12 +1,12 @@
 {
   "name": "mosslight-hop",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "private": false,
   "license": "MIT",
   "type": "module",
   "scripts": {
     "start": "node server.mjs",
-    "test": "node --test qa/characters.test.mjs qa/chests.test.mjs qa/collection-camera.test.mjs qa/lab-progression.test.mjs qa/lab-world.test.mjs qa/lab3d-world.test.mjs qa/palace-progression.test.mjs qa/palace-world.test.mjs qa/physics.test.mjs qa/pixel-world.test.mjs qa/progression.test.mjs qa/sky-world.test.mjs qa/fixed-player3d.test.mjs",
+    "test": "node --test qa/characters.test.mjs qa/chests.test.mjs qa/collection-camera.test.mjs qa/lab-progression.test.mjs qa/lab-world.test.mjs qa/lab3d-world.test.mjs qa/palace-progression.test.mjs qa/palace-world.test.mjs qa/physics.test.mjs qa/pixel-world.test.mjs qa/progression.test.mjs qa/sky-world.test.mjs qa/fixed-player3d.test.mjs qa/fall-recovery.test.mjs",
     "dev": "node server.mjs --raw",
     "build:web": "node tools/build-web.mjs",
     "test:api": "python qa/account-api.test.py",

@@ -1,7 +1,7 @@
 {
-  "version": "2.5.1",
+  "version": "2.6.0",
   "license": "MIT",
-  "archive": "mosslight-source-v2.5.1.zip",
+  "archive": "mosslight-source-v2.6.0.zip",
   "files": [
     {
       "path": ".gitignore",
@@ -20,13 +20,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 15219,
-      "sha256": "39d6b232b3708695d2a465b62917df641fe4bf1a52114f3fafa1f8cbffbe156c"
+      "bytes": 16931,
+      "sha256": "4de02765a758c73203fffb1aa020660008354338a04f8f1aa3f2510eb17652f0"
     },
     {
       "path": "README.txt",
-      "bytes": 15219,
-      "sha256": "39d6b232b3708695d2a465b62917df641fe4bf1a52114f3fafa1f8cbffbe156c"
+      "bytes": 16931,
+      "sha256": "4de02765a758c73203fffb1aa020660008354338a04f8f1aa3f2510eb17652f0"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -50,8 +50,8 @@
     },
     {
       "path": "deploy/README.md",
-      "bytes": 3131,
-      "sha256": "adaadcc87c82b66ac9652a8f77c81d0cf12a2206a45523789570d26d91dbe31a"
+      "bytes": 3303,
+      "sha256": "022c998d3984633b814f30b7dd34e0b88790c7dc01066ef17c5918ca318d7a46"
     },
     {
       "path": "deploy/install-api.sh",
@@ -61,7 +61,7 @@
     {
       "path": "deploy/install-mosslight.sh",
       "bytes": 3087,
-      "sha256": "987c13161463f09561bd5f0702742ccde36561134851db73934e92da31551819"
+      "sha256": "95877f12317c20b1507b7c3b925815c03a446f163ab43b96f6e203176b567c55"
     },
     {
       "path": "deploy/mosslight-api.service",
@@ -145,8 +145,8 @@
     },
     {
       "path": "dist/2d/game.js",
-      "bytes": 50889,
-      "sha256": "46462e4d578ba9b4d1db6674d6b76907524b6f3191ab49cefad2eca25255876a"
+      "bytes": 51124,
+      "sha256": "23d9117e8ae26b9ccf593a581a5c17200a61ccf360e0931778faa6b58437576e"
     },
     {
       "path": "dist/2d/index.html",
@@ -185,8 +185,8 @@
     },
     {
       "path": "dist/2d/world.js",
-      "bytes": 27768,
-      "sha256": "8d20d6c10f6f4292db76f276cc4ed049e11d0e8ff4200a6d38bcdd3ed576b2e3"
+      "bytes": 30625,
+      "sha256": "7a73a819323278fee409c35fe66ddc360b74d4ab2467916418cdc2ac4a05b411"
     },
     {
       "path": "dist/account.css",
@@ -240,13 +240,13 @@
     },
     {
       "path": "dist/game.js",
-      "bytes": 60023,
-      "sha256": "13c88b91e302c9b6c21f126378556146380525a33e7a3c5670bfdf670064e5a5"
+      "bytes": 60826,
+      "sha256": "c55dd7fec0dd341e5d71165c1f024294039bf938479ca5bedc26e77122024c51"
     },
     {
       "path": "dist/index.html",
-      "bytes": 7586,
-      "sha256": "80ffa52dfc7753c953e96f95098694091f14a72048e8be6f96dca2ad219a288d"
+      "bytes": 7676,
+      "sha256": "b86dae541f97a9b5b9c0210b8da65fff670a04c980d40aeb9b7a1e6ed66b3ca8"
     },
     {
       "path": "dist/lab-level.js",
@@ -275,8 +275,8 @@
     },
     {
       "path": "dist/physics.js",
-      "bytes": 12003,
-      "sha256": "3d5999ba820c000615ca3e043012a6d2fb6509a2fee74bb0a478a340fea5eea3"
+      "bytes": 14852,
+      "sha256": "319e8e45813e5827302c009f93ff8978f7452c2c623f61f331ac2b22b1337799"
     },
     {
       "path": "dist/progression.js",
@@ -320,8 +320,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 698,
-      "sha256": "4c92163584f6fe42780620a56451a429673af3155b3d2d55a45dae2e3cb9403a"
+      "bytes": 724,
+      "sha256": "80b1963c9ccba70158f622bafa0999a9c2ec34b324d4584cc2aad895db2dbf0b"
     },
     {
       "path": "qa/account-api.test.py",
@@ -357,6 +357,16 @@
       "path": "qa/driver.mjs",
       "bytes": 1873,
       "sha256": "5075650c83ba4a63f5c809a98dba0bfb2b48d4272ff98ad623abee3a68066300"
+    },
+    {
+      "path": "qa/fall-browser.cjs",
+      "bytes": 5802,
+      "sha256": "b7ad02cd472198c66a03301b32768ce48f8588bdd8fb1dd01134dda4107be97e"
+    },
+    {
+      "path": "qa/fall-recovery.test.mjs",
+      "bytes": 9288,
+      "sha256": "0b892b23ef6bd2e117ba1c9e9e9a17bf2df788d9e7c14ab0c419ac4335b4aeaf"
     },
     {
       "path": "qa/fixed-player3d.test.mjs",
@@ -410,8 +420,8 @@
     },
     {
       "path": "qa/lab3d-world.test.mjs",
-      "bytes": 3499,
-      "sha256": "32b3b8ea479c251be3cec5b5133baae667b4cc8aebb3d39f54124a525cd0562d"
+      "bytes": 3536,
+      "sha256": "1981023fd6a6fe438b79a76aa69cf80798bf3db03703a1055f86f57a75a63b97"
     },
     {
       "path": "qa/palace-browser-playthrough.cjs",
@@ -440,8 +450,8 @@
     },
     {
       "path": "qa/palace-world.test.mjs",
-      "bytes": 7175,
-      "sha256": "01e5356f1811734e45e661ee86bf2d4ade35b23fad94d4642f41d15ead44fc31"
+      "bytes": 7239,
+      "sha256": "83d9fbd259a5d7b0bcdb597ffbbfbfdf2105e57843a2e456ec2ea8d83a3fa785"
     },
     {
       "path": "qa/pause-account3d.cjs",
@@ -455,8 +465,8 @@
     },
     {
       "path": "qa/physics.test.mjs",
-      "bytes": 7099,
-      "sha256": "9868f0f98484a5521fc2ff37ffbbac1b03884eb5d9572b411e7fd4c3348f1d37"
+      "bytes": 7157,
+      "sha256": "c867f81174e2e97042ef6543a08dab16c5d7b249c28a7ad6a5d0797ea469cd87"
     },
     {
       "path": "qa/pixel-driver.mjs",
@@ -515,8 +525,8 @@
     },
     {
       "path": "qa/sky-world.test.mjs",
-      "bytes": 8723,
-      "sha256": "4e25b04db668900afd8566dbfbde0c69e288811f9ceee3fd0bf2f814f229852a"
+      "bytes": 8853,
+      "sha256": "53ca7acc66ead62784445c17480b83d6596601aea3d696227a1fcd7778b77e7d"
     },
     {
       "path": "qa/terrain-scroll.cjs",
@@ -525,8 +535,8 @@
     },
     {
       "path": "qa/update-release.cjs",
-      "bytes": 5019,
-      "sha256": "8db21c7217f979d7746e6671a7280c0ca63ba41cdc2829e3b98e5ee820c73173"
+      "bytes": 6318,
+      "sha256": "bb1796c7e509a12cd8b247bfd61d03fd12f19592ec83dcc4b84f2e5b36cb4f49"
     },
     {
       "path": "qa/v3-browser.cjs",
@@ -565,8 +575,8 @@
     },
     {
       "path": "tools/release_source.py",
-      "bytes": 12675,
-      "sha256": "4804e7c1c7f1de1dba889a0ddcb56fae926f9bf61e25e3b82e79a69ff9ee6eb3"
+      "bytes": 12698,
+      "sha256": "ddd150aaa232a1adc27fe3a9e8f529cf5642ce1b491325ffe980acb4e5dd111b"
     }
   ],
   "readable": [

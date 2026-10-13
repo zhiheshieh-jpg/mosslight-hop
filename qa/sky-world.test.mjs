@@ -40,11 +40,11 @@ test('a palace death resets combat, pickups, score, traps, crumble, boss and tim
  assert.deepEqual(w.hazards[0].rect,hazardState(w.hazards[0],0).rect);
 });
 
-test('lethal projectile and falling after a boss kill both restart the entire attempt',()=>{
+test('lethal projectile and lethal falling after a boss kill both restart the entire attempt',()=>{
  for(const cause of ['projectile','fall']){
   const w=new PixelWorld(2);w.enemies.at(-1).dead=true;w.enemies.at(-1).hp=0;w.enemies[0].dead=true;w.score=900;w.kills=2;w.collected.add(0);
   if(cause==='projectile'){w.player.hp=1;w.projectiles.push({x:w.player.x,y:w.player.y,w:12,h:12,vx:0,vy:0,life:1,owner:'enemy'})}
-  else Object.assign(w.player,{x:600,y:721,grounded:false,vy:500});
+  else Object.assign(w.player,{x:600,y:721,grounded:false,vy:500,hp:2});
   step(w,1);assert.equal(w.deaths,1);assert.equal(w.player.x,75);assert.equal(w.score,0);assert.equal(w.kills,0);assert.equal(w.collected.size,0);
   assert.ok(w.enemies.every(e=>!e.dead&&e.hp===e.maxHp));assert.equal(w.projectiles.length,0);assert.equal(w.complete,false);
  }

@@ -11,11 +11,11 @@ server data are not part of the website. Each game keeps its own browser saves.
 
 Deployment on 2026-10-13:
 
-- Release: `/srv/mosslight/releases/20261013T112634Z`
+- Release: `/srv/mosslight/releases/20261013T140003Z`
 - Active symlink: `/srv/mosslight/current`
 - Nginx snippet: `/etc/nginx/snippets/mosslight.conf`
 - Public site: `/etc/nginx/sites-available/pelican-public`
-- Config backup: `/etc/nginx/sites-available/pelican-public.before-mosslight-20261013T112634Z`
+- Config backup: `/etc/nginx/sites-available/pelican-public.before-mosslight-20261013T140003Z`
 - Upload staging: `/home/ubuntu/mosslight-deploy`
 - Local verification reports: `.deploy/tencent/`
 
@@ -30,12 +30,12 @@ On installation failure it restores the prior configuration and active release.
 For another release, generate a new archive/manifest and update the expected
 archive SHA-256 before running the installer.
 
-Current frontend release: 2.5.1. 2D terrain decorations and city windows keep
+Current frontend release: 2.6.0. 2D terrain decorations and city windows keep
 stable seeds and local coordinates while the camera scrolls. 3D uses only the
 original white block, with no character selector or logo form; its chapter
 progress combines previous profile wins. Both modes retain chapter four and
 completion-gated god mode. 3D remains noncombat.
-Archive SHA-256: `5046bc31ba32bf29ece8512bf65cd90bfd701c32a3c5981168023171f1ff8e7a`.
+Archive SHA-256: `498479699ae25e39ed171b4b93c1b5292d04cb395b4799aa78a63ad65452ef75`.
 The installer verified all 46 release files and all 46 HTTP-served file hashes.
 The account API remains 2.5.0, with its persistent database unchanged.
 
@@ -49,3 +49,5 @@ full-run saves, menu-only character selection, Escape pause fallback, and restor
 
 Production verification also restarted the API service and proved that an existing
 account token and its saved data survived; a new verified backup was then created.
+
+Version 2.6.0 adds safe landing history, two-HP fall recovery in both modes, a six-HP 3D HUD, and backward-compatible run saves. Accounts and SQLite data are unchanged.

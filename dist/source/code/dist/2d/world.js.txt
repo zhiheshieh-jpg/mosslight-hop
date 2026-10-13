@@ -47,8 +47,44 @@ export function createLevel(index){
 }
 export class PixelWorld{
  constructor(level=0){this.godMode=false;this.usedGodMode=false;this.characterId='dragon';this.usedLogo=false;this.reset(level)}
- reset(level,{chests,powerup=null}={}){this.attemptSerial=(this.attemptSerial||0)+1;this.level=createLevel(level);this.time=0;this.realTime=0;this.events=[];this.deaths=0;this.kills=0;this.score=0;this.collected=new Set;this.checkpoint=0;this.complete=false;this.hitstop=0;this.combo=0;this.comboTimer=0;this.bestCombo=0;this.attackSerial=0;this.logoAngle=0;this.projectiles=[];this.hazards=this.level.hazards.map(h=>({...h,...(()=>{const a=hazardState(h,0);return {active:a.active,warning:a.warning,rect:a.rect}})()}));this.platforms=this.level.platforms.map(p=>({...p,trigger:-1,gone:false}));this.enemies=this.level.enemies.map((e,id)=>({...e,id,w:e.type==='boss'?(level===3?84:level===2?76:64):e.type==='brute'?38:28,h:e.type==='boss'?(level===3?108:level===2?98:level?86:76):e.type==='brute'?42:e.type==='drone'||e.type==='wisp'?26:30,maxHp:e.type==='boss'?(level===3?132:level===2?84:level?36:24):e.type==='brute'?5:e.type==='sentry'?3:2,hp:e.type==='boss'?(level===3?132:level===2?84:level?36:24):e.type==='brute'?5:e.type==='sentry'?3:2,vx:0,vy:0,dir:-1,mode:'patrol',timer:level>=2&&e.type==='boss'?1:.5+id*.17,flash:0,stun:0,baseY:e.y,spawnX:e.x,dead:false,hitBy:-1,phase:0}));this.player={x:75,y:378,w:22,h:42,vx:0,vy:0,face:1,grounded:true,on:0,jumps:2,coyote:.1,jumpBuffer:0,hp:6,maxHp:6,invuln:0,dash:0,dashCooldown:0,attack:0,attackStage:0,attackCooldown:0,chainWindow:0,attackQueued:false,attackId:0,hurt:0};this.previous={};this.attackBoost=false;this.chests=this.level.decor.filter(d=>d.kind==='chest').map((d,id)=>({id,x:d.x,y:d.y,platformId:this.level.platforms.find(a=>d.x>=a.x&&d.x+24<=a.x+a.w&&d.y===a.y)?.id,opened:!!chests?.[id]?.opened,reward:!!chests?.[id]?.reward,collected:!!chests?.[id]?.collected}));this.rewardChestId=chests?this.chests.find(c=>c.reward)?.id:Math.floor(Math.random()*this.chests.length);if(!chests&&this.chests.length)this.chests[this.rewardChestId].reward=true;this.powerup=powerup?{...powerup}:null;this.updateChests();}
+ reset(level,{chests,powerup=null}={}){this.attemptSerial=(this.attemptSerial||0)+1;this.level=createLevel(level);this.time=0;this.realTime=0;this.events=[];this.deaths=0;this.kills=0;this.score=0;this.collected=new Set;this.checkpoint=0;this.complete=false;this.hitstop=0;this.combo=0;this.comboTimer=0;this.bestCombo=0;this.attackSerial=0;this.logoAngle=0;this.projectiles=[];this.hazards=this.level.hazards.map(h=>({...h,...(()=>{const a=hazardState(h,0);return {active:a.active,warning:a.warning,rect:a.rect}})()}));this.platforms=this.level.platforms.map(p=>({...p,trigger:-1,gone:false}));this.enemies=this.level.enemies.map((e,id)=>({...e,id,w:e.type==='boss'?(level===3?84:level===2?76:64):e.type==='brute'?38:28,h:e.type==='boss'?(level===3?108:level===2?98:level?86:76):e.type==='brute'?42:e.type==='drone'||e.type==='wisp'?26:30,maxHp:e.type==='boss'?(level===3?132:level===2?84:level?36:24):e.type==='brute'?5:e.type==='sentry'?3:2,hp:e.type==='boss'?(level===3?132:level===2?84:level?36:24):e.type==='brute'?5:e.type==='sentry'?3:2,vx:0,vy:0,dir:-1,mode:'patrol',timer:level>=2&&e.type==='boss'?1:.5+id*.17,flash:0,stun:0,baseY:e.y,spawnX:e.x,dead:false,hitBy:-1,phase:0}));this.player={x:75,y:378,w:22,h:42,vx:0,vy:0,face:1,grounded:true,on:0,jumps:2,coyote:.1,jumpBuffer:0,hp:6,maxHp:6,invuln:0,dash:0,dashCooldown:0,attack:0,attackStage:0,attackCooldown:0,chainWindow:0,attackQueued:false,attackId:0,hurt:0};this.previous={};this.falls=0;this.fallHistory=[{id:0,x:75}];this.fallRecordAt=-1;this.attackBoost=false;this.chests=this.level.decor.filter(d=>d.kind==='chest').map((d,id)=>({id,x:d.x,y:d.y,platformId:this.level.platforms.find(a=>d.x>=a.x&&d.x+24<=a.x+a.w&&d.y===a.y)?.id,opened:!!chests?.[id]?.opened,reward:!!chests?.[id]?.reward,collected:!!chests?.[id]?.collected}));this.rewardChestId=chests?this.chests.find(c=>c.reward)?.id:Math.floor(Math.random()*this.chests.length);if(!chests&&this.chests.length)this.chests[this.rewardChestId].reward=true;this.powerup=powerup?{...powerup}:null;this.updateChests();}
  emit(type,data={}){this.events.push({type,...data})}
+ // These are landing history, not checkpoints. Temporary bridges are never recovery anchors.
+ fallPoint(anchor,search=true){
+  const a=this.platforms.find(a=>a.id===anchor.id),p=this.player;
+  if(!a||a.gone||['crumble','pulse'].includes(a.kind)||a.w<p.w+16)return null;
+  const offsets=search?[anchor.x,...[-24,24,-48,48,-80,80].map(dx=>anchor.x+dx),a.w/2-p.w/2]:[anchor.x];
+  const nearby=this.hazards.filter(h=>h.x+(h.travel||0)+h.w>=a.x&&h.x-(h.travel||0)<=a.x+a.w);
+  for(const offset of offsets){
+   const x=clamp(offset,8,a.w-p.w-8),box={x:a.x+x,y:a.y-p.h,w:p.w,h:p.h};
+   if(this.platforms.some(b=>b.id!==a.id&&!b.gone&&intersects(box,b)))continue;
+   if(nearby.some(h=>[0,.35,.7,1.05,1.4].some(dt=>{const s=hazardState(h,this.time+dt);return s.active&&intersects(box,{...s.rect,x:s.rect.x-6,w:s.rect.w+12})})))continue;
+   return {...box,on:a.id,offset:x};
+  }
+  return null;
+ }
+ rememberFallPoint(){
+  const p=this.player,a=this.platforms.find(a=>a.id===p.on);
+  if(this.godMode||!p.grounded||!a||p.x<a.x+8||p.x+p.w>a.x+a.w-8||this.time-(this.fallRecordAt??-1)<.15)return;
+  this.fallRecordAt=this.time;const anchor={id:a.id,x:p.x-a.x};
+  if(!this.fallPoint(anchor,false))return;
+  const history=this.fallHistory,last=history.at(-1);
+  if(last?.id===a.id)history[history.length-1]=anchor;else history.push(anchor);
+  if(history.length>128)history.shift();
+ }
+ restoreFallHistory(history){
+  if(history!==undefined&&(!Array.isArray(history)||history.length>128||!history.every(q=>q&&Number.isInteger(q.id)&&this.platforms.some(a=>a.id===q.id&&Number.isFinite(q.x)&&q.x>=0&&q.x<=a.w-this.player.w))))return false;
+  this.fallHistory=history?.map(q=>({id:q.id,x:q.x}))||[{id:0,x:75}];this.fallRecordAt=-1;return true;
+ }
+ recoverFall(){
+  const p=this.player;this.falls++;p.hp=Math.max(0,p.hp-2);
+  if(p.hp===0){this.respawn();return}
+  const point=[...this.fallHistory].reverse().map(q=>this.fallPoint(q)).find(Boolean)||this.fallPoint({id:0,x:75});
+  if(!point){this.respawn();return}
+  Object.assign(p,{x:point.x,y:point.y,vx:0,vy:0,grounded:true,on:point.on,jumps:2,coyote:.1,jumpBuffer:0,dash:0,attack:0,attackQueued:false,hurt:0,invuln:1.5});
+  this.hitstop=0;this.fallRecordAt=-1;this.rememberFallPoint();
+  this.emit('fallRecovered',{x:p.x,y:p.y,platform:p.on,damage:2,hp:p.hp});
+ }
  drain(){return this.events.splice(0)}
  get attackMultiplier(){return this.attackBoost?2:1}
  updateChests(){
@@ -97,7 +133,7 @@ export class PixelWorld{
   }
   if(kills)this.emit('logoPulse',{x:ring.x,y:ring.y,radius:ring.tipRadius,angle:ring.angle,kills});
  }
- respawn(){this.attackBoost=false;if(this.level.sky){const deaths=this.deaths+1,elapsed=this.realTime,chests=this.chests,powerup=this.powerup;this.reset(2,{chests,powerup});this.deaths=deaths;this.realTime=elapsed;this.player.invuln=1.5;this.emit('respawn',{x:this.player.x,y:this.player.y,freshAttempt:true});return}const p=this.player,c=this.level.checkpoints[this.checkpoint];this.deaths++;Object.assign(p,{x:c.x,y:c.y-p.h,vx:0,vy:0,hp:p.maxHp,invuln:1.5,grounded:true,on:this.level.ground.find(a=>a.section===c.section).id,jumps:2,dash:0,attack:0,hurt:0});this.projectiles=[];this.combo=0;this.emit('respawn',{x:p.x,y:p.y});for(const e of this.enemies)if(e.type==='boss'&&!e.dead){e.hp=e.maxHp;e.x=e.spawnX;e.y=e.home.y-e.h;e.vx=e.vy=0;e.mode='patrol';e.timer=1;e.phase=0;e.enraged=false;e.pattern=null;e.attackZone=null;e.hitBy=-1;e.stun=e.flash=0}}
+ respawn(){this.attackBoost=false;if(this.level.sky){const deaths=this.deaths+1,elapsed=this.realTime,falls=this.falls,chests=this.chests,powerup=this.powerup;this.reset(2,{chests,powerup});this.deaths=deaths;this.realTime=elapsed;this.falls=falls;this.player.invuln=1.5;this.emit('respawn',{x:this.player.x,y:this.player.y,freshAttempt:true});return}const p=this.player,c=this.level.checkpoints[this.checkpoint];this.deaths++;Object.assign(p,{x:c.x,y:c.y-p.h,vx:0,vy:0,hp:p.maxHp,invuln:1.5,grounded:true,on:this.level.ground.find(a=>a.section===c.section).id,jumps:2,dash:0,attack:0,hurt:0});this.projectiles=[];this.combo=0;this.fallHistory=[];this.fallRecordAt=-1;this.rememberFallPoint();this.emit('respawn',{x:p.x,y:p.y});for(const e of this.enemies)if(e.type==='boss'&&!e.dead){e.hp=e.maxHp;e.x=e.spawnX;e.y=e.home.y-e.h;e.vx=e.vy=0;e.mode='patrol';e.timer=1;e.phase=0;e.enraged=false;e.pattern=null;e.attackZone=null;e.hitBy=-1;e.stun=e.flash=0}}
  hurt(damage,sourceX){const p=this.player;if(this.godMode||p.invuln>0||p.dash>0||this.complete)return false;p.hp-=damage;p.invuln=1.1;p.hurt=.2;p.vx=(p.x<sourceX?-1:1)*260;p.vy=-240;p.grounded=false;p.attack=0;this.combo=0;this.hitstop=.055;this.emit('hurt',{x:p.x+p.w/2,y:p.y+20,damage});if(p.hp<=0)this.respawn();return true}
  startAttack(view){const p=this.player;if(p.attackCooldown>0)return;if(this.logoActive){p.attack=.42;p.attackCooldown=.55;p.attackQueued=false;const viewport=this.clearViewport(view,2);this.emit('logoExplosion',{x:p.x+p.w/2,y:p.y+p.h/2,viewport,radius:Math.hypot(viewport.w,viewport.h)});return}p.attackStage=p.chainWindow>0?(p.attackStage+1)%3:0;p.attack=p.attackStage===2?.34:.26;p.attackCooldown=p.attackStage===2?.40:.27;p.chainWindow=.68;p.attackId=++this.attackSerial;p.attackQueued=false;p.vx+=p.face*(p.attackStage===2?130:55);this.emit('swing',{stage:p.attackStage,x:p.x+p.w/2,y:p.y+18,face:p.face});if(this.godMode)this.clearViewport(view,p.attackStage)}
  hitEnemy(e,damage,stage){if(e.dead||e.hitBy===this.player.attackId)return;e.hitBy=this.player.attackId;e.hp=Math.max(0,e.hp-damage);e.flash=.13;const charging=this.level.lab&&e.type==='boss'&&e.mode==='attack'&&e.pattern==='charge';e.stun=charging?0:e.type==='boss'?.09:stage===2?.5:.24;if(!charging)e.vx=this.player.face*(e.type==='boss'?45:stage===2?390:200);if(e.type!=='boss'&&stage===2)e.vy=-230;this.combo++;this.comboTimer=2;this.bestCombo=Math.max(this.bestCombo,this.combo);this.score+=damage*20;this.hitstop=Math.max(this.hitstop,e.hp<=0?.085:stage===2?.07:.045);this.emit('hit',{x:e.x+e.w/2,y:e.y+e.h/2,damage,heavy:stage===2,kill:e.hp<=0,face:this.player.face});if(e.hp<=0){e.dead=true;this.kills++;this.score+=e.type==='boss'?1000:100;this.emit('kill',{x:e.x+e.w/2,y:e.y+e.h/2,boss:e.type==='boss'});if(e.type==='boss')this.emit('bossDefeated')}}
@@ -129,7 +165,7 @@ export class PixelWorld{
   for(const b of this.projectiles){b.x+=b.vx*dt;b.y+=b.vy*dt;b.life-=dt;if(b.owner==='enemy'&&intersects(b,p)){this.hurt(b.damage||1,b.x);b.life=0}else if(b.owner==='player'){for(const e of this.enemies)if(!e.dead&&intersects(b,e)){e.hitBy=-1;this.hitEnemy(e,2*this.attackMultiplier,1);b.life=0;break}}}
   this.projectiles=this.projectiles.filter(b=>b.life>0);
   if(attempt!==this.attemptSerial)return;for(const h of this.hazards){const state=hazardState(h,this.time);h.active=state.active;h.warning=state.warning;h.rect=state.rect;if(h.active&&intersects(p,h.rect))this.hurt(this.level.sky||this.level.lab?2:1,h.rect.x+h.rect.w/2);if(attempt!==this.attemptSerial)return}
-  if(!this.godMode&&p.y>720){this.respawn();return}
+  if(!this.godMode&&p.y>720){this.recoverFall();return}this.rememberFallPoint();
   const boss=this.enemies.find(e=>e.type==='boss');if(p.x>this.level.length-115&&boss.dead&&(p.grounded||this.godMode)){this.complete=true;this.emit('complete')}
  }
  projectile(e,vx,vy=0){this.projectiles.push({x:e.x+e.w/2,y:(this.level.sky||this.level.lab)&&e.type==='boss'?e.home.y-27:e.y+e.h*.45,w:12,h:12,vx,vy,life:4,damage:(this.level.sky||this.level.lab)&&e.type==='boss'?2:1,owner:'enemy'});this.emit('shoot',{x:e.x,y:e.y})}
@@ -180,7 +216,7 @@ export class PixelWorld{
   else if(e.mode==='recover'&&e.timer<=0){e.mode='patrol';e.timer=e.enraged?.2:.3}
  }
  exportState(){
-  const state={};for(const key of ['godMode','usedGodMode','characterId','usedLogo','attemptSerial','time','realTime','deaths','kills','score','checkpoint','complete','hitstop','combo','comboTimer','bestCombo','attackSerial','logoAngle','player','platforms','enemies','projectiles','hazards','chests','rewardChestId','powerup','attackBoost'])state[key]=this[key];
+  const state={};for(const key of ['fallHistory','falls','godMode','usedGodMode','characterId','usedLogo','attemptSerial','time','realTime','deaths','kills','score','checkpoint','complete','hitstop','combo','comboTimer','bestCombo','attackSerial','logoAngle','player','platforms','enemies','projectiles','hazards','chests','rewardChestId','powerup','attackBoost'])state[key]=this[key];
   state.collected=[...this.collected];return JSON.parse(JSON.stringify({version:1,level:this.level.index,state}));
  }
  importState(record){
@@ -198,8 +234,9 @@ export class PixelWorld{
    if(!Array.isArray(s.collected)||new Set(s.collected).size!==s.collected.length||!s.collected.every(i=>Number.isInteger(i)&&i>=0&&i<candidate.level.coins.length)||!Array.isArray(s.projectiles)||!s.projectiles.every(b=>['x','y','w','h','vx','vy','life'].every(k=>finite(b[k]))&&['enemy','player'].includes(b.owner)))return false;
    if(!Array.isArray(s.chests)||s.chests.length!==candidate.chests.length||!s.chests.every((c,i)=>c.id===i&&c.platformId===candidate.chests[i].platformId&&finite(c.x)&&finite(c.y)&&['opened','reward','collected'].every(k=>typeof c[k]==='boolean')&&(!c.collected||c.opened&&c.reward))||s.chests.filter(c=>c.reward).length!==1||s.rewardChestId!==s.chests.find(c=>c.reward).id||s.attackBoost&&!s.chests.some(c=>c.reward&&c.collected))return false;
    if(s.powerup!==null&&(!s.powerup||!s.chests.some(c=>c.id===s.powerup.chestId&&c.reward&&c.opened&&!c.collected)||!['x','y','w','h'].every(k=>finite(s.powerup[k]))))return false;
-   const data=JSON.parse(JSON.stringify(s));for(const key of Object.keys(candidate))if(key!=='level'&&key!=='collected'&&key!=='events'&&key!=='previous'&&Object.hasOwn(data,key))candidate[key]=data[key];candidate.collected=new Set(s.collected);candidate.events=[];candidate.previous={};candidate.updateChests();Object.assign(this,candidate);return true;
+   if(s.falls!==undefined&&(!Number.isInteger(s.falls)||s.falls<0||s.falls>1e7)||!candidate.restoreFallHistory(s.fallHistory))return false;
+   const data=JSON.parse(JSON.stringify(s));for(const key of Object.keys(candidate))if(key!=='level'&&key!=='collected'&&key!=='events'&&key!=='previous'&&Object.hasOwn(data,key))candidate[key]=data[key];candidate.collected=new Set(s.collected);candidate.events=[];candidate.previous={};candidate.updateChests();candidate.restoreFallHistory(s.fallHistory);if(s.fallHistory===undefined)candidate.rememberFallPoint();Object.assign(this,candidate);return true;
   }catch{return false}
  }
- snapshot(){return {godMode:this.godMode,usedGodMode:this.usedGodMode,characterId:this.characterId,usedLogo:this.usedLogo,logoActive:this.logoActive,attempt:this.attemptSerial,level:this.level.index,length:this.level.length,platforms:this.level.ground.length,enemies:this.enemies.length,remaining:this.enemies.filter(e=>!e.dead).length,kills:this.kills,score:this.score,collected:this.collected.size,attackBoost:this.attackBoost,attackMultiplier:this.attackMultiplier,chests:this.chests.map(c=>({...c})),powerup:this.powerup?{...this.powerup}:null,checkpoint:this.checkpoint,checkpointCount:this.level.checkpoints.length,time:this.time,hitstop:this.hitstop,combo:this.combo,bestCombo:this.bestCombo,deaths:this.deaths,complete:this.complete,player:{...this.player},boss:this.enemies.find(e=>e.type==='boss')};}
+ snapshot(){return {falls:this.falls,fallHistory:this.fallHistory.map(q=>({...q})),godMode:this.godMode,usedGodMode:this.usedGodMode,characterId:this.characterId,usedLogo:this.usedLogo,logoActive:this.logoActive,attempt:this.attemptSerial,level:this.level.index,length:this.level.length,platforms:this.level.ground.length,enemies:this.enemies.length,remaining:this.enemies.filter(e=>!e.dead).length,kills:this.kills,score:this.score,collected:this.collected.size,attackBoost:this.attackBoost,attackMultiplier:this.attackMultiplier,chests:this.chests.map(c=>({...c})),powerup:this.powerup?{...this.powerup}:null,checkpoint:this.checkpoint,checkpointCount:this.level.checkpoints.length,time:this.time,hitstop:this.hitstop,combo:this.combo,bestCombo:this.bestCombo,deaths:this.deaths,complete:this.complete,player:{...this.player},boss:this.enemies.find(e=>e.type==='boss')};}
 }
