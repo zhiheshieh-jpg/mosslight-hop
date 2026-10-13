@@ -11,7 +11,7 @@ export function labRoute(stride=1){
  const inputs={jumps:0,dashes:0,slashes:0};let input={},minHp=6,parries=0;
  for(let n=0;n<120*420&&!w.complete&&!w.deaths;n++){
   if(n%stride===0)input=drive(w);
-  assert.deepEqual(Object.keys(input).sort(),['attack','dash','jump','x']);
+  assert.deepEqual(Object.keys(input).sort(),['attack','dash','interact','jump','x']);
   w.step(STEP,input);minHp=Math.min(minHp,w.player.hp);
   const on=w.platforms.find(a=>a.id===w.player.on);if(on?.kind==='crumble')bridges.add(on.id);
   const section=w.level.ground.find(a=>w.player.x>=a.x&&w.player.x<a.x+a.w)?.section;if(section!==undefined)sections.add(section);

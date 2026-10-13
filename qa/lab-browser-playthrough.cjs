@@ -21,7 +21,7 @@ assert.ok(fs.existsSync(asset)&&fs.statSync(asset).size>1000,'Wait for the finis
   page.on('pageerror',e=>errors.push(String(e)));
   page.on('console',m=>{if(m.text().startsWith('LAB_ROUTE '))console.log(m.text());else if(m.type()==='error')errors.push(m.text())});
   page.on('response',r=>{if(r.status()>=400)errors.push(`HTTP ${r.status()} ${r.url()}`)});
-  await page.goto(url);await page.waitForFunction(()=>window.__pixelQA&&pixelInfo().loaded);
+  await page.goto(url);await page.waitForFunction(()=>window.__pixelQA&&pixelInfo().loaded);if(await page.locator('#account-dialog').evaluate(e=>e.open))await page.locator('.account-done').click();
   await page.evaluate(async code=>{const {hazardState}=await import('./world.js');window.__labPilot=new Function('hazardState',code+';return skyDriver;')(hazardState)},source);
   await page.click('[data-level="3"]');await page.click('#start');
   const initial=await page.evaluate(()=>pixelInfo());
@@ -39,7 +39,7 @@ assert.ok(fs.existsSync(asset)&&fs.statSync(asset).size>1000,'Wait for the finis
    }
    function finish(reason){
     for(const code of [...held])set(code,false);const w=observe();
-    resolve({reason,initialPosition:75,wallSeconds:(performance.now()-started)/1000,snapshot:pixelInfo(),realTime:w.realTime,everGod,invariantViolation,furthest,maxMovement,minHp,frames,patterns:[...patterns],sections:[...sections].sort((a,b)=>a-b),bridges:[...bridges],checkpoints:[...checkpoints],hurts,stages,controls:'DOM keydown/keyup A,D,Space,J,K; pilot receives structuredClone snapshots; no simulation stepping, teleportation, god mode, stat changes or QA mutators'});
+    resolve({reason,initialPosition:75,wallSeconds:(performance.now()-started)/1000,snapshot:pixelInfo(),realTime:w.realTime,everGod,invariantViolation,furthest,maxMovement,minHp,frames,patterns:[...patterns],sections:[...sections].sort((a,b)=>a-b),bridges:[...bridges],checkpoints:[...checkpoints],hurts,stages,controls:'DOM keydown/keyup A,D,Space,J,K,E; pilot receives structuredClone snapshots; no simulation stepping, teleportation, god mode, stat changes or QA mutators'});
    }
    function frame(){
     const w=observe();frames++;everGod ||= w.godMode||w.usedGodMode||w.usedLogo;
@@ -53,13 +53,13 @@ assert.ok(fs.existsSync(asset)&&fs.statSync(asset).size>1000,'Wait for the finis
     const log=Math.floor((performance.now()-started)/15000);
     if(log!==lastLog){lastLog=log;console.log('LAB_ROUTE '+JSON.stringify({wallSeconds:Math.round((performance.now()-started)/1000),time:+w.realTime.toFixed(1),section,x:Math.round(w.player.x),hp:w.player.hp,kills:w.kills,deaths:w.deaths,bossHp:boss.hp,god:w.godMode}))}
     if(w.complete)return finish('complete');if(w.deaths>0)return finish('death');if(everGod||invariantViolation)return finish('invariant');if(performance.now()-started>720000)return finish('timeout');
-    if(lastTime!==w.realTime){lastTime=w.realTime;const input=drive(w);set('KeyA',input.x<0);set('KeyD',input.x>0);set('Space',input.jump);set('KeyJ',input.attack);set('KeyK',input.dash)}
+    if(lastTime!==w.realTime){lastTime=w.realTime;const input=drive(w);set('KeyA',input.x<0);set('KeyD',input.x>0);set('Space',input.jump);set('KeyJ',input.attack);set('KeyK',input.dash);set('KeyE',input.interact)}
     requestAnimationFrame(frame);
    }
    requestAnimationFrame(frame);
   }));
   result.errors=errors;result.timestamp=new Date().toISOString();
-  result.persistedProgress=await page.evaluate(()=>JSON.parse(localStorage.getItem('mosslight-pixel-progress')));
+  result.persistedProgress=await page.evaluate(async()=>{const {cloudStorage,saveNow}=await import('./account.js');await saveNow();return JSON.parse(cloudStorage.getItem('mosslight-pixel-progress'))});
   fs.writeFileSync(path.join(out,'normal-route-results.json'),JSON.stringify(result,null,2));
   await page.screenshot({path:path.join(out,'normal-route-'+result.reason+'.png')});
   assert.equal(result.reason,'complete',JSON.stringify(result));assert.equal(result.snapshot.complete,true);assert.equal(result.snapshot.mode,'complete');assert.equal(result.snapshot.deaths,0);assert.equal(result.everGod,false);assert.equal(result.invariantViolation,false);assert.equal(result.snapshot.boss.hp,0);assert.equal(result.snapshot.player.grounded,true);

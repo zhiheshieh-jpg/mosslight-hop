@@ -7,7 +7,7 @@ export function createSkyLevel(){
   const last=i===count-1,rest=rests.has(i),w=last?1240:rest?520:660+(i%3)*30,y=420+[0,-12,8,0,12,-8][i%6];
   const slab={id:platforms.length,x,y,w,h:230,kind:'ground',section:i};ground.push(slab);platforms.push(slab);
   if(i===0)checkpoints.push({id:0,x:75,y,section:0});
-  if(rest)decor.push({kind:'palace-rest',x:x+130,y,section:i});
+  if(rest)decor.push({kind:'palace-rest',x:x+130,y,section:i},{kind:'chest',x:x+290,y,section:i});
   if(!rest&&!last){
    const kinds=['runner','sentry','brute','drone'];
    for(let j=0;j<3;j++)enemies.push({type:kinds[(i+j)%4],x:x+130+j*145,y:y-34,home:slab});

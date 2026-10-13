@@ -105,7 +105,7 @@ test('god exit accepts flight while the normal exit still requires grounding',()
 test('full normal palace route completes with ordinary inputs, zero deaths and all boss patterns',()=>{
  const w=new PixelWorld(2),drive=skyDriver(),patterns=new Set,stages=new Set,used=new Set;let steps=0;
  for(;steps<120*360&&!w.complete;steps++){
-  const input=drive(w);assert.deepEqual(Object.keys(input).sort(),['attack','dash','jump','x']);
+  const input=drive(w);assert.deepEqual(Object.keys(input).sort(),['attack','dash','interact','jump','x']);
   for(const key of ['jump','dash','attack'])if(input[key])used.add(key);
   w.step(STEP,input);assert.equal(w.godMode,false);assert.equal(w.usedGodMode,false);
   const s=w.level.ground.find(a=>w.player.x>=a.x&&w.player.x<a.x+a.w)?.section;

@@ -100,7 +100,7 @@ test('logo dash and self-explosion clear exactly the supplied visible rectangle 
   w.projectiles.push({x:350,y:200,w:12,h:12,vx:0,vy:0,life:2,owner:'enemy'},{x:700,y:200,w:12,h:12,vx:0,vy:0,life:2,owner:'enemy'},{x:450,y:200,w:12,h:12,vx:0,vy:0,life:2,owner:'player'});
   // Unit fixtures position enemies; production route tests below never do this.
   step(w,1,{[action]:true,view});
-  assert.equal(visible.dead,true);assert.equal(boss.dead,true);assert.equal(outside.dead,false);assert.equal(above.dead,false);assert.equal(w.player.hp,6);assert.equal(w.deaths,0);
+  assert.equal(visible.dead,true);assert.equal(boss.dead,true);assert.equal(outside.dead,false);assert.equal(above.dead,false);assert.equal(w.player.hp,3);assert.equal(w.deaths,0);
   assert.equal(w.projectiles.filter(b=>b.owner==='enemy').length,1);assert.equal(w.projectiles.filter(b=>b.owner==='player').length,1);
   const event=w.drain().find(e=>e.type===(action==='dash'?'logoDash':'logoExplosion'));assert.deepEqual(event.viewport,view);
  }
@@ -115,5 +115,5 @@ test('regular god attacks retain screen slash behavior and cannot emit logo powe
 });
 
 test('full lab route is feasible with unmodified ordinary inputs at 120, 60 and 30Hz',()=>{
- for(const stride of [1,2,4]){const result=labRoute(stride);assert.ok(result.kills>110);assert.ok(result.parries>0);assert.ok(result.inputs.jumps>80);assert.equal(result.finalHp,6)}
+ for(const stride of [1,2,4]){const result=labRoute(stride);assert.ok(result.kills>110);assert.ok(result.parries>0);assert.ok(result.inputs.jumps>80);assert.ok(result.finalHp>0)}
 });

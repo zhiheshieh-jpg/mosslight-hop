@@ -1,0 +1,34 @@
+[Unit]
+Description=Mosslight accounts and cloud saves
+After=network.target
+
+[Service]
+Type=simple
+User=mosslight
+Group=mosslight
+WorkingDirectory=/opt/mosslight-api
+Environment=MOSSLIGHT_DATA_DIR=/var/lib/mosslight
+Environment=MOSSLIGHT_ALLOWED_HOSTS=124.221.255.132,127.0.0.1:3197,localhost:3197
+ExecStart=/usr/bin/python3 -u /opt/mosslight-api/account_api.py
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=15
+UMask=0077
+StateDirectory=mosslight
+StateDirectoryMode=0700
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_INET AF_UNIX
+ReadWritePaths=/var/lib/mosslight
+MemoryMax=256M
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target

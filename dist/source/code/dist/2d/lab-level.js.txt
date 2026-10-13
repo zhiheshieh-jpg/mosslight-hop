@@ -6,7 +6,7 @@ export function createLabLevel(){
  for(let i=0;i<count;i++){
   const last=i===count-1,rest=rests.has(i),w=last?1480:rest?590:760+(i%3)*32,y=420+[0,-14,10,-6,14,0][i%6];
   const slab={id:platforms.length,x,y,w,h:240,kind:'ground',section:i};ground.push(slab);platforms.push(slab);
-  if(rest){checkpoints.push({id:checkpoints.length,x:x+85,y,section:i});decor.push({kind:'lab-rest',x:x+145,y,section:i})}
+  if(rest){checkpoints.push({id:checkpoints.length,x:x+85,y,section:i});decor.push({kind:'lab-rest',x:x+145,y,section:i});if(!last)decor.push({kind:'chest',x:x+320,y,section:i})}
   if(!rest&&!last){
    const kinds=['sentry','runner','drone','brute'];
    for(let j=0;j<3;j++)enemies.push({type:kinds[(i+j)%4],x:x+145+j*158,y:y-34,home:slab});

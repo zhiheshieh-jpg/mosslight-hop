@@ -8,7 +8,7 @@ const w=new PixelWorld(2),drive=skyDriver(),patterns=new Set(),stages=[],section
 const inputs={jumps:0,dashes:0,slashes:0},hurts=[];let input={},steps=0,minHp=6,parries=0;
 for(;steps<120*360&&!w.complete&&!w.deaths;steps++){
  if(steps%stride===0)input=drive(w);
- assert.deepEqual(Object.keys(input).sort(),['attack','dash','jump','x']);
+ assert.deepEqual(Object.keys(input).sort(),['attack','dash','interact','jump','x']);
  w.step(STEP,input);minHp=Math.min(minHp,w.player.hp);
  const platform=w.platforms.find(a=>a.id===w.player.on);
  if(platform?.kind==='crumble')bridges.add(platform.id);

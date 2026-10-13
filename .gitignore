@@ -18,3 +18,14 @@ qa/palace-route-results.json
 !dist/source/*.zip
 *.blend1
 *.log
+
+qa/account-browser/
+qa/pause-account-browser/
+qa/update-release/
+__pycache__/
+*.sqlite3
+*.sqlite3-*
+
+qa/pause-account3d/
+
+qa/update-release/
