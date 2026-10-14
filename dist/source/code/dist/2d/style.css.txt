@@ -116,3 +116,5 @@ body[data-character="logo"] .character-caption strong{font-family:monospace;lett
 #interact{position:fixed;right:32px;bottom:122px;z-index:24;background:#f4d895;color:#3e3e30;border:1px solid #fff1bd;border-radius:7px;padding:9px 14px;font:12px system-ui;cursor:pointer;box-shadow:0 0 24px #ffc96622}#attack-buff{display:block!important;font-size:8px;color:#ffe2a1;margin-top:4px}#attack-buff.hidden{display:none!important}.pause-character-note{font-size:10px!important;color:#b7cbc6}#pause-characters{display:none!important}@media(max-width:700px){#interact{right:24px;bottom:132px;padding:8px 10px;font-size:10px}}
 
 .character-kit{display:grid;gap:5px;margin:12px 0 18px;color:var(--hero-accent,#d3b5ff);font-size:12px}.character-kit small{font-size:10px;color:#b7caca;line-height:1.6}.character-option strong{overflow-wrap:anywhere}
+
+.menu-footer #story-open{width:auto;flex:0 0 auto;margin:0;padding:5px 0;border:0;font:inherit;letter-spacing:inherit;cursor:pointer;color:#c7e2c7}.menu-footer #story-open:hover{color:#fff2c6}.menu-footer{gap:12px;flex-wrap:wrap}

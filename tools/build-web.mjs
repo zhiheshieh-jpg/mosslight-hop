@@ -14,6 +14,7 @@ export function buildWeb(){
  for(const [file,before,after] of [
   ['index.html','<a href="../">前往3D</a>','<a href="./3d/">前往3D</a>'],
   ['game.js',"from '../music.js'","from './3d/music.js'"],
+  ['game.js',"from '../story.js'","from './3d/story.js'"],
   ['3d/index.html','href="./2d/">前往2D</a>','href="../">前往2D</a>'],
   ['index.html','data-api="../api/"','data-api="./api/"'],
   ['3d/index.html','data-api="./api/"','data-api="../api/"']

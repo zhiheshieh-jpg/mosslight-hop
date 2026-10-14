@@ -27,7 +27,7 @@
    <button id="start" class="primary" disabled><span>正在准备旅程…</span><b>→</b></button>
    <div class="keys desktop"><span><kbd>A D</kbd> 移动</span><span><kbd>空格</kbd> 二段跳</span><span><kbd>左键</kbd> 连斩</span><span><kbd>右键</kbd> 冲刺</span></div>
    <p class="mobile-note">横屏体验更佳 · 使用屏幕按钮移动与战斗</p>
-   <div class="menu-footer"><a href="../">前往3D</a><span>TWO LIGHTS · ONE JOURNEY</span></div>
+   <div class="menu-footer"><button type="button" id="story-open" class="text-button">剧情 · 光潮协议</button><a href="../">前往3D</a><span>TWO LIGHTS · ONE JOURNEY</span></div>
   </div>
   <div class="character-caption"><span class="caption-rule"></span><small id="character-role">THE MOONLIT WANDERER</small><strong><span id="character-name">GPT（同人形象）</span> <em id="character-english">DRAGON</em></strong><p id="character-caption">龙翼掠过晨露，把月光送向远方。</p></div>
  </main>

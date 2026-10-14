@@ -35,3 +35,5 @@ body.palace.playing .brand{color:#684361;filter:drop-shadow(0 1px 3px #fff8)}bod
 body.laboratory{color:var(--ink)}
 body.laboratory .play-hint{color:#d4f6f2;background:#143746ed;border:1px solid #9ddbcc40}
 .player-note{display:block;font-size:10px;line-height:1.7;opacity:.7;margin:0 0 18px}.player-note strong{font-weight:650}.modal-card .cloud-pause-actions small{color:var(--ink);opacity:.65}@media(max-width:600px){.player-note{font-size:9px;margin-bottom:14px}}
+
+#menu #story-open{width:auto;display:block;margin-top:16px;padding:5px 0;border:0;font-size:11px;cursor:pointer}

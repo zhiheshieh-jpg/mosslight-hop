@@ -1,7 +1,7 @@
 {
-  "version": "2.7.1",
+  "version": "2.8.0",
   "license": "MIT",
-  "archive": "mosslight-source-v2.7.1.zip",
+  "archive": "mosslight-source-v2.8.0.zip",
   "files": [
     {
       "path": ".gitignore",
@@ -10,8 +10,8 @@
     },
     {
       "path": "ASSETS.txt",
-      "bytes": 4768,
-      "sha256": "eb42ef0bfea9774b1353d139d989bb7ed6e131239fd67d0c8d0e26aed52a67c9"
+      "bytes": 4953,
+      "sha256": "3a2c79958f8e67e1ab625c496b69b879c57740fd0ccd321249a43acbe88f3149"
     },
     {
       "path": "LICENSE",
@@ -20,13 +20,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 21332,
-      "sha256": "347f0ced6913c501505aba479e182981aaa9b459c931f28626c619ed83cb33b1"
+      "bytes": 22946,
+      "sha256": "15a70b9b2a79c4ae59eeb4cba53ee93f34e2a62cd300d84379b4f061367fea50"
     },
     {
       "path": "README.txt",
-      "bytes": 21332,
-      "sha256": "347f0ced6913c501505aba479e182981aaa9b459c931f28626c619ed83cb33b1"
+      "bytes": 21640,
+      "sha256": "7bf8e3bd81bd9d6663c818339ebf76c353697a7b2f7254586c3adda60e5baefc"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -50,8 +50,8 @@
     },
     {
       "path": "deploy/README.md",
-      "bytes": 4320,
-      "sha256": "df67336be1aae2ba3f72efb2eeb159d7b399430a1f5739ae8e57d2d17308aa4b"
+      "bytes": 5075,
+      "sha256": "df51adbd888e922cf4a4401750348e7a47bd76abf50c4ca4a8475260b5f7535b"
     },
     {
       "path": "deploy/install-api.sh",
@@ -61,7 +61,7 @@
     {
       "path": "deploy/install-mosslight.sh",
       "bytes": 3087,
-      "sha256": "f88eacfc5f608f50bb9073cdccdd70517667e4d365896af150f7857bb08421f0"
+      "sha256": "c3303fd863cbf9d92b499b1476fe262a2d50d8eb3ce807f2c7bda2cf9f54fac8"
     },
     {
       "path": "deploy/mosslight-api.service",
@@ -144,6 +144,11 @@
       "sha256": "d30f110fd7fa456646e607f4a6cd95441ae169b564b30946043cbbe5ad36aaaa"
     },
     {
+      "path": "dist/2d/combat-audio.js",
+      "bytes": 16421,
+      "sha256": "a4ff07715281c787ef6f8af21989b664b7a5a48230b438a51af51880afeb98d4"
+    },
+    {
       "path": "dist/2d/combat.js",
       "bytes": 1144,
       "sha256": "5503a28040c433e8663bd43f6de7af30f6061526e1a7f0b6a57d488d92656fd1"
@@ -155,13 +160,13 @@
     },
     {
       "path": "dist/2d/game.js",
-      "bytes": 54126,
-      "sha256": "6ca749803af75badaaf15cda2300abeec20670be81b21cea31bb3ceaaa3b1f4f"
+      "bytes": 55451,
+      "sha256": "05ad59c8724e2aa837e6445ee8083f5caf84db25ca73f48884e6597fb5c9b605"
     },
     {
       "path": "dist/2d/index.html",
-      "bytes": 9813,
-      "sha256": "891a63bff94bff8bd34a02a55d803a65b9ff4b81832485eb430c7b82a80c8ef8"
+      "bytes": 9950,
+      "sha256": "27d9c2b6b2880a45eba0d2aa657af5423f0bc7d4f432ba87414e559b533aad76"
     },
     {
       "path": "dist/2d/lab-level.js",
@@ -190,8 +195,8 @@
     },
     {
       "path": "dist/2d/style.css",
-      "bytes": 31746,
-      "sha256": "be2ee60689bb3309f83ebc16be89905aa788ffe4a6d0c933108abfa736f61ab3"
+      "bytes": 32097,
+      "sha256": "cf24fabdded581dcd466eb5811bb0add140f25180aad4546907df5a4f53c4f7b"
     },
     {
       "path": "dist/2d/world.js",
@@ -250,13 +255,13 @@
     },
     {
       "path": "dist/game.js",
-      "bytes": 59697,
-      "sha256": "a0a38b826ee7ea29cd02a5e7bab615274aa0ad52b099cf90a4d54fff91c7c18a"
+      "bytes": 60594,
+      "sha256": "d7b98412a809e3ee197b9b2668e63bd4dcbfd9772b8734d72bbfbe743dafdd47"
     },
     {
       "path": "dist/index.html",
-      "bytes": 7583,
-      "sha256": "4ec98d536fe18ff64bcc723ae7cd701914eb773bb80127929a502d45ce44ed86"
+      "bytes": 7684,
+      "sha256": "f8146b7304e14fc52d11e3d7190c8787f8bf7ab1aab099cffe92e70be1571014"
     },
     {
       "path": "dist/lab-level.js",
@@ -299,9 +304,14 @@
       "sha256": "d77373491b622619c8aa565e068e57c527cb236a2130e645bdee7a169d1687b8"
     },
     {
+      "path": "dist/story.js",
+      "bytes": 20559,
+      "sha256": "0e05ce6a750c782825738f4bc2b38a9bd2e7fcdaaa3e1f1bdf6a26a81649197f"
+    },
+    {
       "path": "dist/style.css",
-      "bytes": 30493,
-      "sha256": "cf60c7984ae64f02d17bee9b56c4d1a8824196e77329558dcb39d4dd5514221f"
+      "bytes": 30646,
+      "sha256": "bdc981d16e68ed62299bee9e8c04650beb500fa676c8399cee242b9c65d0b97c"
     },
     {
       "path": "dist/vendor/LICENSE.txt",
@@ -335,8 +345,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 778,
-      "sha256": "df62687340b6c53c2b92b6e62919c01bf3410c6eb27c8baae8d60a3a297efc3d"
+      "bytes": 821,
+      "sha256": "79a513d4bafb2693d73feff2354e171b590ba153a9fde3464fd7c2d76e2a9146"
     },
     {
       "path": "qa/account-api.test.py",
@@ -377,6 +387,11 @@
       "path": "qa/collection-camera.test.mjs",
       "bytes": 3285,
       "sha256": "9959742ceb8f7b0cbdb7a5e666527e2a20e545a2459b731ee22871f9a9c1b58b"
+    },
+    {
+      "path": "qa/combat-audio.test.mjs",
+      "bytes": 10945,
+      "sha256": "f4205c9fcc2eebac0b28730377e3b250d6d4a82a38f5bfca1b3c9be792ea688f"
     },
     {
       "path": "qa/driver.mjs",
@@ -564,14 +579,24 @@
       "sha256": "a40a2d064664dcd449c79324bbfb45d0a0c19220af737d1d5e4ddf4d20459716"
     },
     {
+      "path": "qa/sound-story-browser.cjs",
+      "bytes": 22624,
+      "sha256": "35f6ec18fa2b335349a6a83a37b5a42b4f5daabdb77630bc72b7c6e9ca0f6138"
+    },
+    {
+      "path": "qa/story.test.mjs",
+      "bytes": 4243,
+      "sha256": "7f607157c7c442a688f9d3df59af083864a42095316d9d0b6c91582cb4afe0a6"
+    },
+    {
       "path": "qa/terrain-scroll.cjs",
       "bytes": 5597,
       "sha256": "edb9dcc8acacfc5f900033280b9a691b9968da4afd154ed3b910cbc8108c7fe5"
     },
     {
       "path": "qa/update-release.cjs",
-      "bytes": 7209,
-      "sha256": "cf4c97d6002bf64ffe6835951186491095bfb1577b88530ba540c47534a075af"
+      "bytes": 8241,
+      "sha256": "1c4b53472de8ff710e804280b0d7dca398f375c82c816817591146973a137977"
     },
     {
       "path": "qa/v3-browser.cjs",
@@ -595,8 +620,8 @@
     },
     {
       "path": "tools/build-web.mjs",
-      "bytes": 2119,
-      "sha256": "43182cf5ec5304c487ee9bd8cec5e81e88548283530e30e554b1d2e0e0c91f3d"
+      "bytes": 2207,
+      "sha256": "27826518d09974304960f940a9bb360eeed83ba4260a306bb772ef048a234fe8"
     },
     {
       "path": "tools/build_assets.py",
@@ -610,8 +635,8 @@
     },
     {
       "path": "tools/release_source.py",
-      "bytes": 12802,
-      "sha256": "37e038e01ccbc159c5ab668be42a03de39bbee9d771376e409427e0b9fd6f1a0"
+      "bytes": 13049,
+      "sha256": "0dd8bf82573ab0b5576e3362a59c2cc0117b93e39798632e9e62328c3a09e554"
     }
   ],
   "readable": [
@@ -826,6 +851,22 @@
     {
       "name": "qa/lab3d-world.test.mjs",
       "url": "code/qa/lab3d-world.test.mjs.txt"
+    },
+    {
+      "name": "dist/story.js",
+      "url": "code/dist/story.js.txt"
+    },
+    {
+      "name": "dist/2d/combat-audio.js",
+      "url": "code/dist/2d/combat-audio.js.txt"
+    },
+    {
+      "name": "qa/story.test.mjs",
+      "url": "code/qa/story.test.mjs.txt"
+    },
+    {
+      "name": "qa/combat-audio.test.mjs",
+      "url": "code/qa/combat-audio.test.mjs.txt"
     },
     {
       "name": "dist/2d/feedback.js",
