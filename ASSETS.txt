@@ -33,3 +33,5 @@ Use case: stylized-concept. Asset type: production texture atlas for a cozy fore
 Blender 模型输出目录：dist/assets/models
 可编辑模型：models/MosslightAssets.blend
 游戏中的窗口招牌文字、光晕、花草实例、树木、漂浮岛和城市楼群还结合程序化几何与材质生成。
+
+Original BGM (v2.7.0): dist/music.js contains four original synthesized chapter compositions, chord/bass/melody/percussion parts and a boss arrangement. No external recordings or sound samples are used. Character finisher visuals are original Canvas pixel effects.

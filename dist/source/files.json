@@ -1,7 +1,7 @@
 {
-  "version": "2.6.2",
+  "version": "2.7.0",
   "license": "MIT",
-  "archive": "mosslight-source-v2.6.2.zip",
+  "archive": "mosslight-source-v2.7.0.zip",
   "files": [
     {
       "path": ".gitignore",
@@ -10,8 +10,8 @@
     },
     {
       "path": "ASSETS.txt",
-      "bytes": 4524,
-      "sha256": "0d9f711ed1c1f671fce91d6ba0e207a2cd825560246d21a90a8571e692363677"
+      "bytes": 4768,
+      "sha256": "eb42ef0bfea9774b1353d139d989bb7ed6e131239fd67d0c8d0e26aed52a67c9"
     },
     {
       "path": "LICENSE",
@@ -20,13 +20,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 18331,
-      "sha256": "7273a17e4ae53d226143115a181e5f108dc30b281f33b0e180ab762a47426410"
+      "bytes": 19970,
+      "sha256": "8861f72cfbacaae84405f70915669f8d2198edcba1f3c3d7c770546a50e982c2"
     },
     {
       "path": "README.txt",
-      "bytes": 18331,
-      "sha256": "7273a17e4ae53d226143115a181e5f108dc30b281f33b0e180ab762a47426410"
+      "bytes": 19970,
+      "sha256": "8861f72cfbacaae84405f70915669f8d2198edcba1f3c3d7c770546a50e982c2"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -50,8 +50,8 @@
     },
     {
       "path": "deploy/README.md",
-      "bytes": 3561,
-      "sha256": "642597e0ad1a1867728d842116f1a40c64ed0fb26c7b205661b173adfcb11bf5"
+      "bytes": 3997,
+      "sha256": "0a4be87a5577fb131db5b46023a77f5b9fbbfada3c57cf905b20a18f6988def1"
     },
     {
       "path": "deploy/install-api.sh",
@@ -61,7 +61,7 @@
     {
       "path": "deploy/install-mosslight.sh",
       "bytes": 3087,
-      "sha256": "179e9788d4e3a68e59eb30928118a56a4ffa6f914cc735a1c19f2732e9f07d6d"
+      "sha256": "c119e314bb258ac8b3cd62380fa92401f5fc70c59b370b15ae59e77513ad748d"
     },
     {
       "path": "deploy/mosslight-api.service",
@@ -140,18 +140,23 @@
     },
     {
       "path": "dist/2d/characters.js",
-      "bytes": 1907,
-      "sha256": "73b0970b862e020aa7a9959cf89104555c6b4b4466df1c176e80c2bc281c222f"
+      "bytes": 1926,
+      "sha256": "d30f110fd7fa456646e607f4a6cd95441ae169b564b30946043cbbe5ad36aaaa"
+    },
+    {
+      "path": "dist/2d/combat.js",
+      "bytes": 1144,
+      "sha256": "5503a28040c433e8663bd43f6de7af30f6061526e1a7f0b6a57d488d92656fd1"
     },
     {
       "path": "dist/2d/game.js",
-      "bytes": 51127,
-      "sha256": "264a850fbaba28281f9feccc2bcc07720f03bba8a48f505dd481712f23a5c55f"
+      "bytes": 52914,
+      "sha256": "434fa7b8af6b2a71acb420e12c8e370168817014f5b8ab78d36dd83dc3f8126c"
     },
     {
       "path": "dist/2d/index.html",
-      "bytes": 9664,
-      "sha256": "882172eafadddec90ae0dc37998c79e364ed411e98daa34556a4b146578056d2"
+      "bytes": 9813,
+      "sha256": "891a63bff94bff8bd34a02a55d803a65b9ff4b81832485eb430c7b82a80c8ef8"
     },
     {
       "path": "dist/2d/lab-level.js",
@@ -180,13 +185,13 @@
     },
     {
       "path": "dist/2d/style.css",
-      "bytes": 31643,
-      "sha256": "e77c1e90987f473909a14acbf5f5694a7c08efc6e4af7af03a25958a38fe7d03"
+      "bytes": 31746,
+      "sha256": "be2ee60689bb3309f83ebc16be89905aa788ffe4a6d0c933108abfa736f61ab3"
     },
     {
       "path": "dist/2d/world.js",
-      "bytes": 30162,
-      "sha256": "db8ca5d51c44d790e6310e16e628d335e25e4a3926f72d546ee84a824fd183db"
+      "bytes": 30917,
+      "sha256": "da908e4e2519b9c273c2a26e88755d286cdefcac8d4e65ffe4029abf97948868"
     },
     {
       "path": "dist/account.css",
@@ -240,13 +245,13 @@
     },
     {
       "path": "dist/game.js",
-      "bytes": 59798,
-      "sha256": "895e04db4e9b12e84faad29987f2d1557fa4e62eca27d802b525f3e66b556529"
+      "bytes": 59697,
+      "sha256": "a0a38b826ee7ea29cd02a5e7bab615274aa0ad52b099cf90a4d54fff91c7c18a"
     },
     {
       "path": "dist/index.html",
-      "bytes": 7574,
-      "sha256": "459ccc1a52143de689efe48192c53b3c2e1eaffc6914b07359e20344866752c3"
+      "bytes": 7583,
+      "sha256": "4ec98d536fe18ff64bcc723ae7cd701914eb773bb80127929a502d45ce44ed86"
     },
     {
       "path": "dist/lab-level.js",
@@ -257,6 +262,11 @@
       "path": "dist/lab-scene.js",
       "bytes": 5779,
       "sha256": "c6a9836b6bfeffa8392ed41dfd0498118189c92b6702cefc1d31a346a6277314"
+    },
+    {
+      "path": "dist/music.js",
+      "bytes": 5476,
+      "sha256": "50a077ab6a7c8687c3e50be10c1e99f3a1b76aad7b4a57835bc86bb86f322b29"
     },
     {
       "path": "dist/orbit.js",
@@ -320,13 +330,23 @@
     },
     {
       "path": "package.json",
-      "bytes": 724,
-      "sha256": "56ed526585b1405e2037a924879be75bc8de6e373f5ba0ea1cf05d9e46401392"
+      "bytes": 753,
+      "sha256": "66aca9f374a4c52c8665e5f03a3c3032db2ce9e34a76a51abe39a937d34fed82"
     },
     {
       "path": "qa/account-api.test.py",
       "bytes": 18513,
       "sha256": "59a67094f2cab698c562b3a4b17161f8652ade70a288b15d7d5ab658272a21f3"
+    },
+    {
+      "path": "qa/character-music-browser.cjs",
+      "bytes": 8566,
+      "sha256": "833dd7770568f31c24711aacdd91dcf2e5f80882b971a2eed79b1a5e8941537d"
+    },
+    {
+      "path": "qa/character-skills.test.mjs",
+      "bytes": 3339,
+      "sha256": "be66c7b5cc8c29aa3a133408748175f6f1f621df3cfce163ac3fb144cad24f18"
     },
     {
       "path": "qa/characters-browser.cjs",
@@ -335,8 +355,8 @@
     },
     {
       "path": "qa/characters.test.mjs",
-      "bytes": 3119,
-      "sha256": "6e46da555b7d2c92eb6e3478a2ef3de5b19583ae7e5081b944f331b119f34959"
+      "bytes": 3114,
+      "sha256": "f7e9e2ab3d7b6c2a81dfcfbbb2563fb7318b1eb889e14de86787626f65a8d36a"
     },
     {
       "path": "qa/chests-account-browser.cjs",
@@ -345,8 +365,8 @@
     },
     {
       "path": "qa/chests.test.mjs",
-      "bytes": 7552,
-      "sha256": "6839ed7a56e18d8a1ec6a767049f03ffabd6d0823b6d58327c4bb01dad0e8fe8"
+      "bytes": 7317,
+      "sha256": "b335f6d016bdb472acbd090850b5dec6404cfaeb95695927c50671601ab7eeb8"
     },
     {
       "path": "qa/collection-camera.test.mjs",
@@ -395,8 +415,8 @@
     },
     {
       "path": "qa/lab-route.mjs",
-      "bytes": 2682,
-      "sha256": "1c347d571e8aaf471434781bfd3fe9ae0d3c155637311b27b98a6305e5198f05"
+      "bytes": 2807,
+      "sha256": "e1070538c0aa8ea65aec120abc72fdab0608b93ee130a11bf66bd683e9f3b3fa"
     },
     {
       "path": "qa/lab-world.test.mjs",
@@ -490,8 +510,8 @@
     },
     {
       "path": "qa/pixel-world.test.mjs",
-      "bytes": 3575,
-      "sha256": "267ec0614405eebdff362aab90c7f688aab2c5356ce1e8cc116f96121a638925"
+      "bytes": 3609,
+      "sha256": "c1eef77d6d591d8ebb8a63485a09bc7a8953ed7cda99a2db3e804dded334bc19"
     },
     {
       "path": "qa/progression.test.mjs",
@@ -525,8 +545,8 @@
     },
     {
       "path": "qa/sky-world.test.mjs",
-      "bytes": 8853,
-      "sha256": "53ca7acc66ead62784445c17480b83d6596601aea3d696227a1fcd7778b77e7d"
+      "bytes": 8816,
+      "sha256": "a40a2d064664dcd449c79324bbfb45d0a0c19220af737d1d5e4ddf4d20459716"
     },
     {
       "path": "qa/terrain-scroll.cjs",
@@ -535,8 +555,8 @@
     },
     {
       "path": "qa/update-release.cjs",
-      "bytes": 6473,
-      "sha256": "915ff4cc5924918a72a68adf3b20f387c9e5c1b503b34231af61f7139fae1659"
+      "bytes": 7209,
+      "sha256": "e15dbc4509382db83dc95df355f37fe2eb8b1d3347c50644e9fcbb669faac6b1"
     },
     {
       "path": "qa/v3-browser.cjs",
@@ -560,8 +580,8 @@
     },
     {
       "path": "tools/build-web.mjs",
-      "bytes": 2060,
-      "sha256": "139710d28baafbbefffe3db23d6e2ec34b1f2ca510097dc52f421e88586ef8ae"
+      "bytes": 2119,
+      "sha256": "43182cf5ec5304c487ee9bd8cec5e81e88548283530e30e554b1d2e0e0c91f3d"
     },
     {
       "path": "tools/build_assets.py",
@@ -575,8 +595,8 @@
     },
     {
       "path": "tools/release_source.py",
-      "bytes": 12698,
-      "sha256": "ddd150aaa232a1adc27fe3a9e8f529cf5642ce1b491325ffe980acb4e5dd111b"
+      "bytes": 12707,
+      "sha256": "403f91b312016771924ab27c66a561cc2918b4b8635089f8273e8cb71d0bb665"
     }
   ],
   "readable": [
@@ -791,6 +811,18 @@
     {
       "name": "qa/lab3d-world.test.mjs",
       "url": "code/qa/lab3d-world.test.mjs.txt"
+    },
+    {
+      "name": "dist/music.js",
+      "url": "code/dist/music.js.txt"
+    },
+    {
+      "name": "dist/2d/combat.js",
+      "url": "code/dist/2d/combat.js.txt"
+    },
+    {
+      "name": "qa/character-skills.test.mjs",
+      "url": "code/qa/character-skills.test.mjs.txt"
     },
     {
       "name": "dist/account.js",

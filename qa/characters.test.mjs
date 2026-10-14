@@ -13,7 +13,7 @@ test('only supported travellers and the gated logo can survive saved selection',
   assert.equal(saveCharacterId(storage,invalid),'dragon');assert.equal(values.get(CHARACTER_STORAGE_KEY),'dragon');
  }
  assert.equal(getCharacter('claude').name,'Claude');
- assert.equal(getCharacter('dragon').name,'GPT （同人Q版形象）');
+ assert.equal(getCharacter('dragon').name,'GPT（同人形象）');
  assert.equal(getCharacter('logo').asset,null);
 });
 
