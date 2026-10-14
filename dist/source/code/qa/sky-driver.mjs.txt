@@ -3,7 +3,7 @@ import {hazardState} from '../dist/2d/world.js';
 export function skyDriver(){
  let jumpRelease=0,lastDeath=0,crossing=null,hazardCross=null,combatJump=false,dashCommit=0,dashDir=1,lastTick=-1,lastInput=null;
  return w=>{
-  const p=w.player,t=w.realTime;
+  const p=w.player,t=w.time; // Decisions follow the simulated scene through hitstop.
   // A 30 Hz observer also proves the route does not require frame-perfect input.
   const tick=Math.floor((t+1e-7)*30);if(tick===lastTick&&lastInput)return lastInput;lastTick=tick;
   if(w.deaths!==lastDeath){lastDeath=w.deaths;crossing=null;hazardCross=null;combatJump=false;jumpRelease=t+.1}

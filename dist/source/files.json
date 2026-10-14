@@ -1,7 +1,7 @@
 {
-  "version": "2.7.0",
+  "version": "2.7.1",
   "license": "MIT",
-  "archive": "mosslight-source-v2.7.0.zip",
+  "archive": "mosslight-source-v2.7.1.zip",
   "files": [
     {
       "path": ".gitignore",
@@ -20,13 +20,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 19970,
-      "sha256": "8861f72cfbacaae84405f70915669f8d2198edcba1f3c3d7c770546a50e982c2"
+      "bytes": 21332,
+      "sha256": "347f0ced6913c501505aba479e182981aaa9b459c931f28626c619ed83cb33b1"
     },
     {
       "path": "README.txt",
-      "bytes": 19970,
-      "sha256": "8861f72cfbacaae84405f70915669f8d2198edcba1f3c3d7c770546a50e982c2"
+      "bytes": 21332,
+      "sha256": "347f0ced6913c501505aba479e182981aaa9b459c931f28626c619ed83cb33b1"
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
@@ -50,8 +50,8 @@
     },
     {
       "path": "deploy/README.md",
-      "bytes": 3997,
-      "sha256": "0a4be87a5577fb131db5b46023a77f5b9fbbfada3c57cf905b20a18f6988def1"
+      "bytes": 4320,
+      "sha256": "df67336be1aae2ba3f72efb2eeb159d7b399430a1f5739ae8e57d2d17308aa4b"
     },
     {
       "path": "deploy/install-api.sh",
@@ -61,7 +61,7 @@
     {
       "path": "deploy/install-mosslight.sh",
       "bytes": 3087,
-      "sha256": "c119e314bb258ac8b3cd62380fa92401f5fc70c59b370b15ae59e77513ad748d"
+      "sha256": "f88eacfc5f608f50bb9073cdccdd70517667e4d365896af150f7857bb08421f0"
     },
     {
       "path": "deploy/mosslight-api.service",
@@ -149,9 +149,14 @@
       "sha256": "5503a28040c433e8663bd43f6de7af30f6061526e1a7f0b6a57d488d92656fd1"
     },
     {
+      "path": "dist/2d/feedback.js",
+      "bytes": 1207,
+      "sha256": "5a3a8a81c4dfe5a77db0037d35814434c8d679c3827f57ac2218286a498b098e"
+    },
+    {
       "path": "dist/2d/game.js",
-      "bytes": 52914,
-      "sha256": "434fa7b8af6b2a71acb420e12c8e370168817014f5b8ab78d36dd83dc3f8126c"
+      "bytes": 54126,
+      "sha256": "6ca749803af75badaaf15cda2300abeec20670be81b21cea31bb3ceaaa3b1f4f"
     },
     {
       "path": "dist/2d/index.html",
@@ -190,8 +195,8 @@
     },
     {
       "path": "dist/2d/world.js",
-      "bytes": 30917,
-      "sha256": "da908e4e2519b9c273c2a26e88755d286cdefcac8d4e65ffe4029abf97948868"
+      "bytes": 31175,
+      "sha256": "5b675abf4d98c310e7665823936abbec14bc3af64103e10f628078f82fc46251"
     },
     {
       "path": "dist/account.css",
@@ -330,8 +335,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 753,
-      "sha256": "66aca9f374a4c52c8665e5f03a3c3032db2ce9e34a76a51abe39a937d34fed82"
+      "bytes": 778,
+      "sha256": "df62687340b6c53c2b92b6e62919c01bf3410c6eb27c8baae8d60a3a297efc3d"
     },
     {
       "path": "qa/account-api.test.py",
@@ -385,13 +390,23 @@
     },
     {
       "path": "qa/fall-recovery.test.mjs",
-      "bytes": 8787,
-      "sha256": "c795274ff59a1e8122f35e6df338b44b714f52de8c9bf88d1c637a499f27923c"
+      "bytes": 8821,
+      "sha256": "c6ebbb5224cd7fe2fe26e142db3bf58c29fc5b5df6a6e2fde2ac6054b82adb3a"
     },
     {
       "path": "qa/fixed-player3d.test.mjs",
       "bytes": 5857,
       "sha256": "bb117d281b60c2a1ac4eb6944a0776786853d725c08f22e319f5c061799d689a"
+    },
+    {
+      "path": "qa/hit-feedback-browser.cjs",
+      "bytes": 4640,
+      "sha256": "f7c0043bbc30c7055c4fd59ca9af35e4e75239303b6761057edd1c0220e95c81"
+    },
+    {
+      "path": "qa/hit-feedback.test.mjs",
+      "bytes": 3071,
+      "sha256": "df6a8d54e146aa4998aea53af4dbf2c33cddb9781f1cd6c26381e003e4e9dcca"
     },
     {
       "path": "qa/lab-browser-playthrough.cjs",
@@ -415,8 +430,8 @@
     },
     {
       "path": "qa/lab-route.mjs",
-      "bytes": 2807,
-      "sha256": "e1070538c0aa8ea65aec120abc72fdab0608b93ee130a11bf66bd683e9f3b3fa"
+      "bytes": 2921,
+      "sha256": "65ea1b61f10dc7438a7354af9cbd17d5ca6aff095a9a35b8b0ce569d9061765e"
     },
     {
       "path": "qa/lab-world.test.mjs",
@@ -535,8 +550,8 @@
     },
     {
       "path": "qa/sky-driver.mjs",
-      "bytes": 3431,
-      "sha256": "25e00778de697ab6064979e088f7432c7cdacff1397300d88d9f5942be6e76b9"
+      "bytes": 3483,
+      "sha256": "2445249596a37635eb9f9412bdebe2e4811c97b9902d60c112e89bd2b9cf06e1"
     },
     {
       "path": "qa/sky-route.mjs",
@@ -556,7 +571,7 @@
     {
       "path": "qa/update-release.cjs",
       "bytes": 7209,
-      "sha256": "e15dbc4509382db83dc95df355f37fe2eb8b1d3347c50644e9fcbb669faac6b1"
+      "sha256": "cf4c97d6002bf64ffe6835951186491095bfb1577b88530ba540c47534a075af"
     },
     {
       "path": "qa/v3-browser.cjs",
@@ -595,8 +610,8 @@
     },
     {
       "path": "tools/release_source.py",
-      "bytes": 12707,
-      "sha256": "403f91b312016771924ab27c66a561cc2918b4b8635089f8273e8cb71d0bb665"
+      "bytes": 12802,
+      "sha256": "37e038e01ccbc159c5ab668be42a03de39bbee9d771376e409427e0b9fd6f1a0"
     }
   ],
   "readable": [
@@ -811,6 +826,14 @@
     {
       "name": "qa/lab3d-world.test.mjs",
       "url": "code/qa/lab3d-world.test.mjs.txt"
+    },
+    {
+      "name": "dist/2d/feedback.js",
+      "url": "code/dist/2d/feedback.js.txt"
+    },
+    {
+      "name": "qa/hit-feedback.test.mjs",
+      "url": "code/qa/hit-feedback.test.mjs.txt"
     },
     {
       "name": "dist/music.js",

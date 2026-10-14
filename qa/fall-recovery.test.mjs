@@ -7,7 +7,7 @@ import {palaceDriver} from './palace-driver.mjs';
 const advance=(w,n,input={})=>{for(let i=0;i<n;i++)w.step(STEP,input)};
 function land2(w,a,x=a.x+60){Object.assign(w.player,{x,y:a.y-w.player.h,vx:0,vy:0,grounded:true,on:a.id});w.fallRecordAt=-1;w.rememberFallPoint()}
 function land3(w,a,x=0,z=0){Object.assign(w.player,{...platformToWorld(a,x,z),y:a.y,vx:0,vy:0,vz:0,grounded:true,on:a.id});}
-function fall(w){w.player.y=w instanceof PixelWorld?800:-20;w.player.grounded=false;w.player.on=null;w.step(STEP,{})}
+function fall(w){while(w.hitstop>0)w.step(STEP,{});w.player.y=w instanceof PixelWorld?800:-20;w.player.grounded=false;w.player.on=null;w.step(STEP,{})}
 
 test('2D falling costs exactly two HP and returns to the latest standing area in every chapter',()=>{
  for(let level=0;level<4;level++){

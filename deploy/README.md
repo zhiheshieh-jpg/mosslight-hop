@@ -4,18 +4,18 @@ The merged game is installed on `124.221.255.132` at
 `http://124.221.255.132/mosslight/`. The default document is the 2D adventure;
 its “前往3D” link opens `/mosslight/3d/`, and “前往2D” returns to the default.
 
-The 48 current static game files built from `dist` by `node tools/build-web.mjs`
+The 49 current static game files built from `dist` by `node tools/build-web.mjs`
 and a release hash manifest are uploaded. Run `python tools/package-web.py`
 to package `.web` and update the installer archive hash. Windows launchers, Node.js, SSH credentials, and private
 server data are not part of the website. Each game keeps its own browser saves.
 
 Deployment on 2026-10-14:
 
-- Release: `/srv/mosslight/releases/20261014T062607Z`
+- Release: `/srv/mosslight/releases/20261014T070828Z`
 - Active symlink: `/srv/mosslight/current`
 - Nginx snippet: `/etc/nginx/snippets/mosslight.conf`
 - Public site: `/etc/nginx/sites-available/pelican-public`
-- Config backup: `/etc/nginx/sites-available/pelican-public.before-mosslight-20261014T062607Z`
+- Config backup: `/etc/nginx/sites-available/pelican-public.before-mosslight-20261014T070828Z`
 - Upload staging: `/home/ubuntu/mosslight-deploy`
 - Local verification reports: `.deploy/tencent/`
 
@@ -30,13 +30,13 @@ On installation failure it restores the prior configuration and active release.
 For another release, generate a new archive/manifest and update the expected
 archive SHA-256 before running the installer.
 
-Current frontend release: 2.7.0. 2D terrain decorations and city windows keep
+Current frontend release: 2.7.1. 2D terrain decorations and city windows keep
 stable seeds and local coordinates while the camera scrolls. 3D uses only the
 original white block, with no character selector or logo form; its chapter
 progress combines previous profile wins. Both modes retain chapter four and
 completion-gated god mode. 3D remains noncombat.
-Archive SHA-256: `db1644586d21451a14a14d3b63cd984e49d393ecfa21891003049cc609b8a13f`.
-The installer verified all 48 release files and all 48 HTTP-served file hashes.
+Archive SHA-256: `b2e35544499832ce2977c878d94f93047769d8e8d68afd793ecd4bf97f5f4c38`.
+The installer verified all 49 release files and all 49 HTTP-served file hashes.
 The account API remains 2.5.0, with its persistent database unchanged.
 
 Account API: loopback `127.0.0.1:3197`, proxied only at `/mosslight/api/`.
@@ -53,3 +53,5 @@ account token and its saved data survived; a new verified backup was then create
 Version 2.6.2 keeps two-HP fall recovery in 2D, placing the body fully on the last platform with a small 32-pixel edge margin. Interior coordinates stay unchanged; narrow platforms reduce the margin. 3D returns directly to its checkpoint on every fall and has no HP system or health HUD. Existing 3D saves still load, while removed HP and fall-history fields are omitted from new saves. Accounts and SQLite data are unchanged.
 
 Version 2.7.0 adds four original self-contained BGM compositions in both modes. 2D boxes roll independently on first opening (95% empty, 5% double attack), retain their outcomes in saves, and support multiple pending rewards. GPT and Claude have distinct combat profiles, finishers and visual effects; names and 2D/3D titles are unified. 3D physics, level data and checkpoint behavior are unchanged. Production browser checks also verify real account saves containing the new loot state.
+
+Version 2.7.1 strengthens confirmed-hit feedback only in 2D: brief differentiated hitstop, bounded damped camera impulses, local impact sparks and layered hit sounds. Empty swings do not freeze the game; BGM continues, inputs queue and multiple targets do not stack pauses. All 3D runtime files match 2.7.0 byte-for-byte.

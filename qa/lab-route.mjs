@@ -9,6 +9,8 @@ export function labRoute(stride=1){
  assert.ok(Number.isInteger(stride)&&stride>=1&&stride<=4);
  const w=new PixelWorld(3),drive=skyDriver(),patterns=new Set,sections=new Set,bridges=new Set,checkpoints=new Set([0]);
  const interact=w.interact.bind(w);w.interact=()=>interact(()=>.5); // Fixed empty rolls prove the route needs no rare buff.
+ // Begin with released controls for one 60 Hz frame before sampling the pilot.
+ w.step(STEP,{});w.step(STEP,{});
  const inputs={jumps:0,dashes:0,slashes:0};let input={},minHp=6,parries=0;
  for(let n=0;n<120*420&&!w.complete&&!w.deaths;n++){
   if(n%stride===0)input=drive(w);
