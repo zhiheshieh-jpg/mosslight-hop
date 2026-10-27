@@ -1,4 +1,4 @@
-# Mosslight account API 2.5.0
+# Mosslight account API 2.5.1
 
 The standard-library Python service binds only to `127.0.0.1:3197`. It serves
 JSON APIs, never static files. Python 3.10+ is supported; production uses the
@@ -37,7 +37,7 @@ All successful responses are JSON with `Cache-Control: no-store`. Errors carry
 `{ok:false,code,message}` with a Chinese user-facing message. Authentication uses
 an `Authorization: Bearer ...` header, never cookies or query parameters.
 
-- `GET /api/health` returns `{ok:true,version:"2.5.0"}`.
+- `GET /api/health` returns `{ok:true,version:"2.5.1"}`.
 - `POST /api/auth` accepts optional `username` and `password`. A new username
   creates an account. An omitted username becomes `player-` plus random letters
   and numbers; an omitted new password becomes six digits and is returned as
@@ -102,3 +102,5 @@ a unique UTC timestamp plus random suffix. A complete backup becomes visible
 only after integrity verification. Manually test with
 `sudo -n systemctl start mosslight-backup.service`; inspect the timer with
 `systemctl list-timers mosslight-backup.timer`.
+
+Version 2.5.1 accepts a persistent account entitlement independently from chapter completion records. Invalid entitlement writes are rejected atomically. No database migration is required; existing accounts, sessions and saves are retained.

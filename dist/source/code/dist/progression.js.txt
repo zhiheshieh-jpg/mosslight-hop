@@ -1,3 +1,4 @@
+import {hasHiddenUnlock} from './hidden-unlock.js';
 // 3D progress deliberately uses separate storage from the 2D adventure.
 export const PROGRESS_KEY='mosslight-3d-progress';
 export const GOD_KEY='mosslight-3d-god';
@@ -25,7 +26,7 @@ export function createProgression(storage){
  if(!firstThreeReady())for(const id of CHARACTERS)byCharacter[id][3]=false;
  const snapshot=()=>{
   const completed=completedChapters(),ready=firstThreeReady();
-  return {version:2,completed,byCharacter:Object.fromEntries(CHARACTERS.map(id=>[id,[...byCharacter[id]]])),legacyCompleted:[...legacyCompleted],unlocked:[true,true,completed[0]&&completed[1],ready],godUnlocked:completed.every(Boolean)};
+  return {version:2,completed,byCharacter:Object.fromEntries(CHARACTERS.map(id=>[id,[...byCharacter[id]]])),legacyCompleted:[...legacyCompleted],unlocked:[true,true,completed[0]&&completed[1],ready],godUnlocked:hasHiddenUnlock(storage)||completed.every(Boolean)};
  };
  const persist=()=>{const {version,completed,byCharacter,legacyCompleted}=snapshot();write(storage,PROGRESS_KEY,{version,completed,byCharacter,legacyCompleted})};
  // Persist even an empty migration so later assisted best times never become legacy wins.

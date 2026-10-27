@@ -1,3 +1,4 @@
+import {hasHiddenUnlock} from '../hidden-unlock.js';
 export const PROGRESS_KEY='mosslight-pixel-progress';
 export const BEST_KEY='mosslight-pixel-best';
 export const GOD_KEY='mosslight-pixel-god';
@@ -20,7 +21,7 @@ export function createProgression(storage){
  const snapshot=()=>{
   const completed=CHAPTERS.map(i=>legacyCompleted[i]||CHARACTERS.some(id=>byCharacter[id][i]));
   const ready=bothCharactersReady();
-  return {version:2,completed,byCharacter:Object.fromEntries(CHARACTERS.map(id=>[id,[...byCharacter[id]]])),legacyCompleted:[...legacyCompleted],unlocked:[true,true,completed[0]&&completed[1],ready],godUnlocked:ready&&CHAPTERS.every(i=>CHARACTERS.some(id=>byCharacter[id][i]))};
+  return {version:2,completed,byCharacter:Object.fromEntries(CHARACTERS.map(id=>[id,[...byCharacter[id]]])),legacyCompleted:[...legacyCompleted],unlocked:[true,true,completed[0]&&completed[1],ready],godUnlocked:hasHiddenUnlock(storage)||(ready&&CHAPTERS.every(i=>CHARACTERS.some(id=>byCharacter[id][i])))};
  };
  const persist=()=>{const {version,completed,byCharacter,legacyCompleted}=snapshot();write(storage,PROGRESS_KEY,{version,completed,byCharacter,legacyCompleted})};
  // Persist even an empty migration so later assisted best scores never become legacy wins.

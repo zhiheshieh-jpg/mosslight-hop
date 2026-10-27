@@ -1,12 +1,12 @@
 {
   "name": "mosslight-hop",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "private": false,
   "license": "MIT",
   "type": "module",
   "scripts": {
     "start": "node server.mjs",
-    "test": "node --test qa/characters.test.mjs qa/character-skills.test.mjs qa/hit-feedback.test.mjs qa/chests.test.mjs qa/collection-camera.test.mjs qa/lab-progression.test.mjs qa/lab-world.test.mjs qa/lab3d-world.test.mjs qa/palace-progression.test.mjs qa/palace-world.test.mjs qa/physics.test.mjs qa/pixel-world.test.mjs qa/progression.test.mjs qa/sky-world.test.mjs qa/fixed-player3d.test.mjs qa/fall-recovery.test.mjs qa/combat-audio.test.mjs qa/story.test.mjs",
+    "test": "node --test qa/characters.test.mjs qa/character-skills.test.mjs qa/hit-feedback.test.mjs qa/chests.test.mjs qa/collection-camera.test.mjs qa/lab-progression.test.mjs qa/lab-world.test.mjs qa/lab3d-world.test.mjs qa/palace-progression.test.mjs qa/palace-world.test.mjs qa/physics.test.mjs qa/pixel-world.test.mjs qa/progression.test.mjs qa/sky-world.test.mjs qa/fixed-player3d.test.mjs qa/fall-recovery.test.mjs qa/combat-audio.test.mjs qa/story.test.mjs qa/hidden-unlock.test.mjs",
     "dev": "node server.mjs --raw",
     "build:web": "node tools/build-web.mjs",
     "test:api": "python qa/account-api.test.py",

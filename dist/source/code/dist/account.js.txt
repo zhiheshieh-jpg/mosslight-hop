@@ -1,6 +1,6 @@
 // Same-origin account storage, shared by the 2D and 3D applications.
 const SESSION='mosslight-account-session-v1',CACHE='mosslight-account-cache-v1';
-const allowed=key=>/^mosslight-(pixel-(progress|best|god|character)|3d-(progress|god|character)|collection-v2|best-[0-3]|best-normal-(dragon|claude)-[0-3]|run-(2d|3d))$/.test(key);
+const allowed=key=>/^mosslight-(pixel-(progress|best|god|character)|3d-(progress|god|character)|collection-v2|best-[0-3]|best-normal-(dragon|claude)-[0-3]|run-(2d|3d)|secret-god-unlocked)$/.test(key);
 const raw=(()=>{try{return localStorage}catch{return null}})();
 const read=(key,fallback)=>{try{return JSON.parse(raw?.getItem(key)||'null')??fallback}catch{return fallback}};
 const write=(key,value)=>{try{raw?.setItem(key,JSON.stringify(value))}catch{}};

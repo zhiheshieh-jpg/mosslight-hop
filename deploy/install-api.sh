@@ -94,13 +94,13 @@ for attempt in range(30):
     try:
         with urllib.request.urlopen('http://127.0.0.1:3197/api/health', timeout=2) as response:
             data = json.load(response)
-            assert data == {'ok': True, 'version': '2.5.0'}, data
+            assert data == {'ok': True, 'version': '2.5.1'}, data
         break
     except Exception:
         if attempt == 29:
             raise
         time.sleep(.5)
-print('Verified API 2.5.0 on 127.0.0.1:3197')
+print('Verified API 2.5.1 on 127.0.0.1:3197')
 PY
 sudo -n systemctl enable --now mosslight-backup.timer
 sudo -n systemctl is-active --quiet mosslight-backup.timer

@@ -15,6 +15,8 @@ export function buildWeb(){
   ['index.html','<a href="../">前往3D</a>','<a href="./3d/">前往3D</a>'],
   ['game.js',"from '../music.js'","from './3d/music.js'"],
   ['game.js',"from '../story.js'","from './3d/story.js'"],
+  ['game.js',"from '../hidden-unlock.js'","from './3d/hidden-unlock.js'"],
+  ['progression.js',"from '../hidden-unlock.js'","from './3d/hidden-unlock.js'"],
   ['3d/index.html','href="./2d/">前往2D</a>','href="../">前往2D</a>'],
   ['index.html','data-api="../api/"','data-api="./api/"'],
   ['3d/index.html','data-api="./api/"','data-api="../api/"']

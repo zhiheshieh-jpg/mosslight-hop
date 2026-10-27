@@ -84,7 +84,7 @@ class AccountHttpTests(unittest.TestCase):
         return self.request("PUT", "/api/save", body, token)
 
     def test_health_and_api_only(self):
-        self.assertEqual(self.request("GET", "/api/health")[:2], (200, {"ok": True, "version": "2.5.0"}))
+        self.assertEqual(self.request("GET", "/api/health")[:2], (200, {"ok": True, "version": "2.5.1"}))
         for path in ("/", "/index.html", "/backend/account_api.py", "/api/health?token=secret"):
             self.assertEqual(self.request("GET", path)[0], 404)
         self.assertEqual(self.request("POST", "/api/health", {})[0], 405)
@@ -324,6 +324,32 @@ class AccountHttpTests(unittest.TestCase):
         self.assertNotIn(password, self.logs.getvalue())
         self.assertNotIn(account["token"], self.logs.getvalue())
         self.assertNotIn("checkpoint", self.logs.getvalue())
+
+
+    def test_permanent_entitlement_account_scope_and_restart(self):
+        key = "mosslight-secret-god-unlocked"
+        first, other = self.auth(), self.auth("另一位旅人")
+        status, saved, _ = self.save(first["token"], {key: "true"}, first["revision"])
+        self.assertEqual(status, 200, saved)
+        self.assertEqual(saved["document"]["storage"][key], "true")
+        stale = self.save(first["token"], {"mosslight-pixel-god": "false"}, first["revision"])[1]
+        self.assertEqual(stale["document"]["storage"][key], "true")
+        self.assertNotIn(key, self.request("GET", "/api/me", token=other["token"])[1]["document"]["storage"])
+        self.stop_server()
+        self.start_server()
+        current = self.request("GET", "/api/me", token=first["token"])[1]
+        self.assertEqual(current["document"]["storage"][key], "true")
+
+    def test_invalid_entitlement_updates_are_atomic_and_cannot_revoke_it(self):
+        key = "mosslight-secret-god-unlocked"
+        account = self.auth()
+        good = self.save(account["token"], {key: "true"})[1]
+        for value in [None, "false", "1", '"true"', "{}", "bad"]:
+            status, _, _ = self.save(account["token"], {"mosslight-run-2d": "changed", key: value})
+            self.assertEqual(status, 400)
+            after = self.request("GET", "/api/me", token=account["token"])[1]
+            self.assertEqual(after["document"], good["document"])
+            self.assertEqual(after["revision"], good["revision"])
 
 
 if __name__ == "__main__":

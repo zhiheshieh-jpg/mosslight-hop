@@ -25,7 +25,7 @@ import unicodedata
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlsplit
 
-VERSION = "2.5.0"
+VERSION = "2.5.1"
 SESSION_SECONDS = 90 * 24 * 60 * 60
 PASSWORD_ITERATIONS = 600_000
 MAX_BODY_BYTES = 900 * 1024
@@ -42,7 +42,7 @@ ALLOWED_KEYS = frozenset(
         "mosslight-pixel-progress", "mosslight-pixel-best", "mosslight-pixel-god",
         "mosslight-pixel-character", "mosslight-3d-progress", "mosslight-3d-god",
         "mosslight-3d-character", "mosslight-collection-v2", "mosslight-run-2d",
-        "mosslight-run-3d",
+        "mosslight-run-3d", "mosslight-secret-god-unlocked",
     )
 ) | TIME_KEYS
 
@@ -171,6 +171,10 @@ def best_time(value: str) -> float:
 
 
 def merge_value(key: str, old: str | None, incoming: str) -> str:
+    if key == "mosslight-secret-god-unlocked":
+        if parse_json(incoming) is not True:
+            raise invalid("存档值格式不正确。")
+        return "true"
     if key in PROGRESS_KEYS:
         return merge_progress(old, incoming)
     if key == "mosslight-pixel-best":
@@ -334,6 +338,8 @@ class Database:
         changes = body["changes"]
         if set(changes) - ALLOWED_KEYS:
             raise invalid("存档包含不允许的键。")
+        if changes.get("mosslight-secret-god-unlocked", "true") is None:
+            raise invalid("存档值格式不正确。")
         for value in changes.values():
             if value is not None and not isinstance(value, str):
                 raise invalid("存档值必须是文字或 null。")
