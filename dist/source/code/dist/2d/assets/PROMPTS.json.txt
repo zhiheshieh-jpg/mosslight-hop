@@ -60,5 +60,16 @@
     }
   ],
   "runtime": "Character frames use alpha-aware cropping. Terrain, enemies, particles, slashes and lighting are Canvas2D pixel rendering; all sound and music are synthesized with WebAudio.",
-  "character_provenance": "Character appearances follow two user-supplied reference images. The game is an independent fan project; character and brand rights remain with their respective owners."
+  "character_provenance": "Character appearances follow two user-supplied reference images. The game is an independent fan project; character and brand rights remain with their respective owners.",
+  "updates": [
+    {
+      "date": "2026-10-28",
+      "key": "dragon",
+      "file": "dragon.png",
+      "prompt_record": "DRAGON-20261028-PROMPT.json",
+      "reference": "Web-searched white dragon three-view and supporting front image; see record for sources and exact prompts.",
+      "generator": "Built-in ImageGen",
+      "runtime_bytes": "unchanged copy of selected generated output"
+    }
+  ]
 }

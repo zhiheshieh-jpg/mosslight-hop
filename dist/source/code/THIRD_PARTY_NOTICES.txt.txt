@@ -60,3 +60,6 @@ Blender is used only to author and export assets and is not bundled.
 No external audio recordings or proprietary fonts are included.
 Music and sound effects are synthesized with WebAudio. UI fonts are selected
 from fonts installed on the visitor's system.
+
+GPT fan appearance update, 2026-10-28
+Reference identity: white dragon heroine attributed to ZipZipPipe (胖次狐) by https://github.com/lmy414/ai-chan-sheets . Supporting front view: https://github.com/Mccrree/chatgpt-dragon-character-assets . The game atlas dragon.png is a newly ImageGen-generated chibi pixel adaptation. Original web reference images are not included. Source attribution does not assert an official relationship, endorsement, or ownership of the underlying character. The MIT code license does not grant rights to third-party character designs. Reference repository states CC BY-NC-SA 4.0 for its own supplements; underlying character rights remain with the original creator. Generated adaptation is provided for this noncommercial fan game with attribution and under CC BY-NC-SA 4.0 to the extent licensable by the game author.

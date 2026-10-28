@@ -25,7 +25,7 @@ names = ['README.md', 'README.txt', 'LICENSE', 'THIRD_PARTY_NOTICES.txt',
 names += ['tools/build-web.mjs', 'tools/package-web.py', 'deploy/README.md', 'deploy/install-mosslight.sh', 'deploy/mosslight.conf']
 names += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'qa').glob('lab*.mjs')) if not p.name.endswith('-results.json')]
 names += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'qa').glob('lab*.cjs'))]
-names += ['backend/account_api.py', 'backend/README.md', 'backend/.gitignore', 'qa/account-api.test.py', 'qa/chests-account-browser.cjs', 'qa/pause-account3d.cjs', 'qa/pause-cloud-live3d.cjs', 'qa/update-release.cjs', 'qa/terrain-scroll.cjs', 'qa/fall-browser.cjs', 'qa/character-music-browser.cjs', 'qa/hit-feedback-browser.cjs', 'qa/sound-story-browser.cjs', 'qa/hidden-unlock-browser.cjs', 'qa/hidden-unlock-public.cjs', 'deploy/install-api.sh', 'deploy/mosslight-api.service', 'deploy/mosslight-backup.service', 'deploy/mosslight-backup.timer']
+names += ['backend/account_api.py', 'backend/README.md', 'backend/.gitignore', 'qa/account-api.test.py', 'qa/chests-account-browser.cjs', 'qa/pause-account3d.cjs', 'qa/pause-cloud-live3d.cjs', 'qa/update-release.cjs', 'qa/terrain-scroll.cjs', 'qa/fall-browser.cjs', 'qa/character-music-browser.cjs', 'qa/hit-feedback-browser.cjs', 'qa/sound-story-browser.cjs', 'qa/hidden-unlock-browser.cjs', 'qa/hidden-unlock-public.cjs', 'qa/fan-sprite-browser.cjs', 'deploy/install-api.sh', 'deploy/mosslight-api.service', 'deploy/mosslight-backup.service', 'deploy/mosslight-backup.timer']
 names += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'qa').glob('*.test.mjs'))]
 files = {name: ROOT / name for name in names}
 for path in sorted((ROOT / 'dist').rglob('*')):
@@ -51,6 +51,7 @@ readable = ['README.md', 'LICENSE', 'dist/2d/world.js', 'dist/2d/game.js',
             'qa/v3-browser.cjs', 'tools/release_source.py', 'package.json',
             'ASSETS.txt', 'THIRD_PARTY_NOTICES.txt']
 readable += ['dist/2d/lab-level.js', 'dist/2d/lab-render.js', 'dist/lab-level.js', 'dist/lab-scene.js', 'dist/characters-3d.js', 'tools/build-web.mjs', 'qa/lab-progression.test.mjs', 'qa/lab-world.test.mjs', 'qa/lab3d-world.test.mjs']
+readable += ['dist/2d/assets/DRAGON-20261028-PROMPT.json']
 readable += ['dist/hidden-unlock.js', 'qa/hidden-unlock.test.mjs']
 readable += ['dist/story.js', 'dist/2d/combat-audio.js', 'qa/story.test.mjs', 'qa/combat-audio.test.mjs']
 readable += ['dist/2d/feedback.js', 'qa/hit-feedback.test.mjs']

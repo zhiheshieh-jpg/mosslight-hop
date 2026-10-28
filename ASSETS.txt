@@ -37,3 +37,5 @@ Blender 模型输出目录：dist/assets/models
 Original BGM (v2.7.0): dist/music.js contains four original synthesized chapter compositions, chord/bass/melody/percussion parts and a boss arrangement. No external recordings or sound samples are used. Character finisher visuals are original Canvas pixel effects.
 
 2.8.0: Original four-chapter story (dist/story.js) and procedural combat/chainsaw audio (dist/2d/combat-audio.js), no external audio recordings.
+
+2.8.2 dragon.png: web-reference based ImageGen long-haired white/lilac dragon heroine, eight game poses. Exact prompts/reference URLs: dist/2d/assets/DRAGON-20261028-PROMPT.json. Original reference images are not redistributed.

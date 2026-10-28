@@ -1,0 +1,42 @@
+{
+  "generator": "Built-in ImageGen",
+  "intent": "Web-reference based generation and layout corrections",
+  "reference_sources": [
+    {
+      "url": "https://github.com/lmy414/ai-chan-sheets",
+      "image": "https://github.com/lmy414/ai-chan-sheets/blob/main/参考原图/02_GPT娘_白龙娘/原图_三视图_白_成年_GPT娘.png",
+      "credit": "Character reference attributed by source repository to ZipZipPipe (胖次狐).",
+      "role": "Original three-view character identity and costume reference."
+    },
+    {
+      "url": "https://github.com/Mccrree/chatgpt-dragon-character-assets/blob/main/02_front.png",
+      "credit": "Mccrree community front-view adaptation; upstream character rights not asserted.",
+      "role": "Supporting front-view reference."
+    }
+  ],
+  "prompts": [
+    "Use case: stylized-concept. Asset type: production transparent pixel-art sprite atlas for the existing Mosslight 2D action platformer. The two attached images are WEB REFERENCE IMAGES ONLY for character identity and costume, not a layout to copy: reference 1 is the white dragon girl's front/side/back sheet, reference 2 is a clearer front adaptation of the same character. Faithfully adapt her into a charming, fully clothed chibi action heroine: very long silver-white flowing layered hair, large pale-purple eyes, two slender ivory segmented dragon horns, pointed ears, one white knot-shaped hair ornament, small lavender membrane dragon wings, thick pale scaled dragon tail, white/lilac Chinese-inspired flowing dress with silver knot fasteners and tassels, small silver-white pointed shoes. Preserve white/purple/silver identity from the references. Elegant and adventurous, readable at 62 pixels tall; modest game costume, no cleavage emphasis. Deliberate professional pixel art, crisp square clusters, clear dark lavender silhouette outline and 3-4 shade ramps, no soft painted shading.\nOUTPUT: exactly one 1536x1024 RGBA PNG sprite sheet, genuinely transparent background, EXACTLY FOUR columns and TWO rows of equal 384x512 cells; 8 sprites only. No grid lines or labels. Every complete pose including horns, hair, wings, tail and any weapon remains within its own cell x+48 through x+336, y+55 through y+448. All eight have identical head/body scale. Idle character top around y+92 and feet baseline y+440. All grounded poses' lowest pixels are their shoes around y+440, with foot/body midpoint at x+192; keep tails, wings, tassels, weapons and effects above y+415 so they never become the foot anchor. Do not draw floor, contact shadow, fog, glow haze, checkerboard or background. No content along cell borders, no touching or overlap between cells. NO WORDS, logos, signature, watermark or measurement marks; small ornamental silver knots are fine.\nPOSE ORDER, read left to right across top row then bottom row, ALL FACING RIGHT with a three-quarter side view so face is readable: TOP: 0 calm idle-ready stance, 1 running stride left-leg-forward, 2 running stride right-leg-forward, 3 airborne jumping pose with knees tucked and hair flowing, same overall scale. BOTTOM: 4 forward horizontal sword slash toward RIGHT with a SMALL compact lilac crescent, 5 upward rising slash toward RIGHT with a SMALL compact crescent, 6 fast low forward dash toward RIGHT with body leaning forward, 7 hurt recoil facing RIGHT with arms bracing. For airborne pose feet may rise by 35px; for dash crouch body lower but feet remain baseline, keeping shoe midpoint centered. A compact lilac energy sword is held only in attack poses, no oversized trails. Keep the eight poses clearly distinct, alive, consistent, full-body and entirely inside their cells. This replaces a previous short-haired jacket outfit with the reference's LONG-HAIRED WHITE-LILAC DRESS design, while keeping chibi pixel-game readability.",
+    "Production layout and alpha correction ONLY for this new white-lilac long-haired dragon heroine sprite atlas. Preserve the SAME character face, elegant long silver hair, horns, wings, scaled tail, dress and all EIGHT distinct action poses in their current order. Keep canvas EXACTLY 1536x1024, exact FOUR384pxcolumns and TWO512pxrows. The current sprites are too large and overlap their grid cells, with translucent haze. Fix this for game use.\nSHRINK EACH COMPLETE INDIVIDUAL SPRITE INCLUDING ALL HAIR, WINGS, TAIL, SWORD AND EFFECTS to 70% of its current size, all at the same proportional scale. Independently reposition each to its OWN original cell. No sprite enters adjacent cells. In every cell, ALL opaque or semi-transparent pixels must fit between local x=48 and x=336 and local y=80 and y=440. Idle and grounded poses feet must sit exactly on local y=440, feet body midpoint x=192. Jump feet at local y=400; dash crouched feet on y=440. Tails, hems and weapons stay above feet, so the SHOES are lowest. Bottom-row localy440 means globaly952. Use genuine CLEAR alpha=0 TRANSPARENCY throughout the rest of every cell, including all margins, every cell border, spaces between body parts, and corners. DELETE ALL soft shadow, ambient glow, gray haze, fog, grain or semitransparent wash. Keep only hard crisp pixel outlines and solid colored pixel clusters. For attack frames, make sword/crescent MUCH smaller, without broad glowing halo; fit them fully withinx48..336. No backdrop, ground, checkerboard, grid, lines, words, letters, watermarks. Do not add poses or swap order. Top idle,runA,runB,jump; bottom forwardslash,risingslash,dash,hurt. This is a smaller clean sparse atlas, not a full-canvas illustration.",
+    "Precise production sprite layout correction of this exact atlas. Preserve all eight current poses and the SAME white-haired lavender dragon girl, long hair, dress, wings, tail and face. Canvas1536x1024 remains a4columns x2rows sprite sheet. The figures are STILL too close to cell boundaries and their shoe positions differ. Reduce EVERY complete sprite, including its sword/crescent, to75% of current visual size. Use that same reduction for ALL poses. Place each small complete sprite in its own384x512cell with WIDE empty transparent margins: all content local x between64and320, local y between140and464. ALL grounded characters' soles align at localy464, and the midpoint BETWEEN THE TWO SHOES at localx192. For dash6 keep the two shoe midpointx192 and solesy464 while leaning body forward; for jump3 shoe midpointx192 and solesy430. Keep idle0 and runs1,2 same head/body scale as slash4,5/dash6/hurt7. EVERY object stays in its own cell; specifically first attack4 crescent must end BEFORE localx320, NEVER touch right cell border. Make sword small and compact, remove all glow spread. Genuine alpha0 transparency everywhere outside crisp solid outlined sprite pixels. No backdrop, no floor or contact shadow, no gray wash, no grid, no labels, no glow fog. This is a sparse production sprite sheet with small evenly spaced sprites and large empty margins; do not fill the canvas."
+  ],
+  "selected_image": "exec-21800488-809d-4b5c-be11-aa6c279bc092.png",
+  "asset": "dragon.png",
+  "transparent_background": true,
+  "frame_order": [
+    "idle",
+    "runA",
+    "runB",
+    "jump",
+    "forward_slash",
+    "rising_slash",
+    "dash",
+    "hurt"
+  ],
+  "layout": {
+    "width": 1536,
+    "height": 1024,
+    "columns": 4,
+    "rows": 2
+  },
+  "notes": "Generated chibi pixel adaptation of the long-haired white-lilac dragon heroine. Runtime image is copied unchanged; only generation was used for image/layout editing. Web reference originals are not redistributed. No model-version or seed was exposed."
+}
